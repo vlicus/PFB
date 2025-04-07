@@ -1,0 +1,21 @@
+{
+  "type": "module",
+  "name": "api_alquiler-seguros",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch ./app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Portal de búsqueda de alquileres, con información histórica de los usuarios basada en la valoración de sus alquileres anteriores. Con esta plataforma los caseros encontrarán el inquilino perfecto y el inquilino el casero ideal.",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mysql2": "^3.14.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3"
+  }
+}
