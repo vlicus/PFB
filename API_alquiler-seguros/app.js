@@ -1,6 +1,6 @@
 // Dependencias
 import express from "express";
-
+import cors from "cors";
 // Variables de entorno
 import { PORT } from "./env.js";
 
@@ -18,3 +18,5 @@ app.use("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en http://localhost:${PORT}`);
 });
+
+app.use(cors());
