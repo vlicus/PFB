@@ -1,4 +1,4 @@
-import { notFoundError } from "../../Services/errorService";
+import { notFoundError } from "../../services/errorService.js";
 
 const notFound = (req, res, next) => {
   next(notFoundError("ruta"));

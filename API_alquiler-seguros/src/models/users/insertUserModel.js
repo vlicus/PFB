@@ -13,7 +13,7 @@ import getPool from "../../db/getPool.js";
 import {
   emailAlreadyRegisteredError,
   userAlreadyRegisteredError,
-} from "../../Services/errorService.js";
+} from "../../services/errorService.js";
 
 // Creamos la función que realiza una consulta a la base de datos para crear un nuevo usuario
 
