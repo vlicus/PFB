@@ -20,7 +20,9 @@ import {
 const insertUserModel = async (
   username,
   email,
-  password
+  password,
+  bio,
+  phone_number
   /* registration_code */
 ) => {
   const pool = await getPool();
@@ -73,9 +75,9 @@ const insertUserModel = async (
   // Lo creamos sin el registration_code por ahora
   await pool.query(
     `
-        INSERT INTO users(id, username, email, password, active) VALUES (?,?,?,?,1)
+        INSERT INTO users(id, username, email, password, bio, phone_number) VALUES (?,?,?,?,?,?)
         `,
-    [uuid(), username, email, hashedPass]
+    [uuid(), username, email, hashedPass, bio, phone_number]
   );
 };
 

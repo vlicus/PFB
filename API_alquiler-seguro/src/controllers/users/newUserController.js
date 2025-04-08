@@ -13,22 +13,27 @@ import insertUserModel from "../../models/users/insertUserModel.js";
 const newUserController = async (req, res, next) => {
   try {
     // Obtenemos los datos necesarios del body
-    const { username, email, password } = req.body;
+    const { username, email, password, bio, phone_number } = req.body;
 
     // Validamos el body con Joi
-    await validateSchemaUtil(newUserSchema, req.body);
+    //await validateSchemaUtil(newUserSchema, req.body);
 
     // Creamos el código de registro.
     const registration_code = randomstring.generate(30);
 
     // Insertamos el usuario
-    await insertUserModel(username, email, password, registration_code);
+    await insertUserModel(
+      username,
+      email,
+      password,
+      bio,
+      phone_number,
+      registration_code
+    );
 
     res.send({
       status: "ok",
-      message: `
-            Usuario creado.
-            `,
+      message: `Usuario creado.`,
     });
   } catch (error) {
     next(error);
