@@ -1,6 +1,6 @@
 import randomstring from "randomstring";
 
-import insertUserModel from "../../models/users/insertUserModel";
+import insertUserModel from "../../models/users/insertUserModel.js";
 
 // TBD, Esquema de Joi (Extra)
 /* import validateSchemaUtil from "../../utils/validateSchemaUtil.js"
