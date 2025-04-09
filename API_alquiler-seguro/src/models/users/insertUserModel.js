@@ -1,13 +1,13 @@
 import bcrypt from "bcryptjs";
 import { randomUUID as uuid } from "crypto";
-/* import { API_URL, PORT } from "../../../env.js"; */
+import { API_URL, PORT } from "../../../env.js";
 
 // Importamos la función que devuelve una conexión con la base de datos
 import getPool from "../../db/getPool.js";
 
 // Importamos servicios de errores:
 // TBD
-/* import sendMailUtil from "../../utils/sendMailUtil.js" */
+import sendMailUtil from "../../utils/sendMailUtil.js";
 
 // Importamos errores de registro
 import {
@@ -22,8 +22,8 @@ const insertUserModel = async (
   email,
   password,
   bio,
-  phone_number
-  /* registration_code */
+  phone_number,
+  registration_code
 ) => {
   const pool = await getPool();
 
@@ -43,12 +43,11 @@ const insertUserModel = async (
     emailAlreadyRegisteredError();
   }
 
-  /* 
-  Verificación por email:
+  //Verificación por email:
 
   const emailSubject = "Activa tu usuario en Alquiler Seguro";
 
-    Contenido del email:
+  //Contenido del email:
 
   const emailBody = `
   Bienvenido ${username}!
@@ -59,26 +58,26 @@ const insertUserModel = async (
               registration_code
             }">Activar mi cuenta</a>
         `;
-*/
+
   // Enviamos el email de verificación al usuario.
-  // await sendMailUtil(email, emailSubject, emailBody); //DE MOMENTO NO MANDAMOS EMAIL
+  await sendMailUtil(email, emailSubject, emailBody); //DE MOMENTO NO MANDAMOS EMAIL
 
   // Enctriptamos la password
   const hashedPass = await bcrypt.hash(password, 10);
 
   // Insertamos el usuario.
-  /* await pool.query(
-        `INSERT INTO users(id, username, email, password, registration_code) VALUES(?, ?, ?, ?, ?)`,
-        [uuid(), username, email, hashedPass, registration_code]
-    ); */
+  await pool.query(
+    `INSERT INTO users(id, username, email, password,bio, phone_number, registration_code) VALUES(?, ?, ?, ?, ?,?,?)`,
+    [uuid(), username, email, hashedPass, bio, phone_number, registration_code]
+  );
 
   // Lo creamos sin el registration_code por ahora
-  await pool.query(
+  /* await pool.query(
     `
         INSERT INTO users(id, username, email, password, bio, phone_number) VALUES (?,?,?,?,?,?)
         `,
     [uuid(), username, email, hashedPass, bio, phone_number]
-  );
+  ); */
 };
 
 export default insertUserModel;

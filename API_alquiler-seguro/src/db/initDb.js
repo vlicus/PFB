@@ -34,7 +34,7 @@ const main = async () => {
     active BOOLEAN DEFAULT false,
     is_admin BOOLEAN DEFAULT FALSE,
     registration_code CHAR(30),
-    recovery_code CHAR(10),
+    recovery_code CHAR(50),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP, 
     modified_at DATETIME ON UPDATE CURRENT_TIMESTAMP
 )	

@@ -22,7 +22,7 @@ const sendMailUtil = async (email, subject, body) => {
   try {
     // Enviamos el email.
     await transport.sendMail({
-      from: SMTP_USER,
+      from: "hab.alquiler.seguro@gmail.com",
       to: email,
       subject,
       text: body,

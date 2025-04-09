@@ -32,11 +32,11 @@ const sendRecoverPassController = async (req, res, next) => {
     // Si existe un usuario con ese email procedemos a generar el código de recuperación y enviarlo.
     if (users.length > 0) {
       // Generamos un código de recuperación de contraseña.
-      const recoverPassCode = crypto.randomBytes(15).toString("hex");
+      const recovery_code = crypto.randomBytes(10).toString("hex");
 
       // Actualizamos los datos del usuario para agregar el código anterior.
-      await pool.query(`UPDATE users SET recoverPassCode = ? WHERE email = ?`, [
-        recoverPassCode,
+      await pool.query(`UPDATE users SET recovery_code = ? WHERE email = ?`, [
+        recovery_code,
         email,
       ]);
 
@@ -47,7 +47,7 @@ const sendRecoverPassController = async (req, res, next) => {
       const emailBody = `
                 Hemos recibido una solicitud para recuperar contraseña en tu cuenta de Alquiler Seguro. Si no has sido tú ignora este email.
 
-                <a href="${process.env.CLIENT_URL}/users/password/reset/${recoverPassCode}">¡Cambiar contraseña!</a>
+                <a href="${process.env.CLIENT_URL}/users/password/reset/${recovery_code}">¡Cambiar contraseña!</a>
             `;
 
       // Enviamos el email.
