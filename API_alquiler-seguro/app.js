@@ -16,6 +16,7 @@ import {
 // Se crea el servidor
 const app = express();
 
+app.use(cors());
 // Middleware que "desencripta" un body en formato "raw" creando la propiedad "body" en el objeto "request".
 app.use(express.json());
 
@@ -33,7 +34,7 @@ app.use(notFoundController);
 //Middleware de errores
 app.use(errorController);
 
-app.use(cors());
+
 
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en http://localhost:${PORT}`);
