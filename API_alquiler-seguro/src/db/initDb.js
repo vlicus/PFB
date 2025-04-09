@@ -1,8 +1,12 @@
 import getPool from "./getPool.js";
+import bcrypt from "bcryptjs";
+import { randomUUID as uuid } from "crypto";
 
 const main = async () => {
   // Variable que almacenará una conexión con la base de datos.
   let pool;
+
+  const hashedPass = await bcrypt.hash("abc123", 10);
 
   try {
     pool = await getPool();
@@ -44,7 +48,6 @@ const main = async () => {
     address VARCHAR(255) NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
     num_rooms SMALLINT,
-    availability_date TIMESTAMP,
     description TEXT,
     is_available BOOLEAN DEFAULT TRUE,
     is_approved BOOLEAN DEFAULT FALSE,
@@ -71,7 +74,7 @@ CREATE TABLE IF NOT EXISTS ratings (
     id INT AUTO_INCREMENT PRIMARY KEY,
     author_id CHAR(36) NOT NULL,
     recipient_id CHAR(36) NOT NULL,
-    recipient_role ENUM('casero', 'inquilino'),
+    is_owner BOOLEAN DEFAULT false,
     rating INT CHECK(rating BETWEEN 1 AND 5),
     comment TEXT,
     rating_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -88,6 +91,7 @@ CREATE TABLE IF NOT EXISTS rental_history (
     renter_id CHAR(36) NOT NULL,
     start_date TIMESTAMP,
     end_date TIMESTAMP,
+    status ENUM('PENDING','APPROVED','REJECTED','ACTIVE','CANCELLED','COMPLETED'),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (rent_id) REFERENCES rent(id),
     FOREIGN KEY (renter_id) REFERENCES users(id)
@@ -96,8 +100,9 @@ CREATE TABLE IF NOT EXISTS rental_history (
 
     console.log("¡Tablas creadas!");
 
-    await pool.query(`
-INSERT INTO users (
+    await pool.query(
+      `
+  INSERT INTO users (
     id,
     email,
     username,
@@ -108,19 +113,20 @@ INSERT INTO users (
     is_admin,
     registration_code,
     recovery_code
-) VALUES (
-    '1', 
-    'admin@ejemplo.com',
-    'admin',
-    '+34911111222',
-    'Administrador del sistema.',
-    'abc123', 
-    TRUE,
-    TRUE,
-    '123456abcd',
-    NULL
-)
-        `);
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        uuid(),
+        "admin@ejemplo.com",
+        "admin",
+        "+34911111222",
+        "Administrador del sistema.",
+        hashedPass,
+        true,
+        true,
+        "123456abcd",
+        null,
+      ]
+    );
 
     console.log("¡Admin insertado!");
   } catch (err) {
