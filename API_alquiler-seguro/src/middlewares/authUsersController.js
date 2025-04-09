@@ -3,7 +3,7 @@ import {
   credencialesInvalidasError,
   tokenInvalidoError,
   noAutenticadoError,
-} from "../Services/errorService";
+} from "../services/errorService";
 
 const authUserController = async (req, res, next) => {
   try {
