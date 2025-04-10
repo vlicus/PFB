@@ -3,6 +3,7 @@ import sendRecoverPassController from "./sendRecoverPassController.js";
 import loginUserController from "./loginUserController.js";
 import userDetailsController from "./userDetailsController.js";
 import userHistoryAndDetailsController from "./userHistoryAndDetailsController.js";
+import validationController from "./validationController.js";
 
 export {
   newUserController,
@@ -10,4 +11,5 @@ export {
   loginUserController,
   userDetailsController,
   userHistoryAndDetailsController,
+  validationController,
 };
