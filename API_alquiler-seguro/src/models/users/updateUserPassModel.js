@@ -11,11 +11,9 @@ import { notFoundError } from "../../services/errorService.js";
 // Función que realiza una consulta a la base de datos para actualizar la contraseña de un usuario.
 const updateUserPassModel = async (email, newPass) => {
   const pool = await getPool();
-  console.log(email);
 
   // Obtenemos al usuario en base al email recibido.
   const user = await selectUserByEmailModel(email);
-  console.log(user);
 
   if (!user) {
     notFoundError();
