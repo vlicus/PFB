@@ -4,6 +4,8 @@ import loginUserController from "./loginUserController.js";
 import userDetailsController from "./userDetailsController.js";
 import userHistoryAndDetailsController from "./userHistoryAndDetailsController.js";
 import validationController from "./validationController.js";
+import userPasswordChangeController from "./userPasswordChangeController.js";
+
 
 export {
   newUserController,
@@ -12,4 +14,5 @@ export {
   userDetailsController,
   userHistoryAndDetailsController,
   validationController,
+  userPasswordChangeController,
 };
