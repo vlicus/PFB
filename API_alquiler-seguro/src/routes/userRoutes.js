@@ -5,6 +5,7 @@ import {
   sendRecoverPassController,
   loginUserController,
   userHistoryAndDetailsController,
+  validationController,
   userPasswordChangeController,
 } from "../controllers/users/index.js";
 
@@ -21,6 +22,8 @@ const router = express.Router();
 
 // Creamos un usuario pendiente de activar
 router.post("/users/register", newUserController);
+// Endpoint validacion usuario
+router.post("/users/validation", validationController);
 //Creamos un endpoint para login de un usuario registrado
 router.post("/users/login", loginUserController);
 

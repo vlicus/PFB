@@ -3,11 +3,10 @@ import randomstring from "randomstring";
 import insertUserModel from "../../models/users/insertUserModel.js";
 
 // TBD, Esquema de Joi (Extra)
-/* import validateSchemaUtil from "../../utils/validateSchemaUtil.js"
- */
+import validateSchemaUtil from "../../utils/validateSchemaUtil.js";
 
 // TBD, Importamos el esquema
-/* import newUserSchema from "../../schemas/users/newUserSchema.js" */
+import newUserSchema from "../../schemas/users/newUserSchema.js";
 
 // Función controladora final que crea un nuevo usuario.
 const newUserController = async (req, res, next) => {
@@ -16,7 +15,7 @@ const newUserController = async (req, res, next) => {
     const { username, email, password, bio, phone_number } = req.body;
 
     // Validamos el body con Joi
-    //await validateSchemaUtil(newUserSchema, req.body);
+    await validateSchemaUtil(newUserSchema, req.body);
 
     // Creamos el código de registro.
     const registration_code = randomstring.generate(30);
