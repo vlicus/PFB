@@ -14,6 +14,7 @@ import {
   userExistsController,
 } from "../middlewares/index.js";
 import userDetailsController from "../controllers/users/userDetailsController.js";
+import listUsersController from "../controllers/users/listUsersController.js";
 
 // Creamos un router
 const router = express.Router();
@@ -22,6 +23,9 @@ const router = express.Router();
 router.post("/users/register", newUserController);
 //Creamos un endpoint para login de un usuario registrado
 router.post("/users/login", loginUserController);
+
+// Obtener el listado de usuarios.
+router.get("/users", authUserController, listUsersController);
 
 //Creamos un endpoint para los detalles de un usuario
 router.get("/user/:id", userDetailsController);
