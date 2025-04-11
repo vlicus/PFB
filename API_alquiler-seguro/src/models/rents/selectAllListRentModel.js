@@ -6,7 +6,7 @@ const selectAllListRentModel = async () => {
   const [rents] = await pool.query(
     `SELECT
     r.id,
-    r.adress,
+    r.address,
     r.price,
 r.num_rooms,
 r.description,
