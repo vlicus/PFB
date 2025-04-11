@@ -70,3 +70,27 @@ export const notFoundError = (resource) => {
     message: `El recurso requerido '${resource}' no existe`,
   };
 };
+
+export const photoLimitReachedError = () => {
+  throw {
+    httpStatus: 409, // Conflict
+    code: "PHOTO_LIMIT_REACHED",
+    message: "Se ha alcanzado el límite de veinte fotos en la entrada",
+  };
+};
+
+export const saveFileError = () => {
+  throw {
+    httpStatus: 500, // Internal Server Error
+    code: "FILE_SAVE_FAILED",
+    message: "Error al guardar el archivo en el disco",
+  };
+};
+
+export const deleteFileError = () => {
+  throw {
+    httpStatus: 409, // Conflict
+    code: "FILE_DELETED_FAILED",
+    message: "Error al eliminar el archivo del disco",
+  };
+};

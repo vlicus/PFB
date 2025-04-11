@@ -62,7 +62,7 @@ const main = async () => {
             CREATE TABLE IF NOT EXISTS rent_images (
     id INT AUTO_INCREMENT PRIMARY KEY,
     rent_id CHAR(36) NOT NULL,
-    image_url VARCHAR(255),
+    name VARCHAR(255),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (rent_id) REFERENCES rent(id)
 )
