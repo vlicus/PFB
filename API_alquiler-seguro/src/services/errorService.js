@@ -94,3 +94,11 @@ export const deleteFileError = () => {
     message: "Error al eliminar el archivo del disco",
   };
 };
+
+export const invalidCredentialsError = () => {
+  throw {
+    httpStatus: 401, // Unauthorized
+    code: "INVALID_CREDENTIALS",
+    message: "Credenciales inválidas",
+  };
+};

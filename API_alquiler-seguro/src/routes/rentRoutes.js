@@ -1,15 +1,19 @@
 // Importamos las dependencias.
 import express from "express";
-import { listRentController } from "../controllers/rents/listRentController.js";
-import { getRentController } from "../controllers/rents/index.js";
+import {
+  getRentController,
+  listRentController,
+  addRentPhotoController,
+  deleteRentPhotoController,
+  voteRentController,
+} from "../controllers/rents/index.js";
 
 import {
   rentExistsController,
   authUserController,
   userExistsController,
-  rentExistsController,
   canEditController,
-  authUserOptionalController,
+  authUserControllerOptional,
 } from "../middlewares/index.js";
 
 // Creamos un router.
@@ -21,22 +25,19 @@ router.post(
   userExistsController,
   rentExistsController,
   canEditController,
-  addEntryPhotoController
+  addRentPhotoController
 );
 
 // Eliminar una foto de una entrada.
 router.delete(
   "/rent/:rentId/photos/:photoId",
   authUserController,
-  authUserOptionalController,
+  authUserControllerOptional,
   userExistsController,
   rentExistsController,
   canEditController,
-  deleteEntryPhotoController
+  deleteRentPhotoController
 );
-
-// Creamos un router.
-const router = express.Router();
 
 // Obtener info de un alquiler concreto
 router.get("/rent/:rentId", rentExistsController, getRentController);

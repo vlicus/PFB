@@ -5,8 +5,8 @@ import joi from "joi";
 import imgSchema from "../imgSchema.js";
 
 // Creamos el esquema de Joi donde comprobamos todas las propiedades necesarias.
-const addEntryPhotoSchema = joi.object({
+const addRentPhotoSchema = joi.object({
   photo: imgSchema.required(),
 });
 
-export default addEntryPhotoSchema;
+export default addRentPhotoSchema;

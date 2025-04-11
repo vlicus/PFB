@@ -10,5 +10,5 @@ export {
   userExistsController,
   canEditController,
   authUserControllerOptional,
-  rentExistsController
+  rentExistsController,
 };
