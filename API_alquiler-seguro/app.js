@@ -2,7 +2,7 @@
 import express from "express";
 import cors from "cors";
 // Variables de entorno
-import { PORT } from "./env.js";
+import { PORT, UPLOADS_DIR } from "./env.js";
 
 // Importamos las rutas
 import userRoutes from "./src/routes/userRoutes.js";
@@ -24,6 +24,9 @@ app.use(express.json());
 // Middleware que indica a express donde están las rutas
 app.use(userRoutes);
 app.use(rentRoutes);
+
+// Middleware que indica a Express cuál es el directorio de ficheros estáticos.
+app.use("/media", express.static(UPLOADS_DIR));
 
 // Inicio (/), Sin esto da error por que intenta cargar la ruta / igualmente, aunque no esté definida
 app.use("/", (req, res) => {
