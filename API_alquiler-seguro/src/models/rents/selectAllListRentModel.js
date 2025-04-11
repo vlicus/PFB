@@ -1,4 +1,4 @@
-import getPool from "../../db/getPool";
+import getPool from "../../db/getPool.js";
 
 const selectAllListRentModel = async () => {
   const pool = await getPool();
