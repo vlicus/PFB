@@ -7,6 +7,7 @@ import { PORT, UPLOADS_DIR } from "./env.js";
 
 // Importamos las rutas
 import userRoutes from "./src/routes/userRoutes.js";
+import rentRoutes from "./src/routes/rentRoutes.js";
 
 //Importamos los errores
 import {
@@ -23,6 +24,7 @@ app.use(express.json());
 
 // Middleware que indica a express donde están las rutas
 app.use(userRoutes);
+app.use(rentRoutes);
 
 // Middleware que indica a Express cuál es el directorio de ficheros estáticos.
 app.use("/media", express.static(UPLOADS_DIR));
