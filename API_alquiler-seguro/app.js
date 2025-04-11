@@ -1,5 +1,6 @@
 // Dependencias
 import express from "express";
+import fileUpload from "express-fileupload";
 import cors from "cors";
 // Variables de entorno
 import { PORT, UPLOADS_DIR } from "./env.js";
@@ -27,6 +28,10 @@ app.use(rentRoutes);
 
 // Middleware que indica a Express cuál es el directorio de ficheros estáticos.
 app.use("/media", express.static(UPLOADS_DIR));
+
+// Middleware que "desencripta" un body en formato "form-data" creando la propiedad
+// "body" y la propiedad "files" en el objeto "request"
+app.use(fileUpload());
 
 // Inicio (/), Sin esto da error por que intenta cargar la ruta / igualmente, aunque no esté definida
 app.use("/", (req, res) => {
