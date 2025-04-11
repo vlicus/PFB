@@ -6,6 +6,7 @@ import { PORT } from "./env.js";
 
 // Importamos las rutas
 import userRoutes from "./src/routes/userRoutes.js";
+import rentRoutes from "./src/routes/rentRoutes.js";
 
 //Importamos los errores
 import {
@@ -22,6 +23,7 @@ app.use(express.json());
 
 // Middleware que indica a express donde están las rutas
 app.use(userRoutes);
+app.use(rentRoutes);
 
 // Inicio (/), Sin esto da error por que intenta cargar la ruta / igualmente, aunque no esté definida
 app.use("/", (req, res) => {
@@ -33,8 +35,6 @@ app.use(notFoundController);
 
 //Middleware de errores
 app.use(errorController);
-
-
 
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en http://localhost:${PORT}`);
