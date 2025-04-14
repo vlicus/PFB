@@ -5,7 +5,9 @@ import voteRentController from "./voteRentController.js";
 import listRentController from "./listRentController.js";
 import newRentController from "./newRentController.js";
 import requestRentController from "./requestRentController.js";
+import listRentRequestController from "./listRentRequestController;.js";
 import approveRentController from "./approveRentController.js";
+
 
 export {
   getRentController,
@@ -15,5 +17,6 @@ export {
   listRentController,
   newRentController,
   requestRentController,
+  listRentRequestController,
   approveRentController,
 };

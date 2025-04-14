@@ -13,7 +13,7 @@ r.description,
 r.is_available,
 r.is_approved,
 r.property_owner_id
-FROM rent r
+FROM rents r
 `
   );
   return rents;
