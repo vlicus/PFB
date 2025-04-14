@@ -5,11 +5,10 @@ import generateErrorUtil from "../../utils/generateErrorUtil.js";
 const userDetailsController = async (req, res, next) => {
   try {
     const pool = await getPool();
-
+    const userId = req.user?.id;
     const [users] = await pool.query(
       `
   SELECT 
-    users.id,
     users.username,
     users.email,
     users.phone_number,
@@ -22,7 +21,7 @@ const userDetailsController = async (req, res, next) => {
     users.created_at
   FROM users
   WHERE users.id = ?`,
-      [req.user.id]
+      [userId]
     );
 
     if (users.length < 1) {
