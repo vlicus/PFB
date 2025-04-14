@@ -1,10 +1,10 @@
 // Importamos los modelos.
 import selectRentByIdModel from "../../models/rents/selectRentByIdModel.js";
 
-// Función controladora final que retorna una entrada con un id dado.
+// Función controladora final que retorna un alquiler con un id dado.
 const getRentController = async (req, res, next) => {
   try {
-    // Obtenemos el id de la entrada.
+    // Obtenemos el id del alquiler.
     const { rentId } = req.params;
 
     // Dado que queremos permitir que un usuario no logeado acceda a este controlador,

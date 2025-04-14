@@ -7,6 +7,7 @@ import {
   userHistoryAndDetailsController,
   validationController,
   userPasswordChangeController,
+  userDetailsController,
 } from "../controllers/users/index.js";
 
 // Importamos las funciones controladoras intermedias.
@@ -14,7 +15,7 @@ import {
   authUserController,
   userExistsController,
 } from "../middlewares/index.js";
-import userDetailsController from "../controllers/users/userDetailsController.js";
+
 import listUsersController from "../controllers/users/listUsersController.js";
 
 // Creamos un router
@@ -22,8 +23,10 @@ const router = express.Router();
 
 // Creamos un usuario pendiente de activar
 router.post("/users/register", newUserController);
+
 // Endpoint validacion usuario
 router.post("/users/validation", validationController);
+
 //Creamos un endpoint para login de un usuario registrado
 router.post("/users/login", loginUserController);
 
@@ -31,10 +34,14 @@ router.post("/users/login", loginUserController);
 router.get("/users", authUserController, listUsersController);
 
 //Creamos un endpoint para los detalles de un usuario
-router.get("/user/:id", userDetailsController);
+router.get("/user/:id", authUserController, userDetailsController);
 
 //Creamos un endpoint para detalles de usuario  con el histórico de alquileres hechos
-router.get("/user/history/:id", userHistoryAndDetailsController);
+router.get(
+  "/user/history/:id",
+  authUserController,
+  userHistoryAndDetailsController
+);
 
 // Middleware que permite enviar un correo de recuperación de contraseña.
 router.put("/users/password/recover", sendRecoverPassController);

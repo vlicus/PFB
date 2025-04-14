@@ -6,6 +6,10 @@ import {
   addRentPhotoController,
   deleteRentPhotoController,
   voteRentController,
+  newRentController,
+  approveRentController,
+  requestRentController,
+  listRentRequestController,
   editStatusRentController,
 } from "../controllers/rents/index.js";
 
@@ -26,7 +30,19 @@ router.post(
   userExistsController,
   rentExistsController,
   canEditController,
-  addRentPhotoController
+  addRentPhotoController,
+  approveRentController
+);
+// Insertar un nuevo alquiler.
+router.post("/rent/register", authUserController, newRentController);
+
+// Votar un alquiler
+router.post(
+  "/rent/:rentId/votes",
+  authUserController,
+  userExistsController,
+  rentExistsController,
+  voteRentController
 );
 
 // Eliminar una foto de un alquiler.
@@ -43,8 +59,28 @@ router.delete(
 // Obtener info de un alquiler concreto
 router.get("/rent/:rentId", rentExistsController, getRentController);
 
+// Solicitar visita/alquiler
+router.post(
+  "/rent/:rentId/request",
+  authUserController,
+  rentExistsController,
+  requestRentController
+);
+
+// Obtener el listado de las solicitudes de visita/alquiler.
+router.get("/rents/requests", listRentRequestController);
+
 // Obtener el listado de alquileres.
 router.get("/rents", listRentController);
+
+//aprobar un alquiler
+router.post(
+  "/rent/:rentId/approve",
+  authUserController,
+  userExistsController,
+  rentExistsController,
+  approveRentController
+);
 
 //Cambiar el estado de un alquiler
 router.put(

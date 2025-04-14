@@ -14,7 +14,7 @@ const main = async () => {
     console.log("Borrando tablas...");
 
     await pool.query(
-      "DROP TABLE IF EXISTS rental_history, ratings, rent_images, rent, users"
+      "DROP TABLE IF EXISTS rental_history, ratings, rent_images, rents, users"
     );
 
     console.log("Creando tablas...");
@@ -42,13 +42,13 @@ const main = async () => {
 
     // Creamos la tabla de alquiler.
     await pool.query(`
-            CREATE TABLE IF NOT EXISTS rent (
+            CREATE TABLE IF NOT EXISTS rents (
     id CHAR(36) PRIMARY KEY NOT NULL,
     property_owner_id CHAR(36) NOT NULL,
     address VARCHAR(255) NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
-    num_rooms SMALLINT,
-    description TEXT,
+    num_rooms SMALLINT NOT NULL,
+    description TEXT NOT NULL,
     is_available BOOLEAN DEFAULT TRUE,
     is_approved BOOLEAN DEFAULT FALSE,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP, 
@@ -64,7 +64,7 @@ const main = async () => {
     rent_id CHAR(36) NOT NULL,
     name VARCHAR(255),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (rent_id) REFERENCES rent(id)
+    FOREIGN KEY (rent_id) REFERENCES rents(id)
 )
         `);
 
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS rental_history (
     end_date TIMESTAMP,
     status ENUM('PENDING','APPROVED','REJECTED','ACTIVE','CANCELLED','COMPLETED'),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (rent_id) REFERENCES rent(id),
+    FOREIGN KEY (rent_id) REFERENCES rents(id),
     FOREIGN KEY (renter_id) REFERENCES users(id)
 )
         `);
