@@ -9,8 +9,8 @@ const editStatusRentController = async (req, res, next) => {
     const { rentId } = req.params;
     const { status } = req.body;
     const rent = await selectRentByIdModel(rentId);
-
-    if (property_owner_id !== req.user.id) {
+    console.log(rent);
+    if (rent.property_owner_id !== req.user.id) {
       unauthorizedUserError();
     }
     await availableStatusRentModel(status, rent.property_owner_id, rentId);

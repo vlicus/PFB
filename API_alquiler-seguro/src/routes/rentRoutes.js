@@ -87,9 +87,7 @@ router.put(
   "/rent/:rentId",
   authUserController,
   authUserControllerOptional,
-  userExistsController,
   rentExistsController,
-  canEditController,
   editStatusRentController
 );
 
