@@ -4,6 +4,7 @@ import addRentPhotoController from "./addRentPhotoController.js";
 import voteRentController from "./voteRentController.js";
 import listRentController from "./listRentController.js";
 import newRentController from "./newRentController.js";
+import requestRentController from "./requestRentController.js";
 
 export {
   getRentController,
@@ -12,4 +13,5 @@ export {
   voteRentController,
   listRentController,
   newRentController,
+  requestRentController,
 };

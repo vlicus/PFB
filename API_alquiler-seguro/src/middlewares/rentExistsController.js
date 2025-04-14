@@ -11,7 +11,7 @@ const rentExistsController = async (req, res, next) => {
     // Obtenemos el id del alquiler de los path params.
     const { rentId } = req.params;
 
-    const [rents] = await pool.query(`SELECT id FROM rent WHERE id = ?`, [
+    const [rents] = await pool.query(`SELECT id FROM rents WHERE id = ?`, [
       rentId,
     ]);
 

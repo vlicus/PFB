@@ -61,10 +61,10 @@ const main = async () => {
     await pool.query(`
             CREATE TABLE IF NOT EXISTS rent_images (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    rents_id CHAR(36) NOT NULL,
+    rent_id CHAR(36) NOT NULL,
     name VARCHAR(255),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (rents_id) REFERENCES rents(id)
+    FOREIGN KEY (rent_id) REFERENCES rents(id)
 )
         `);
 
@@ -87,13 +87,13 @@ CREATE TABLE IF NOT EXISTS ratings (
     await pool.query(`
 CREATE TABLE IF NOT EXISTS rental_history (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    rents_id CHAR(36) NOT NULL,
+    rent_id CHAR(36) NOT NULL,
     renter_id CHAR(36) NOT NULL,
     start_date TIMESTAMP,
     end_date TIMESTAMP,
     status ENUM('PENDING','APPROVED','REJECTED','ACTIVE','CANCELLED','COMPLETED'),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (rents_id) REFERENCES rents(id),
+    FOREIGN KEY (rent_id) REFERENCES rents(id),
     FOREIGN KEY (renter_id) REFERENCES users(id)
 )
         `);

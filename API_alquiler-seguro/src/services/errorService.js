@@ -103,6 +103,14 @@ export const invalidCredentialsError = () => {
   };
 };
 
+export const cannotRequestOwnRentError = () => {
+  throw {
+    httpStatus: 403, // Forbidden
+    code: "CANNOT_REQUEST_OWN_RENT",
+    message: "No puedes solicitar tu propio alquiler",
+  };
+};
+
 export const voteAlreadyExistsError = () => {
   throw {
     httpStatus: 409, // Conflict
