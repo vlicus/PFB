@@ -7,6 +7,7 @@ import {
   deleteRentPhotoController,
   voteRentController,
   newRentController,
+  approveRentController,
   requestRentController,
 } from "../controllers/rents/index.js";
 
@@ -27,7 +28,8 @@ router.post(
   userExistsController,
   rentExistsController,
   canEditController,
-  addRentPhotoController
+  addRentPhotoController,
+  approveRentController
 );
 // Insertar un nuevo alquiler.
 router.post("/rent/register", authUserController, newRentController);
@@ -65,5 +67,15 @@ router.post(
 
 // Obtener el listado de alquileres.
 router.get("/rents", listRentController);
+
+//aprobar un alquiler
+router.post(
+  "/rent/:rentId/approve",
+  authUserController,
+  userExistsController,
+  rentExistsController,
+  canEditController,
+  approveRentController
+);
 
 export default router;
