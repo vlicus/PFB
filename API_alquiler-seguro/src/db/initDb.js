@@ -42,13 +42,13 @@ const main = async () => {
 
     // Creamos la tabla de alquiler.
     await pool.query(`
-            CREATE TABLE IF NOT EXISTS rent (
+            CREATE TABLE IF NOT EXISTS rents (
     id CHAR(36) PRIMARY KEY NOT NULL,
     property_owner_id CHAR(36) NOT NULL,
     address VARCHAR(255) NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
-    num_rooms SMALLINT,
-    description TEXT,
+    num_rooms SMALLINT NOT NULL,
+    description TEXT NOT NULL,
     is_available BOOLEAN DEFAULT TRUE,
     is_approved BOOLEAN DEFAULT FALSE,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP, 

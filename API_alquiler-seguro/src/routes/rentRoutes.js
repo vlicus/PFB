@@ -6,6 +6,7 @@ import {
   addRentPhotoController,
   deleteRentPhotoController,
   voteRentController,
+  requestRentController,
 } from "../controllers/rents/index.js";
 
 import {
@@ -41,6 +42,14 @@ router.delete(
 
 // Obtener info de un alquiler concreto
 router.get("/rent/:rentId", rentExistsController, getRentController);
+
+// Solicitar visita/alquiler
+router.post(
+  "/rent/:rentId/request",
+  authUserController,
+  rentExistsController,
+  requestRentController
+);
 
 // Obtener el listado de alquileres.
 router.get("/rents", listRentController);

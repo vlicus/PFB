@@ -5,9 +5,9 @@ import getPool from "../../db/getPool.js";
 const selectRentByIdModel = async (rentId) => {
   const pool = await getPool();
 
-  // Comprobamos si hay algún usuario con el email proporcionado.
+  // Comprobamos si hay algún alquiler con el id proporcionado.
   const [[rents]] = await pool.query(
-    `SELECT id, property_owner_id, address, price, num_rooms, description , is_available, created_at FROM rent WHERE id = ?`,
+    `SELECT id, property_owner_id, address, price, num_rooms, description , is_available, created_at FROM rents WHERE id = ?`,
     [rentId]
   );
 

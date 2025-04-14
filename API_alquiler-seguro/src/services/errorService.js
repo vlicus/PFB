@@ -102,3 +102,11 @@ export const invalidCredentialsError = () => {
     message: "Credenciales inválidas",
   };
 };
+
+export const cannotRequestOwnRentError = () => {
+  throw {
+    httpStatus: 403, // Forbidden
+    code: "CANNOT_REQUEST_OWN_RENT",
+    message: "No puedes solicitar tu propio alquiler",
+  };
+};
