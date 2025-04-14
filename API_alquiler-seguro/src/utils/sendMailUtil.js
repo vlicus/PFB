@@ -5,7 +5,8 @@ import nodemailer from "nodemailer";
 import generateErrorUtil from "./generateErrorUtil.js";
 
 // Importas las variables de entorno necesarias.
-const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS } = process.env;
+import { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS } from "../../env.js";
+// const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS } = process.env;
 
 // Creamos un transporte (una conexión) para poder enviar el email.
 const transport = nodemailer.createTransport({
