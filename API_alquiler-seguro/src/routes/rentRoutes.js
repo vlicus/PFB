@@ -6,6 +6,7 @@ import {
   addRentPhotoController,
   deleteRentPhotoController,
   voteRentController,
+  newRentController,
   requestRentController,
 } from "../controllers/rents/index.js";
 
@@ -28,6 +29,8 @@ router.post(
   canEditController,
   addRentPhotoController
 );
+// Insertar un nuevo alquiler.
+router.post("/rent/register", authUserController, newRentController);
 
 // Eliminar una foto de una entrada.
 router.delete(
