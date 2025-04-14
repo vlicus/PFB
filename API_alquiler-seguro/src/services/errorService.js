@@ -55,7 +55,7 @@ export const pendingActivationError = () => {
   };
 };
 
-export const cannotVoteOwnEntryError = () => {
+export const cannotVoteOwnRentError = () => {
   throw {
     httpStatus: 403, // Forbidden
     code: "CANNOT_VOTE_OWN_ENTRY",
@@ -100,5 +100,13 @@ export const invalidCredentialsError = () => {
     httpStatus: 401, // Unauthorized
     code: "INVALID_CREDENTIALS",
     message: "Credenciales inválidas",
+  };
+};
+
+export const voteAlreadyExistsError = () => {
+  throw {
+    httpStatus: 409, // Conflict
+    code: "VOTE_ALREADY_EXISTS",
+    message: "No se puede votar más de una vez la misma entrada",
   };
 };

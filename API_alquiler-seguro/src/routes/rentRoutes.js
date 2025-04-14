@@ -28,6 +28,15 @@ router.post(
   addRentPhotoController
 );
 
+// Votar un alquiler
+router.post(
+  "/rent/:rentId/votes",
+  authUserController,
+  userExistsController,
+  rentExistsController,
+  voteRentController
+);
+
 // Eliminar una foto de una entrada.
 router.delete(
   "/rent/:rentId/photos/:photoId",
