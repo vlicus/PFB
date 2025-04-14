@@ -15,13 +15,11 @@ const requestRentController = async (req, res, next) => {
       cannotRequestOwnRentError();
     }
 
-    const requestRent = await insertRentHistoryModel(rentId, req.user.id);
+    await insertRentHistoryModel(rentId, req.user.id);
 
     res.send({
       status: "ok",
-      data: {
-        requestRent,
-      },
+      message: "Solicitud efectuada, se ha notificado al casero via email",
     });
   } catch (err) {
     next(err);

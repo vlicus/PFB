@@ -52,7 +52,7 @@ const insertUserModel = async (
   const emailBody = `
   Bienvenido ${username}!
 
-  Gracias por registrarte en Diario de Viajes. Para activar tu cuenta, haz clic en el siguiente enlace:
+  Gracias por registrarte en Alquiler Seguro. Para activar tu cuenta, haz clic en el siguiente enlace:
 
             <a href="${API_URL + "/" + PORT}/users/validate/${
               registration_code
