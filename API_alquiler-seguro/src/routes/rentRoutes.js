@@ -8,6 +8,7 @@ import {
   voteRentController,
   newRentController,
   requestRentController,
+  listRentRequestController,
 } from "../controllers/rents/index.js";
 
 import {
@@ -62,6 +63,9 @@ router.post(
   rentExistsController,
   requestRentController
 );
+
+// Obtener el listado de las solicitudes de visita/alquiler.
+router.get("/rents/requests", listRentRequestController);
 
 // Obtener el listado de alquileres.
 router.get("/rents", listRentController);
