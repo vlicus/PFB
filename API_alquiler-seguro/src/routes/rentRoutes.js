@@ -74,7 +74,6 @@ router.post(
   authUserController,
   userExistsController,
   rentExistsController,
-  canEditController,
   approveRentController
 );
 
