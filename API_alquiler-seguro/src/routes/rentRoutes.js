@@ -6,6 +6,7 @@ import {
   addRentPhotoController,
   deleteRentPhotoController,
   voteRentController,
+  editStatusRentController,
 } from "../controllers/rents/index.js";
 
 import {
@@ -28,7 +29,7 @@ router.post(
   addRentPhotoController
 );
 
-// Eliminar una foto de una entrada.
+// Eliminar una foto de un alquiler.
 router.delete(
   "/rent/:rentId/photos/:photoId",
   authUserController,
@@ -44,5 +45,16 @@ router.get("/rent/:rentId", rentExistsController, getRentController);
 
 // Obtener el listado de alquileres.
 router.get("/rents", listRentController);
+
+//Cambiar el estado de un alquiler
+router.put(
+  "/rent/:rentId",
+  authUserController,
+  authUserControllerOptional,
+  userExistsController,
+  rentExistsController,
+  canEditController,
+  editStatusRentController
+);
 
 export default router;
