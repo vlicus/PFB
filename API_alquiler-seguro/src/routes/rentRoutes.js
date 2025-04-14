@@ -10,6 +10,7 @@ import {
   approveRentController,
   requestRentController,
   listRentRequestController,
+  editStatusRentController,
 } from "../controllers/rents/index.js";
 
 import {
@@ -44,7 +45,7 @@ router.post(
   voteRentController
 );
 
-// Eliminar una foto de una entrada.
+// Eliminar una foto de un alquiler.
 router.delete(
   "/rent/:rentId/photos/:photoId",
   authUserController,
@@ -79,6 +80,15 @@ router.post(
   userExistsController,
   rentExistsController,
   approveRentController
+);
+
+//Cambiar el estado de un alquiler
+router.put(
+  "/rent/:rentId",
+  authUserController,
+  authUserControllerOptional,
+  rentExistsController,
+  editStatusRentController
 );
 
 export default router;
