@@ -39,9 +39,9 @@ Con este script conseguiremos poner a escuchar a nuestra aplicación en el puert
 
 > [!IMPORTANT]
 > Si en el endpoint extá explícito (rentId o userId) significa que tenemos que configurar las variables de entorno en POSTMAN, dependiendo del caso en concreto y lo que querramos conseguir con la petición:
-
-- Key: userId O rentId
-- Value: id del usuario O del alquiler en concreto en la base de datos
+>
+> - Key: userId O rentId
+> - Value: id del usuario O del alquiler en concreto en la base de datos
 
 1. Endpoint de usuario pendiente de activar (POST)
 
@@ -148,12 +148,14 @@ Body (JSON)
 - Form-data
 
 ```json
+{
    Key: username (text) -> Value: Nombre que queramos asignar
    Key: bio (text) -> Value: Biografía
    Key: phone_number (text) -> Value: Número de teléfono
    Key: first_name (text) -> Value: Nombres
    Key: last_name (text) -> Value: Apellidos
    Key: avatar (file) -> Value: Añadir archivo de imagen
+}
 ```
 
 10. Endpoint votar entre usuarios
