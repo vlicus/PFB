@@ -8,7 +8,9 @@ import generateErrorUtil from "../utils/generateErrorUtil.js";
 const userExistsController = async (req, res, next) => {
   try {
     // Obtenemos el ID de la entrada.
-    const { userId } = req.params;
+    // Intentamos obtener el id de usuario de la propiedad "user". Si dicha propiedad
+    // no existe, obtenemos el id de los path params.
+    const userId = req.user?.id || req.params.userId;
 
     // Obtenemos una conexión con la base de datos.
     const pool = await getPool();
@@ -20,7 +22,7 @@ const userExistsController = async (req, res, next) => {
 
     // Si la entrada no existe lanzamos un error.
     if (users.length < 1) {
-      generateErrorUtil("Entrada no encontrada", 404);
+      generateErrorUtil("Usuario no encontrado", 404);
     }
 
     // Avanzamos a la siguiente función controladora.

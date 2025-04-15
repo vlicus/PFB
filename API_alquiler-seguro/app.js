@@ -22,16 +22,16 @@ app.use(cors());
 // Middleware que "desencripta" un body en formato "raw" creando la propiedad "body" en el objeto "request".
 app.use(express.json());
 
-// Middleware que indica a express donde están las rutas
-app.use(userRoutes);
-app.use(rentRoutes);
-
 // Middleware que indica a Express cuál es el directorio de ficheros estáticos.
 app.use("/media", express.static(UPLOADS_DIR));
 
 // Middleware que "desencripta" un body en formato "form-data" creando la propiedad
 // "body" y la propiedad "files" en el objeto "request"
 app.use(fileUpload());
+
+// Middleware que indica a express donde están las rutas
+app.use(userRoutes);
+app.use(rentRoutes);
 
 // Inicio (/), Sin esto da error por que intenta cargar la ruta / igualmente, aunque no esté definida
 app.use("/", (req, res) => {

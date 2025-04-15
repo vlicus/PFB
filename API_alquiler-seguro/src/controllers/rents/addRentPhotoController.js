@@ -18,17 +18,17 @@ import { photoLimitReachedError } from "../../services/errorService.js";
 const addRentPhotoController = async (req, res, next) => {
   try {
     // Obtenemos el id de al entrada de los path params.
-    const { entryId } = req.params;
+    const { rentId } = req.params;
 
     // Validamos el body con Joi. Dado que "files" podría no existir enviamos un objeto vacío
     // si se da el caso.
     await validateSchemaUtil(addRentPhotoSchema, req.files || {});
 
     // Obtenemos la información de la entrada para comprobar si somos los propietarios.
-    const entry = await selectRentByIdModel(entryId);
+    const rent = await selectRentByIdModel(rentId);
 
-    // Si la entrada tiene más de tres fotos lanzamos un error.
-    if (entry.photos.length > 2) {
+    // Si la entrada tiene más 20 fotos lanzamos un error.
+    if (rent.photos.length === 20) {
       photoLimitReachedError();
     }
 
@@ -37,7 +37,7 @@ const addRentPhotoController = async (req, res, next) => {
     const photoName = await savePhotoService(req.files.photo, 500);
 
     // Guardamos la foto en la base de datos y obtenemos el id de la misma.
-    const photoId = await insertPhotoModel(photoName, entryId);
+    const photoId = await insertPhotoModel(photoName, rentId);
 
     res.send({
       status: "ok",

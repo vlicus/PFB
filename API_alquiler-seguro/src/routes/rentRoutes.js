@@ -9,6 +9,8 @@ import {
   newRentController,
   approveRentController,
   requestRentController,
+  listRentRequestController,
+  editStatusRentController,
 } from "../controllers/rents/index.js";
 
 import {
@@ -25,11 +27,9 @@ const router = express.Router();
 router.post(
   "/rent/:rentId/photos",
   authUserController,
-  userExistsController,
   rentExistsController,
   canEditController,
-  addRentPhotoController,
-  approveRentController
+  addRentPhotoController
 );
 // Insertar un nuevo alquiler.
 router.post("/rent/register", authUserController, newRentController);
@@ -43,7 +43,7 @@ router.post(
   voteRentController
 );
 
-// Eliminar una foto de una entrada.
+// Eliminar una foto de un alquiler.
 router.delete(
   "/rent/:rentId/photos/:photoId",
   authUserController,
@@ -65,6 +65,9 @@ router.post(
   requestRentController
 );
 
+// Obtener el listado de las solicitudes de visita/alquiler.
+router.get("/rents/requests", listRentRequestController);
+
 // Obtener el listado de alquileres.
 router.get("/rents", listRentController);
 
@@ -74,6 +77,15 @@ router.post(
   authUserController,
   rentExistsController,
   approveRentController
+);
+
+//Cambiar el estado de un alquiler
+router.put(
+  "/rent/:rentId",
+  authUserController,
+  authUserControllerOptional,
+  rentExistsController,
+  editStatusRentController
 );
 
 export default router;
