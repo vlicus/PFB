@@ -1,6 +1,8 @@
-# Alquiler Seguro
+# BACKEND Alquiler Seguro
 
-Portal de búsqueda de alquileres, con información histórica de los usuarios basada en la valoración de sus alquileres anteriores. Con esta plataforma los caseros encontrarán el inquilino perfecto y el inquilino el casero ideal.
+## Instrucciones para levantar el back de la aplicación Alquiler Seguro.
+
+Es importante configurar el .env (.env.example) con los campos correspondientes de la base de datos y del protocolo para el envío de emails.
 
 ## Clonar repositorio en local
 
@@ -10,72 +12,142 @@ Clonar el proyecto
   git clone https://github.com/vlicus/PFB
 ```
 
-Acceder al directorio del back
+Acceder al directorio del back:
 
 ```bash
   cd PFB/API_alquiler-seguro
 ```
 
-Instalar las dependencias
+Instalar las dependencias:
 
 ```bash
-  npm install
+  npm i
 ```
 
-Levantar el servidor
+Crear la base de datos (aunque exista previamente, la elimina y la crea de nuevo) y las tablas correspondientes con el siguiente script:
 
 ```bash
   npm run initDb
 ```
 
+Con este comando conseguiremos abrir el puerto PORT, previamente configurado en .env, donde nuestra aplicación escuchará las peticiones:
+
+```bash
+  npm run dev
+```
+
 ## Endpoints (peticiones Postman)
 
-Usuario pendiente de activar
+### User Endpoints:
+
+Usuario pendiente de activar (POST)
 
 ```bash
 /users/register
 ```
 
-Endpoint para validacion de usuario
+Endpoint para validacion de usuario (POST)
 
 ```bash
 /users/validation
 ```
 
-Endpoint para login de un usuario registrado
+Endpoint para login de un usuario registrado (POST)
 
 ```bash
 /users/login
 ```
 
-Endpoint para obtener el listado de usuarios.
+Endpoint para obtener el listado de usuarios (GET)
 
 ```bash
 /users
 ```
 
-Endpoint para los detalles de un usuario
+Endpoint para los detalles de un usuario (GET)
 
 ```bash
-/user/:id
+/users/:userId
 ```
 
-Endpoint para detalles de usuario con el histórico de alquileres hechos
+Endpoint para detalles de usuario con el histórico de alquileres hechos (GET)
 
 ```bash
-/user/history/:id
+/users/:userId/history
 ```
 
-Endpoint para enviar un correo de recuperación de contraseña.
+Endpoint para enviar un correo de recuperación de contraseña (PUT)
 
 ```bash
 /users/password/recover
 ```
 
-Endpoint que permite cambiar la contraseña al usuario
+Endpoint que permite cambiar la contraseña al usuario (POST)
 
 ```bash
 /users/password/change
+```
+
+### Rent Endpoints
+
+Añadir fotos a un alquiler (POST)
+
+```bash
+/rent/:rentId/photos
+```
+
+Insertar un nuevo alquiler (POST)
+
+```bash
+/rent/register
+```
+
+Votar un alquiler (POST)
+
+```bash
+/rent/:rentId/votes
+```
+
+Eliminar una foto de un alquiler (DELETE)
+
+```bash
+/rent/:rentId/photos/:photoId
+```
+
+Obtener info de un alquiler concreto (GET)
+
+```bash
+/rent/:rentId
+```
+
+Solicitar visita/alquiler (POST)
+
+```bash
+/rent/:rentId/request
+```
+
+Obtener el listado de las solicitudes de visita/alquiler (GET)
+
+```bash
+/rents/requests
+```
+
+Obtener el listado de alquileres (GET)
+
+```bash
+/rents
+```
+
+Aprobar un alquiler (POST)
+
+```bash
+/rent/:rentId/approve
+```
+
+Cambiar el estado de un alquiler (PUT)
+
+```bash
+/rent/:rentId
 ```
 
 ## Autores
