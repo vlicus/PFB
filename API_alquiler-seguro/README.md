@@ -2,16 +2,10 @@
 
 ## Instrucciones para levantar el back de la aplicación Alquiler Seguro.
 
-> [!IMPORTANT]
+> [!CAUTION]
 > Es importante configurar el .env (.env.example) con los campos correspondientes de la base de datos y del protocolo para el envío de emails.
 
 ## Clonar repositorio en local
-
-Clonar el proyecto
-
-```bash
-  git clone https://github.com/vlicus/PFB
-```
 
 Acceder al directorio del back:
 
@@ -31,7 +25,7 @@ Crear la base de datos (aunque exista previamente, la elimina y la crea de nuevo
   npm run initDb
 ```
 
-Con este comando conseguiremos abrir el puerto PORT, previamente configurado en .env, donde nuestra aplicación escuchará las peticiones:
+Con este script conseguiremos poner a escuchar a nuestra aplicación en el puerto PORT, configurado previamente en .env:
 
 ```bash
   npm run dev
@@ -43,7 +37,8 @@ Con este comando conseguiremos abrir el puerto PORT, previamente configurado en 
 
 #### Path variables:
 
-##### Si en el endpoint extá explícito rentId o userId significa que tenemos que configurar las variables de entorno en POSTMAN, dependiendo del caso en concreto y lo que querramos conseguir con la petición:
+> [!IMPORTANT]
+> Si en el endpoint extá explícito (rentId o userId) significa que tenemos que configurar las variables de entorno en POSTMAN, dependiendo del caso en concreto y lo que querramos conseguir con la petición:
 
 - Key: userId O rentId
 - Value: id del usuario O del alquiler en concreto en la base de datos
