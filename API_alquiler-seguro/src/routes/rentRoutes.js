@@ -5,7 +5,6 @@ import {
   listRentController,
   addRentPhotoController,
   deleteRentPhotoController,
-  voteRentController,
   newRentController,
   approveRentController,
   requestRentController,
@@ -36,15 +35,6 @@ router.post(
 
 // Insertar un nuevo alquiler.
 router.post("/rent/register", authUserController, newRentController);
-
-// Votar un alquiler
-router.post(
-  "/rent/:rentId/votes",
-  authUserController,
-  userExistsController,
-  rentExistsController,
-  voteRentController
-);
 
 // Eliminar una foto de un alquiler.
 router.delete(

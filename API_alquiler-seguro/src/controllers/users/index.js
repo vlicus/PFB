@@ -6,6 +6,7 @@ import userHistoryAndDetailsController from "./userHistoryAndDetailsController.j
 import validationController from "./validationController.js";
 import userPasswordChangeController from "./userPasswordChangeController.js";
 import updateUserController from "./updateUserController.js";
+import voteUserController from "./voteUserController.js";
 
 export {
   newUserController,
@@ -16,4 +17,5 @@ export {
   validationController,
   userPasswordChangeController,
   updateUserController,
+  voteUserController,
 };

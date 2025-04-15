@@ -5,14 +5,19 @@ import joi from "joi";
 import joiErrorMessages from "../joiErrorMessages.js";
 
 // Creamos el esquema de Joi donde comprobamos todas las propiedades necesarias.
-const voteEntrySchema = joi.object({
-  value: joi
+const voteUserSchema = joi.object({
+  rating: joi
     .number()
     .integer()
     .min(1)
     .max(5)
     .required()
     .messages(joiErrorMessages),
+  comment: joi
+    .string()
+    .pattern(/^[\s\S]{3,65000}$/)
+    .required()
+    .messages(joiErrorMessages),
 });
 
-export default voteEntrySchema;
+export default voteUserSchema;

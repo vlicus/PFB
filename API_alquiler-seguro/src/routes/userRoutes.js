@@ -9,6 +9,7 @@ import {
   userPasswordChangeController,
   userDetailsController,
   updateUserController,
+  voteUserController,
 } from "../controllers/users/index.js";
 
 // Importamos las funciones controladoras intermedias.
@@ -52,6 +53,14 @@ router.post(
   "/users/password/change",
   authUserController,
   userPasswordChangeController
+);
+
+// Votar a un usuario.
+router.post(
+  "/user/:userId/votes",
+  authUserController,
+  userExistsController,
+  voteUserController
 );
 
 // Creamos un endpoint para editar los datos de usuario

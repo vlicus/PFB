@@ -17,6 +17,9 @@ const selectRentByIdModel = async (rentId) => {
     [rentId]
   );
 
+  console.log("-----------------------");
+  console.log(photos);
+  console.log("-----------------------");
   // Agregamos el array de fotos al alquiler.
   rents.photos = photos;
 
