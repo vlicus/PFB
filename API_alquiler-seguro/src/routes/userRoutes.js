@@ -34,11 +34,11 @@ router.post("/users/login", loginUserController);
 router.get("/users", authUserController, listUsersController);
 
 //Creamos un endpoint para los detalles de un usuario
-router.get("/user/:id", authUserController, userDetailsController);
+router.get("/users/:userId", authUserController, userDetailsController);
 
 //Creamos un endpoint para detalles de usuario  con el histórico de alquileres hechos
 router.get(
-  "/user/history/:id",
+  "/users/:userId/history",
   authUserController,
   userHistoryAndDetailsController
 );

@@ -72,7 +72,6 @@ router.get("/rents", listRentController);
 router.post(
   "/rent/:rentId/approve",
   authUserController,
-  userExistsController,
   rentExistsController,
   approveRentController
 );
