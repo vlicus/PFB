@@ -5,7 +5,7 @@ import userDetailsController from "./userDetailsController.js";
 import userHistoryAndDetailsController from "./userHistoryAndDetailsController.js";
 import validationController from "./validationController.js";
 import userPasswordChangeController from "./userPasswordChangeController.js";
-
+import updateUserController from "./updateUserController.js";
 
 export {
   newUserController,
@@ -15,4 +15,5 @@ export {
   userHistoryAndDetailsController,
   validationController,
   userPasswordChangeController,
+  updateUserController,
 };
