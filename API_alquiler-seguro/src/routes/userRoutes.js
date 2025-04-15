@@ -8,6 +8,7 @@ import {
   validationController,
   userPasswordChangeController,
   userDetailsController,
+  updateUserController,
 } from "../controllers/users/index.js";
 
 // Importamos las funciones controladoras intermedias.
@@ -34,11 +35,11 @@ router.post("/users/login", loginUserController);
 router.get("/users", authUserController, listUsersController);
 
 //Creamos un endpoint para los detalles de un usuario
-router.get("/user/:id", authUserController, userDetailsController);
+router.get("/users/:userId", authUserController, userDetailsController);
 
 //Creamos un endpoint para detalles de usuario  con el histórico de alquileres hechos
 router.get(
-  "/user/history/:id",
+  "/users/:userId/history",
   authUserController,
   userHistoryAndDetailsController
 );
@@ -51,6 +52,14 @@ router.post(
   "/users/password/change",
   authUserController,
   userPasswordChangeController
+);
+
+// Creamos un endpoint para editar los datos de usuario
+router.put(
+  "/users/update",
+  authUserController,
+  userExistsController,
+  updateUserController
 );
 
 export default router;

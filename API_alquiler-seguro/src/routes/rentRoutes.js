@@ -28,11 +28,9 @@ const router = express.Router();
 router.post(
   "/rent/:rentId/photos",
   authUserController,
-  userExistsController,
   rentExistsController,
   canEditController,
-  addRentPhotoController,
-  approveRentController
+  addRentPhotoController
 );
 // Insertar un nuevo alquiler.
 router.post("/rent/register", authUserController, newRentController);
@@ -78,7 +76,6 @@ router.get("/rents", listRentController);
 router.post(
   "/rent/:rentId/approve",
   authUserController,
-  userExistsController,
   rentExistsController,
   approveRentController
 );

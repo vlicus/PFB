@@ -119,6 +119,7 @@ export const voteAlreadyExistsError = () => {
   };
 };
 
+
 export const cannotAcceptRequestRentError = () => {
   throw {
     httpStatus: 403, // Forbidden
@@ -141,5 +142,14 @@ export const notValidStatusRequestError = () => {
     code: "NOT_VALID_STATUS_REQUEST",
     message:
       "Acción no válida. Debe ser 'APPROVED' ,'REJECTED','ACTIVE' o 'CANCELLED'.",
+  };
+};
+
+export const passwordsNotMatchError = () => {
+  throw {
+    httpStatus: 409, // Conflict
+    code: "PASSWORDS_NOT_MATCH",
+    message: "Tu contraseña no coincide con la guardada en la base de datos",
+
   };
 };
