@@ -1,0 +1,766 @@
+{
+	"info": {
+		"_postman_id": "b6b02f0a-f182-4160-953d-6ceb70834d0e",
+		"name": "Alquiler_Seguro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37776828"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Lucas\",\r\n    \"email\": \"Lucas@yopmail.com\",\r\n    \"password\": \"Paco123.!\",\r\n    \"bio\": \"Esta es la biografia de faubagettouta\",\r\n    \"phone_number\": \"19291033333\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"Lucas@yopmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/validation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"validation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin_Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@ejemplo.com\",\r\n    \"password\": \"abc123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const token = pm.response.json().data.token\r",
+									"console.log(token)\r",
+									"pm.collectionVariables.set(\"token\", token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"samuel.cobas@gmail.com\",\r\n    \"password\": \"Paco123.!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Password_Recover",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"faubagettouta-6369@yopmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/password/recover",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"password",
+								"recover"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change_Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNkNjYxZDViLTFhNzctNDgyNC05YmI2LWEyMWVlMWJkYjI4NCIsImlhdCI6MTc0NDMwMjg2MSwiZXhwIjoxNzQ0OTA3NjYxfQ.QZmJLu_Zh2uExTbWjlTZyuHYUKe0S71EeUgbz1QSZPQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"faubagettouta-6369@yopmail.com\",\n    \"pass\": \"Paco123.!\",\n    \"newPass\": \"wollo2A!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/password/change",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"password",
+								"change"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User_Details_ById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/:userId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "966cb979-a0e9-4ce2-9206-de38923d7049"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users_List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vote_user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\": 5,\r\n    \"comment\": \"Este tío es un crack que flipas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/user/:userId/votes",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								":userId",
+								"votes"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "45f2b761-767d-4685-86ce-f9d6e6dc7cc8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User_History_ById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/:userId/history",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								":userId",
+								"history"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "b0a34908-8b07-4bf7-b101-bb15a5737d7b"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update_User_Profile",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "pepe3",
+									"type": "text"
+								},
+								{
+									"key": "bio",
+									"value": "Test para que cambie solo el bio con esta petición, se mantiene el resto de la información del perfil del usuario",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "565655665",
+									"type": "text"
+								},
+								{
+									"key": "first_name",
+									"value": "pepe33",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "A Saber",
+									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/C:/Users/Licus/Pictures/pngtree-smile-dog-on-white-background-png-image_7096061.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rent",
+			"item": [
+				{
+					"name": "New_Rent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"address\": \"Nuevo Piso Para Paco\",\r\n      \"price\": 500,\r\n      \"num_rooms\": 2,\r\n      \"description\": \"Hermoso zulo de 2 habitaciones sin baño\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/rent/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"rent",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Rent_ById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/rent/:rentId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"rent",
+								":rentId"
+							],
+							"variable": [
+								{
+									"key": "rentId",
+									"value": "8bc95f19-e3b5-4b16-b423-052e4c4896c2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_All_Rents",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/rents",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"rents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add_Rent_Images",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/Licus/Pictures/Fitis/IMG-20250408-WA0033.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/rent/:rentId/photos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"rent",
+								":rentId",
+								"photos"
+							],
+							"variable": [
+								{
+									"key": "rentId",
+									"value": "e3d79469-9e18-4cdb-bad8-4dcdd4cae5a2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rental_Approve",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIwYTM0OTA4LThiMDctNGJmNy1iMTAxLWJiMTVhNTczN2Q3YiIsImlhdCI6MTc0NDczNTgwNiwiZXhwIjoxNzQ1MzQwNjA2fQ.LBhyETC5v2NXu8rIW1UG3kBUJ0893JwkQOmcyA6GUig",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/rent/:rentId/approve",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"rent",
+								":rentId",
+								"approve"
+							],
+							"variable": [
+								{
+									"key": "rentId",
+									"value": "e3d79469-9e18-4cdb-bad8-4dcdd4cae5a2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Request_Visit",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/rent/:rentId/request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"rent",
+								":rentId",
+								"request"
+							],
+							"variable": [
+								{
+									"key": "rentId",
+									"value": "e3d79469-9e18-4cdb-bad8-4dcdd4cae5a2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All_Requests_List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/rents/requests",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"rents",
+								"requests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rent_Availability",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/rent/:rentId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"rent",
+								":rentId"
+							],
+							"variable": [
+								{
+									"key": "rentId",
+									"value": "e3d79469-9e18-4cdb-bad8-4dcdd4cae5a2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify_Visite_Or_Rent_Status",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"status\": \"APPROVED\"\r\n// Para la visita \"APPROVED\" OR \"REJECTED\"\r\n// Para el alquiler \"ACTIVE\" OR \"CANCELLED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/rent/:rentId/response/:requestId",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"rent",
+								":rentId",
+								"response",
+								":requestId"
+							],
+							"variable": [
+								{
+									"key": "rentId",
+									"value": "e3d79469-9e18-4cdb-bad8-4dcdd4cae5a2"
+								},
+								{
+									"key": "requestId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_Rent_Image",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/rent/:rentId/photos/:photoId",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"rent",
+								":rentId",
+								"photos",
+								":photoId"
+							],
+							"variable": [
+								{
+									"key": "rentId",
+									"value": "02a491a6-5e26-4060-973b-4ecf0f889aaf"
+								},
+								{
+									"key": "photoId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "id_rent_1",
+			"value": "02a491a6-5e26-4060-973b-4ecf0f889aaf",
+			"type": "string"
+		}
+	]
+}
