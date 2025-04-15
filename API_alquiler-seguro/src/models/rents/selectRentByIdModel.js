@@ -16,10 +16,6 @@ const selectRentByIdModel = async (rentId) => {
     `SELECT id, name FROM rent_images WHERE rent_id = ?`,
     [rentId]
   );
-
-  console.log("-----------------------");
-  console.log(photos);
-  console.log("-----------------------");
   // Agregamos el array de fotos al alquiler.
   rents.photos = photos;
 
