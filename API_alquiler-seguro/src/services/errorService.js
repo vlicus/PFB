@@ -118,3 +118,11 @@ export const voteAlreadyExistsError = () => {
     message: "No se puede votar más de una vez la misma entrada",
   };
 };
+
+export const passwordsNotMatchError = () => {
+  throw {
+    httpStatus: 409, // Conflict
+    code: "PASSWORDS_NOT_MATCH",
+    message: "Tu contraseña no coincide con la guardada en la base de datos",
+  };
+};
