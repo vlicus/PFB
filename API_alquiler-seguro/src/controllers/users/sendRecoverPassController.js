@@ -18,6 +18,7 @@ const sendRecoverPassController = async (req, res, next) => {
     if (!user) {
       notFoundError("usuario");
     }
+
     // Generamos el código de recuperación de contraseña.
     const recoverPassCode = randomstring.generate(10);
     // Insertamos el código de recuperación de contraseña.
