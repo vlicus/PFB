@@ -1,36 +1,28 @@
-import approveRentModel from "../../models/rents/approveRentModel.js";
 import getPool from "../../db/getPool.js";
 import generateErrorUtil from "../../utils/generateErrorUtil.js";
 
-const approveRentController = async (req, res, next) => {
-  try {
-    const { rentId } = req.params;
-    const userId = req.user.id;
+const approveRentModel = async (rentId) => {
+  const pool = await getPool();
 
-    const pool = await getPool();
+  const [rents] = await pool.query(
+    `SELECT is_approved FROM rents WHERE id = ?`,
+    [rentId]
+  );
 
-    const [[user]] = await pool.query(
-      `SELECT is_admin FROM users WHERE id = ?`,
-      [userId]
-    );
-
-    if (!user || user.is_admin !== 1) {
-      throw generateErrorUtil(
-        "No tienes permisos para aprobar alquileres",
-        403
-      );
-    }
-
-    const result = await approveRentModel(rentId);
-
-    res.send({
-      status: "ok",
-      message: "Alquiler aprobado correctamente",
-      data: result,
-    });
-  } catch (error) {
-    next(error);
+  if (rents.length === 0) {
+    throw generateErrorUtil("El alquiler no existe", 404);
   }
+
+  if (rents[0].is_approved === 1) {
+    throw generateErrorUtil("El alquiler ya fue aprobado", 400);
+  }
+
+  await pool.query(
+    `UPDATE rents SET is_approved = 1, modified_at = NOW() WHERE id = ?`,
+    [rentId]
+  );
+
+  return { rentId, status: "approved" };
 };
 
-export default approveRentController;
+export default approveRentModel;
