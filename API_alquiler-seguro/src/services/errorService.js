@@ -126,3 +126,20 @@ export const cannotAcceptRequestRentError = () => {
     message: "No puedes aceptar tu propio alquiler",
   };
 };
+
+export const onlyCanAcceptPendingRequestError = () => {
+  throw {
+    httpStatus: 409,
+    code: "ONLY_ACCEPT_PENDING_REQUEST",
+    message: "Solo se pueden aceptar o rechazar solicitudes pendientes.",
+  };
+};
+
+export const notValidStatusRequestError = () => {
+  throw {
+    httpStatus: 409,
+    code: "NOT_VALID_STATUS_REQUEST",
+    message:
+      "Acción no válida. Debe ser 'APPROVED' ,'REJECTED','ACTIVE' o 'CANCELLED'.",
+  };
+};
