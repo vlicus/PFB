@@ -118,3 +118,11 @@ export const voteAlreadyExistsError = () => {
     message: "No se puede votar más de una vez la misma entrada",
   };
 };
+
+export const cannotAcceptRequestRentError = () => {
+  throw {
+    httpStatus: 403, // Forbidden
+    code: "CANNOT_ACCEPT_REQUEST_RENT",
+    message: "No puedes aceptar tu propio alquiler",
+  };
+};
