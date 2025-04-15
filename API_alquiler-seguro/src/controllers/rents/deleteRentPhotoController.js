@@ -21,7 +21,7 @@ const deleteRentPhotoController = async (req, res, next) => {
     const rent = await selectRentByIdModel(rentId);
     // Variable que almacenará la foto que queremos eliminar.
     const photo = rent.photos.find((photo) => photo.id === photoId);
-    console.log(photo);
+
     // Si la foto no existe en el array de fotos del alquiler lanzamos un error.
     if (!photo) {
       notFoundError("foto");
