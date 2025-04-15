@@ -13,6 +13,7 @@ const joiErrorMessages = {
   "string.min": "El campo '{#key}' debe tener al menos {#limit} caracteres",
   "string.max": "El campo '{#key}' no debe exceder los {#limit} caracteres",
   "object.unknown": "No se permiten campos adicionales en este objeto",
+  "string.uri": "El campo '{#key}' debe ser una URL válida",
 };
 
 export default joiErrorMessages;
