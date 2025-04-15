@@ -55,7 +55,7 @@ export const pendingActivationError = () => {
   };
 };
 
-export const cannotVoteOwnRentError = () => {
+export const cannotVoteYourselfError = () => {
   throw {
     httpStatus: 403, // Forbidden
     code: "CANNOT_VOTE_OWN_ENTRY",
@@ -119,7 +119,6 @@ export const voteAlreadyExistsError = () => {
   };
 };
 
-
 export const cannotAcceptRequestRentError = () => {
   throw {
     httpStatus: 403, // Forbidden
@@ -150,6 +149,5 @@ export const passwordsNotMatchError = () => {
     httpStatus: 409, // Conflict
     code: "PASSWORDS_NOT_MATCH",
     message: "Tu contraseña no coincide con la guardada en la base de datos",
-
   };
 };
