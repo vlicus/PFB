@@ -12,15 +12,18 @@ import { notFoundError } from "../../services/errorService.js";
 const deleteRentPhotoController = async (req, res, next) => {
   try {
     // Obtenemos el id del alquiler y el id de la foto de los path params.
-    const { entryId, photoId } = req.params;
+    const { rentId, photoId: photoIdStr } = req.params;
+
+    // req.params photoId siempre va a enviar un string desde POSTMAN, nos tenemos que asegurar que, al tener en la base de datos un número como id de la imagen (en AUTOINCREMENT), transformamos el string req.params.photoId a un número antes de utilizarlo. Aunque se haga console.log(photoId) y muestre un número sin "", lo interpreta como un string igualmente
+    const photoId = parseInt(photoIdStr, 10);
 
     // Obtenemos los detalles del alquiler.
-    const entry = await selectRentByIdModel(entryId);
-
+    const rent = await selectRentByIdModel(rentId);
+    console.log(photoId);
     // Variable que almacenará la foto que queremos eliminar.
-    const photo = entry.photos.find((photo) => photo.id === photoId);
-
-    // Si la foto no existe en el array de fotos de la entrada lanzamos un error.
+    const photo = rent.photos.find((photo) => photo.id === photoId);
+    console.log(photo);
+    // Si la foto no existe en el array de fotos del alquiler lanzamos un error.
     if (!photo) {
       notFoundError("foto");
     }
@@ -33,7 +36,7 @@ const deleteRentPhotoController = async (req, res, next) => {
 
     res.send({
       status: "ok",
-      message: "Foto eliminada",
+      message: `Foto : ${photo.name} eliminada correctamente`,
     });
   } catch (err) {
     next(err);
