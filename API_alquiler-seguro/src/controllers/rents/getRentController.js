@@ -10,12 +10,12 @@ const getRentController = async (req, res, next) => {
     // Dado que queremos permitir que un usuario no logeado acceda a este controlador,
     // habrá momentos en los que no exista "req.user". Con la interrogación indicamos
     // a JavaScript que "user" puede ser undefined.
-    const entry = await selectRentByIdModel(rentId, req.user?.id);
+    const rent = await selectRentByIdModel(rentId, req.user?.id);
 
     res.send({
       status: "ok",
       data: {
-        entry,
+        rent,
       },
     });
   } catch (err) {

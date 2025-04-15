@@ -20,7 +20,7 @@ const userHistoryAndDetailsController = async (req, res, next) => {
     users.active,
     users.created_at,
     rental_history.id AS rental_id,
-    rental_history.rents_id,
+    rental_history.rent_id,
     rental_history.start_date,
     rental_history.end_date,
     rental_history.created_at AS rental_created_at
