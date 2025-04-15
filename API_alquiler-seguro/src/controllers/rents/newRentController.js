@@ -12,9 +12,10 @@ const newRentController = async (req, res, next) => {
           "Faltan campos obligatorios: address, price, numero de habitaciones, descripción",
       });
     }
-    console.log(req);
+    const userId = req.user.id;
+    console.log("REQ.USER:", req.user.id);
     const rentId = await insertRentModel(
-      req.user.id,
+      userId,
       address,
       price,
       num_rooms,
