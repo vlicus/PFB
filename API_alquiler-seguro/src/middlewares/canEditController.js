@@ -9,13 +9,13 @@ import { unauthorizedUserError } from "../services/errorService.js";
 const canEditController = async (req, res, next) => {
   try {
     // Obtenemos el id de la entrada en la cuál tendra lugar el cambio.
-    const { entryId } = req.params;
+    const { rentId } = req.params;
 
     // Obtenemos los datos de la entrada.
-    const entry = await selectRentByIdModel(entryId);
+    const rent = await selectRentByIdModel(rentId);
 
     // Si no somos los propietarios lanzamos un error.
-    if (entry.userId !== req.user.id) {
+    if (rent.property_owner_id !== req.user.id) {
       unauthorizedUserError();
     }
 

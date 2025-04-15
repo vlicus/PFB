@@ -20,7 +20,7 @@ const userExistsController = async (req, res, next) => {
 
     // Si la entrada no existe lanzamos un error.
     if (users.length < 1) {
-      generateErrorUtil("Entrada no encontrada", 404);
+      generateErrorUtil("Usuario no encontrado", 404);
     }
 
     // Avanzamos a la siguiente función controladora.

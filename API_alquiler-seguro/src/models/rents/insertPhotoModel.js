@@ -5,19 +5,16 @@ import { randomUUID as uuid } from "crypto";
 import getPool from "../../db/getPool.js";
 
 // Función que realiza una consulta a la base de datos para agregar una foto a una entrada.
-const insertPhotoModel = async (photoName, entryId) => {
+const insertPhotoModel = async (photoName, rentId) => {
   const pool = await getPool();
 
-  // Generamos el id de la foto.
-  const photoId = uuid();
-
   // Insertamos la foto.
-  await pool.query(
-    `INSERT INTO rent_images(id, name, entryId) VALUES(?, ?, ?)`,
-    [photoId, photoName, entryId]
-  );
+  await pool.query(`INSERT INTO rent_images(name, rent_id) VALUES( ?, ?)`, [
+    photoName,
+    rentId,
+  ]);
 
-  return photoId;
+  return photoName;
 };
 
 export default insertPhotoModel;
