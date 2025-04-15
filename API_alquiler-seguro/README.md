@@ -210,7 +210,7 @@ Body (JSON)
 3. Eliminar una foto de un alquiler (DELETE)
 
 ```bash
-localhost:3000/rent/:rentId/photos/:photoId
+/rent/:rentId/photos/:photoId
 ```
 
 4. Obtener info de un alquiler concreto (GET)
