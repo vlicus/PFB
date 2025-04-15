@@ -19,17 +19,16 @@ const addRentPhotoController = async (req, res, next) => {
   try {
     // Obtenemos el id de al entrada de los path params.
     const { rentId } = req.params;
-    console.log(req);
 
     // Validamos el body con Joi. Dado que "files" podría no existir enviamos un objeto vacío
     // si se da el caso.
-    //await validateSchemaUtil(addRentPhotoSchema, req.files || {});
+    await validateSchemaUtil(addRentPhotoSchema, req.files || {});
 
     // Obtenemos la información de la entrada para comprobar si somos los propietarios.
     const rent = await selectRentByIdModel(rentId);
 
-    // Si la entrada tiene más de tres fotos lanzamos un error.
-    if (rent.photos.length > 2) {
+    // Si la entrada tiene más 20 fotos lanzamos un error.
+    if (rent.photos.length === 20) {
       photoLimitReachedError();
     }
 

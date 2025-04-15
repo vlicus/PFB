@@ -14,7 +14,14 @@ const insertPhotoModel = async (photoName, rentId) => {
     rentId,
   ]);
 
-  return photoName;
+  const [[photoId]] = await pool.query(
+    `
+    SELECT id FROM rent_images WHERE name = ?
+    `,
+    [photoName]
+  );
+
+  return photoId.id;
 };
 
 export default insertPhotoModel;
