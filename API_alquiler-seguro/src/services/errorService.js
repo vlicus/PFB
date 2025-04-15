@@ -119,10 +119,37 @@ export const voteAlreadyExistsError = () => {
   };
 };
 
+
+export const cannotAcceptRequestRentError = () => {
+  throw {
+    httpStatus: 403, // Forbidden
+    code: "CANNOT_ACCEPT_REQUEST_RENT",
+    message: "No puedes aceptar tu propio alquiler",
+  };
+};
+
+export const onlyCanAcceptPendingRequestError = () => {
+  throw {
+    httpStatus: 409,
+    code: "ONLY_ACCEPT_PENDING_REQUEST",
+    message: "Solo se pueden aceptar o rechazar solicitudes pendientes.",
+  };
+};
+
+export const notValidStatusRequestError = () => {
+  throw {
+    httpStatus: 409,
+    code: "NOT_VALID_STATUS_REQUEST",
+    message:
+      "Acción no válida. Debe ser 'APPROVED' ,'REJECTED','ACTIVE' o 'CANCELLED'.",
+  };
+};
+
 export const passwordsNotMatchError = () => {
   throw {
     httpStatus: 409, // Conflict
     code: "PASSWORDS_NOT_MATCH",
     message: "Tu contraseña no coincide con la guardada en la base de datos",
+
   };
 };

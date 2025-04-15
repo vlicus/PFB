@@ -11,6 +11,7 @@ import {
   requestRentController,
   listRentRequestController,
   editStatusRentController,
+  approveVisitController,
 } from "../controllers/rents/index.js";
 
 import {
@@ -83,9 +84,16 @@ router.post(
 router.put(
   "/rent/:rentId",
   authUserController,
-  authUserControllerOptional,
   rentExistsController,
   editStatusRentController
+);
+
+// aprobar/rechazar visita/alquiler
+router.put(
+  "/rent/:rentId/response/:requestId",
+  authUserController,
+  rentExistsController,
+  approveVisitController
 );
 
 export default router;
