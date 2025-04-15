@@ -13,10 +13,6 @@ const approveRentController = async (req, res, next) => {
       `SELECT is_admin FROM users WHERE id = ?`,
       [userId]
     );
-
-    console.log("------------------------");
-    console.log(userId);
-    console.log("------------------------");
     if (!user || user.is_admin !== 1) {
       throw generateErrorUtil(
         "No tienes permisos para aprobar alquileres",
