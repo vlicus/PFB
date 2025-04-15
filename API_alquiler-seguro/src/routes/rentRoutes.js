@@ -24,6 +24,7 @@ import {
 // Creamos un router.
 const router = express.Router();
 
+// Añadir fotos a un alquiler
 router.post(
   "/rent/:rentId/photos",
   authUserController,
@@ -31,6 +32,7 @@ router.post(
   canEditController,
   addRentPhotoController
 );
+
 // Insertar un nuevo alquiler.
 router.post("/rent/register", authUserController, newRentController);
 
