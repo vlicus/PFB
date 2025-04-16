@@ -2,7 +2,7 @@
 import selectRentByIdModel from "../models/rents/selectRentByIdModel.js";
 
 // Importamos los errores.
-import { unauthorizedUserError } from "../services/errorService.js";
+import generateErrorUtil from "../utils/generateErrorUtil.js";
 
 // Función controladora intermedia que comprueba si un usuario tiene permiso para editar
 // una entrada.
@@ -16,7 +16,10 @@ const canEditController = async (req, res, next) => {
 
     // Si no somos los propietarios lanzamos un error.
     if (rent.property_owner_id !== req.user.id) {
-      unauthorizedUserError();
+      generateErrorUtil(
+        "El usuario no está autorizado para hacer esta operación",
+        409
+      );
     }
 
     // Pasamos el control a la siguiente función controladora.

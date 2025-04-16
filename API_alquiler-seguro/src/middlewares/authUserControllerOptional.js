@@ -2,7 +2,7 @@
 import jwt from "jsonwebtoken";
 
 // Importamos los errores.
-import { invalidCredentialsError } from "../services/errorService.js";
+import generateErrorUtil from "../utils/generateErrorUtil.js";
 
 // Función controladora intermedia que desencripta el token y crea la propiedad "req.user".
 // Si no hay token NO lanza un error.
@@ -14,7 +14,7 @@ const authUserControllerOptional = async (req, res, next) => {
       let [protocol, token] = authorization.split(" ");
 
       if (protocol !== "Bearer" || !token) {
-        invalidCredentialsError();
+        generateErrorUtil("Credenciales no válidas", 403);
       }
 
       // Variable que almacenará la info del token.
@@ -23,8 +23,7 @@ const authUserControllerOptional = async (req, res, next) => {
       try {
         tokenInfo = jwt.verify(token, process.env.SECRET);
       } catch (err) {
-        console.log(err);
-        invalidCredentialsError();
+        generateErrorUtil("Credenciales no válidas", 403);
       }
 
       // Si hemos llegado hasta aquí quiere decir que el token ya se ha desencriptado.

@@ -14,10 +14,7 @@ const approveRentController = async (req, res, next) => {
       [userId]
     );
     if (!user || user.is_admin !== 1) {
-      throw generateErrorUtil(
-        "No tienes permisos para aprobar alquileres",
-        403
-      );
+      generateErrorUtil("No tienes permisos para aprobar alquileres", 403);
     }
 
     const result = await approveRentModel(rentId);

@@ -1,6 +1,6 @@
 // Importamos los modelos.
-import selectRentByIdModel from "../../models/rents/selectRentByIdModel.js";
 import insertVoteModel from "../../models/users/insertVoteModel.js";
+import checIfRentalHistoryExistsModel from "../../models/rent_history/checIfRentalHistoryExistsModel.js";
 
 // Importamos los servicios.
 import validateSchemaUtil from "../../utils/validateSchemaUtil.js";
@@ -9,8 +9,7 @@ import validateSchemaUtil from "../../utils/validateSchemaUtil.js";
 import voteUserSchema from "../../schemas/users/voteUserSchema.js";
 
 // Importamos los errores.
-import { cannotVoteYourselfError } from "../../services/errorService.js";
-import checIfRentalHistoryExistsModel from "../../models/rent_history/checIfRentalHistoryExistsModel.js";
+import generateErrorUtil from "../../utils/generateErrorUtil.js";
 
 // Función controladora final que permite votar un usuario.
 const voteUserController = async (req, res, next) => {
@@ -18,13 +17,10 @@ const voteUserController = async (req, res, next) => {
     const { userId, rentHistoryId } = req.params;
     const { rating, comment } = req.body;
 
-    console.log("--------------------");
-    console.log("");
-    console.log("--------------------");
     // Comprobar si existe el rentHistoryId
     await checIfRentalHistoryExistsModel(rentHistoryId);
     if (userId === req.user.id) {
-      cannotVoteYourselfError();
+      generateErrorUtil("No te puedes votar a ti mismo", 500);
     }
 
     // Validamos el body con Joi.

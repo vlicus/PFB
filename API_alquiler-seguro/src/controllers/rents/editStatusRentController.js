@@ -1,7 +1,7 @@
 import availableStatusRentModel from "../../models/rents/availableStatusRentModel.js";
 import selectRentByIdModel from "../../models/rents/selectRentByIdModel.js";
 
-import { unauthorizedUserError } from "../../services/errorService.js";
+import generateErrorUtil from "../../utils/generateErrorUtil.js";
 
 const editStatusRentController = async (req, res, next) => {
   try {
@@ -12,7 +12,10 @@ const editStatusRentController = async (req, res, next) => {
     const rent = await selectRentByIdModel(rentId);
 
     if (rent.property_owner_id !== req.user.id) {
-      unauthorizedUserError();
+      generateErrorUtil(
+        "No eres el propietario del alquiler, no estás autorizado",
+        500
+      );
     }
 
     await availableStatusRentModel(status, rent.property_owner_id, rentId);

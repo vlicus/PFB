@@ -4,12 +4,12 @@ import validateSchemaUtil from "../../utils/validateSchemaUtil.js";
 
 const userPasswordChangeController = async (req, res, next) => {
   try {
-    const { email, pass, newPass } = req.body;
+    const { email, password, newPassword } = req.body;
 
     // Validamos el body con Joi.
     await validateSchemaUtil(editUserPassSchema, req.body);
 
-    await updateUserPassModel(email, pass, newPass);
+    await updateUserPassModel(email, password, newPassword);
 
     res.send({
       status: "ok",

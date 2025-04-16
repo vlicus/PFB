@@ -2,10 +2,7 @@
 import getPool from "../../db/getPool.js";
 
 // Importamos los errores.
-import {
-  visiteStillOnPending,
-  voteAlreadyExistsError,
-} from "../../services/errorService.js";
+import generateErrorUtil from "../../utils/generateErrorUtil.js";
 
 // Función que realiza una consulta a la base de datos para votar un usuario.
 const insertVoteModel = async (
@@ -26,7 +23,7 @@ const insertVoteModel = async (
   );
 
   if (status === "PENDING") {
-    visiteStillOnPending();
+    generateErrorUtil("La solicitud está todavía en 'PENDING'", 409);
   }
 
   // Comprobamos si ya existe un voto previo por parte del usuario que está intentando votar.
@@ -37,7 +34,7 @@ const insertVoteModel = async (
 
   // Si la longitud del array de votos es mayor que cero lanzamos un error indicando que el usuario ya ha sido votada por este usuario.
   if (votes.length > 0) {
-    voteAlreadyExistsError();
+    generateErrorUtil("El voto ya existe", 409);
   }
 
   // Insertamos el voto con comentario
