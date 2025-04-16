@@ -151,3 +151,11 @@ export const passwordsNotMatchError = () => {
     message: "Tu contraseña no coincide con la guardada en la base de datos",
   };
 };
+
+export const visiteStillOnPending = () => {
+  throw {
+    httpStatus: 409, // Conflict
+    code: "REQUEST_IS_PENDING",
+    message: "La solicitud de visita sigue en estado pendiente",
+  };
+};
