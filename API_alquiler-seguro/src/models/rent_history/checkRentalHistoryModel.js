@@ -1,4 +1,4 @@
-import getPool from "../db/getPool.js";
+import getPool from "../../db/getPool.js";
 
 const checkRentalHistoryModel = async (requestId, rentId) => {
   const pool = await getPool();

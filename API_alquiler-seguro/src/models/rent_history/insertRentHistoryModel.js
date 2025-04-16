@@ -22,7 +22,7 @@ where rh.rent_id = ?`,
   const emailBody = `
     Hola ${owner.username}!
   
-    Te ha llego una solicitud de visita/alguiler a uno de tus alquileres, revisa tu apartado de solicitudes
+    Te ha llego una solicitud de visita/alquiler a uno de tus alquileres, revisa tu apartado de solicitudes
           `;
   // Enviamos el email con la solicitud.
   await sendMailUtil(owner.email, emailSubject, emailBody);

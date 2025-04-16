@@ -10,6 +10,7 @@ import voteUserSchema from "../../schemas/users/voteUserSchema.js";
 
 // Importamos los errores.
 import { cannotVoteYourselfError } from "../../services/errorService.js";
+import checIfRentalHistoryExistsModel from "../../models/rent_history/checIfRentalHistoryExistsModel.js";
 
 // Función controladora final que permite votar un usuario.
 const voteUserController = async (req, res, next) => {
@@ -17,11 +18,15 @@ const voteUserController = async (req, res, next) => {
     const { userId, rentHistoryId } = req.params;
     const { rating, comment } = req.body;
 
+    console.log("--------------------");
+    console.log("");
+    console.log("--------------------");
     // Comprobar si existe el rentHistoryId
-
+    await checIfRentalHistoryExistsModel(rentHistoryId);
     if (userId === req.user.id) {
       cannotVoteYourselfError();
     }
+
     // Validamos el body con Joi.
     await validateSchemaUtil(voteUserSchema, req.body);
 

@@ -1,4 +1,4 @@
-import checkRentalHistoryModel from "../../middlewares/checkRentalHistoryModel.js";
+import checkRentalHistoryModel from "../../models/rent_history/checkRentalHistoryModel.js";
 import approveVisitModel from "../../models/rents/approveVisitModel.js";
 import selectRentByIdModel from "../../models/rents/selectRentByIdModel.js";
 import {
