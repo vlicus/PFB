@@ -18,6 +18,12 @@ const approveVisitController = async (req, res, next) => {
     // Obtenemos los detalles del alquiler
     const rent = await selectRentByIdModel(rentId);
 
+    // Miramos que exista el alquiler con el id que le pasamos por params:
+    if (!rent) {
+      generateErrorUtil("El alquiler con ese id no existe", 409);
+    }
+
+    // Comprobamos si la solicitud existe y si el propietario del alquiler es el dueño de la propiedad
     const request = await checkRentalHistoryModel(requestId, rentId);
     if (request.length === 0) {
       notFoundError("solicitud alquiler.");
