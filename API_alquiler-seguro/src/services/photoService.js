@@ -8,12 +8,20 @@ import { randomUUID as uuid } from "crypto";
 import { saveFileError, deleteFileError } from "./errorService.js";
 
 // Importamos las variables de entorno necesarias.
-import { UPLOADS_DIR } from "../../env.js";
+import { UPLOADS_DIR, UPLOADS_RENT, UPLOADS_AVATAR } from "../../env.js";
 
-export const savePhotoService = async (img, width) => {
+export const savePhotoService = async (img, width, type) => {
   try {
-    // Ruta absoluta al directorio de subida de archivos.
-    const uploadsDir = path.resolve(UPLOADS_DIR);
+    const uploadsDir = "";
+    if (type === "avatar") {
+      // Ruta absoluta al directorio de subida de archivos.
+      uploadsDir = path.resolve(UPLOADS_AVATAR);
+    }
+
+    if (type === "rent") {
+      // Ruta absoluta al directorio de subida de archivos.
+      uploadsDir = path.resolve(UPLOADS_RENT);
+    }
 
     // Creamos la carpeta uploads si no existe con la ayuda del método "access".
     try {
@@ -48,10 +56,18 @@ export const savePhotoService = async (img, width) => {
   }
 };
 
-export const deletePhotoService = async (imgName) => {
+export const deletePhotoService = async (imgName, type) => {
   try {
-    // Ruta absoluta al archivo que queremos eliminar.
-    const imgPath = path.resolve(UPLOADS_DIR, imgName);
+    const imgPath = "";
+    if (type === "avatar") {
+      // Ruta absoluta al directorio de subida de archivos.
+      imgPath = path.resolve(UPLOADS_AVATAR, imgName);
+    }
+
+    if (type === "rent") {
+      // Ruta absoluta al directorio de subida de archivos.
+      imgPath = path.resolve(UPLOADS_RENT, imgName);
+    }
 
     // Comprobamos si la imagen existe con la ayuda del método "access".
     try {

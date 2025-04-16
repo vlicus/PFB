@@ -34,7 +34,8 @@ const addRentPhotoController = async (req, res, next) => {
 
     // Guardamos la foto en la carpeta de subida de archivos, redimensionamos a un ancho de
     // 500px y obtenemos su nombre.
-    const photoName = await savePhotoService(req.files.photo, 500);
+    const type = "rent";
+    const photoName = await savePhotoService(req.files.photo, 500, type);
 
     // Guardamos la foto en la base de datos y obtenemos el id de la misma.
     const photoId = await insertPhotoModel(photoName, rentId);
