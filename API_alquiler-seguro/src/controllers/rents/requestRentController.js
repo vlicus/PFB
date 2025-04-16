@@ -1,4 +1,4 @@
-import insertRentHistoryModel from "../../models/rents/insertRentHistoryModel.js";
+import insertRentHistoryModel from "../../models/rent_history/insertRentHistoryModel.js";
 import selectRentByIdModel from "../../models/rents/selectRentByIdModel.js";
 import { cannotRequestOwnRentError } from "../../services/errorService.js";
 
