@@ -14,8 +14,10 @@ import { cannotVoteYourselfError } from "../../services/errorService.js";
 // Función controladora final que permite votar un usuario.
 const voteUserController = async (req, res, next) => {
   try {
-    const { userId } = req.params;
+    const { userId, rentHistoryId } = req.params;
     const { rating, comment } = req.body;
+
+    // Comprobar si existe el rentHistoryId
 
     if (userId === req.user.id) {
       cannotVoteYourselfError();
@@ -28,7 +30,8 @@ const voteUserController = async (req, res, next) => {
       rating,
       userId,
       req.user.id,
-      comment
+      comment,
+      rentHistoryId
     );
 
     res.send({

@@ -68,21 +68,6 @@ const main = async () => {
 )
         `);
 
-    // Tabla de valoracion.
-    await pool.query(`
-CREATE TABLE IF NOT EXISTS ratings (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    author_id CHAR(36) NOT NULL,
-    recipient_id CHAR(36) NOT NULL,
-    is_owner BOOLEAN DEFAULT false,
-    rating INT CHECK(rating BETWEEN 1 AND 5),
-    comment TEXT,
-    rating_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (author_id) REFERENCES users(id),
-    FOREIGN KEY (recipient_id) REFERENCES users(id)
-)
-        `);
-
     // Tabla de historial.
     await pool.query(`
 CREATE TABLE IF NOT EXISTS rental_history (
@@ -95,6 +80,23 @@ CREATE TABLE IF NOT EXISTS rental_history (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (rent_id) REFERENCES rents(id),
     FOREIGN KEY (renter_id) REFERENCES users(id)
+)
+        `);
+
+    // Tabla de valoracion.
+    await pool.query(`
+CREATE TABLE IF NOT EXISTS ratings (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    author_id CHAR(36) NOT NULL,
+    recipient_id CHAR(36) NOT NULL,
+    rental_history_id INT NOT NULL,
+    is_owner BOOLEAN DEFAULT false,
+    rating INT CHECK(rating BETWEEN 1 AND 5),
+    comment TEXT,
+    rating_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (author_id) REFERENCES users(id),
+    FOREIGN KEY (recipient_id) REFERENCES users(id),
+    FOREIGN KEY (rental_history_id) REFERENCES rental_history(id)
 )
         `);
 

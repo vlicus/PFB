@@ -1,10 +1,13 @@
-process.loadEnvFile();
+/* process.loadEnvFile(); */
+
+import "dotenv/config";
 
 export const {
   MYSQL_HOST,
   MYSQL_USER,
   MYSQL_PASS,
   MYSQL_DB,
+  MYSQL_PORT,
   PORT,
   SECRET,
   UPLOADS_DIR,

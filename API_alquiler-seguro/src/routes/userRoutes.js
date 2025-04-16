@@ -19,6 +19,7 @@ import {
 } from "../middlewares/index.js";
 
 import listUsersController from "../controllers/users/listUsersController.js";
+import checkRentalHistoryModel from "../middlewares/checkRentalHistoryModel.js";
 
 // Creamos un router
 const router = express.Router();
@@ -57,9 +58,10 @@ router.post(
 
 // Votar a un usuario.
 router.post(
-  "/user/:userId/votes",
+  "/user/:userId/:renthistoryId/votes",
   authUserController,
   userExistsController,
+  checkRentalHistoryModel,
   voteUserController
 );
 
