@@ -18,7 +18,6 @@ const updateUserController = async (req, res, next) => {
 
     // Validamos el body con Joi.
     await validateSchemaUtil(updateUserSchema, req.body);
-
     // Validamos el body con Joi. Si "files" no existe enviamos un objeto vacío.
     await validateSchemaUtil(editUserAvatarSchema, req.files || {});
 

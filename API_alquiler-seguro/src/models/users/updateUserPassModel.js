@@ -6,10 +6,8 @@ import getPool from "../../db/getPool.js";
 
 // Importamos los modelos.
 import selectUserByEmailModel from "./selectUserByEmailModel.js";
-import {
-  notFoundError,
-  passwordsNotMatchError,
-} from "../../services/errorService.js";
+import { notFoundError } from "../../services/errorService.js";
+import generateErrorUtil from "../../utils/generateErrorUtil.js";
 
 // Función que realiza una consulta a la base de datos para actualizar la contraseña de un usuario.
 const updateUserPassModel = async (email, pass, newPass) => {
@@ -19,13 +17,13 @@ const updateUserPassModel = async (email, pass, newPass) => {
   const user = await selectUserByEmailModel(email);
 
   if (!user) {
-    notFoundError();
+    notFoundError("usuario");
   }
 
   const validPass = await bcrypt.compare(pass, user.password);
 
   if (!validPass) {
-    passwordsNotMatchError();
+    generateErrorUtil("Tu contraseña actual no es correcta!", 409);
   }
 
   // Encriptamos la nueva contraseña.

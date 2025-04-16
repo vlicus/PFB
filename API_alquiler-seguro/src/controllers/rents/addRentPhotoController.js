@@ -12,7 +12,7 @@ import validateSchemaUtil from "../../utils/validateSchemaUtil.js";
 import addRentPhotoSchema from "../../schemas/rents/addRentPhotoSchema.js";
 
 // Importamos los errores.
-import { photoLimitReachedError } from "../../services/errorService.js";
+import generateErrorUtil from "../../utils/generateErrorUtil.js";
 
 // Función controladora final que agrega una foto a una entrada.
 const addRentPhotoController = async (req, res, next) => {
@@ -29,7 +29,7 @@ const addRentPhotoController = async (req, res, next) => {
 
     // Si la entrada tiene más 20 fotos lanzamos un error.
     if (rent.photos.length === 20) {
-      photoLimitReachedError();
+      generateErrorUtil("Se ha superado el límite de fotos", 404);
     }
 
     // Guardamos la foto en la carpeta de subida de archivos, redimensionamos a un ancho de

@@ -1,36 +1,35 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-
-import getPool from "../../db/getPool.js";
 import generateErrorUtil from "../../utils/generateErrorUtil.js";
+import selectUserByEmailModel from "../../models/users/selectUserByEmailModel.js";
+import validateSchemaUtil from "../../utils/validateSchemaUtil.js";
+import loginUserSchema from "../../schemas/users/loginUserSchema.js";
 
 const loginUserController = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    if (!email || !password) {
-      generateErrorUtil("faltan campos", 400);
-    }
 
-    const pool = await getPool();
-    const [users] = await pool.query(
-      "SELECT id, password, active FROM users WHERE email = ?", //revisar la query si está bien
-      email
-    );
-    const validPass =
-      users.length > 0 && (await bcrypt.compare(password, users[0].password));
+    await validateSchemaUtil(loginUserSchema, req.body);
 
-    if (!validPass) {
-      generateErrorUtil("Credenciales inválidas", 401);
+    const user = await selectUserByEmailModel(email, password);
+
+    let validPass;
+    if (user) {
+      validPass = await bcrypt.compare(password, user.password);
     }
-    if (!users[0].active) {
+    if (!user.active) {
       generateErrorUtil(
         "Usuario pendiente de activar. Activa tu usuario accediendo al email de verificación que has recibido en tu correo",
         403
       );
     }
+
+    if (!user || !validPass) {
+      generateErrorUtil("Los datos no coinciden", 400);
+    }
     const tokenInfo = {
-      id: users[0].id,
-      role: users[0].role,
+      id: user.id,
+      role: user.role,
     };
     const token = jwt.sign(tokenInfo, process.env.SECRET, {
       expiresIn: "7d",

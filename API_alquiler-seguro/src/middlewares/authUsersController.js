@@ -1,22 +1,21 @@
 import jwt from "jsonwebtoken";
-import {
-  credencialesInvalidasError,
-  tokenInvalidoError,
-  noAutenticadoError,
-} from "../services/errorService.js";
+import generateErrorUtil from "../utils/generateErrorUtil.js";
 
 const authUserController = async (req, res, next) => {
   try {
     const { authorization } = req.headers;
 
     if (!authorization) {
-      noAutenticadoError();
+      generateErrorUtil(
+        "Debes enviar un token en el header 'authorization'",
+        401
+      );
     }
 
     let [protocol, token] = authorization.split(" ");
 
     if (protocol !== "Bearer" || !token) {
-      tokenInvalidoError();
+      generateErrorUtil("El token es inválido", 401);
     }
     console.log(authorization);
     console.log(token);
@@ -25,8 +24,7 @@ const authUserController = async (req, res, next) => {
     try {
       tokenInfo = jwt.verify(token, process.env.SECRET);
     } catch (err) {
-      console.log(err);
-      credencialesInvalidasError();
+      generateErrorUtil("Credenciales inválidas", 401);
     }
 
     req.user = tokenInfo;

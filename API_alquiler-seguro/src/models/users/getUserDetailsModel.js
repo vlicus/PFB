@@ -24,7 +24,7 @@ const getUserDetailsModel = async (userId) => {
   );
 
   if (users.length < 1) {
-    throw generateErrorUtil("Usuario no encontrado", 404);
+    generateErrorUtil("Usuario no encontrado", 404);
   }
 
   return users[0];

@@ -1,11 +1,8 @@
 import checkRentalHistoryModel from "../../models/rent_history/checkRentalHistoryModel.js";
 import approveVisitModel from "../../models/rents/approveVisitModel.js";
 import selectRentByIdModel from "../../models/rents/selectRentByIdModel.js";
-import {
-  onlyCanAcceptPendingRequestError,
-  notFoundError,
-  notValidStatusRequestError,
-} from "../../services/errorService.js";
+import { notFoundError } from "../../services/errorService.js";
+import generateErrorUtil from "../../utils/generateErrorUtil.js";
 
 const approveVisitController = async (req, res, next) => {
   try {
@@ -13,7 +10,10 @@ const approveVisitController = async (req, res, next) => {
     const { status } = req.body; // "APPROVED" o "REJECTED" desde el cuerpo de la solicitud
 
     if (!["APPROVED", "REJECTED", "ACTIVE", "CANCELLED"].includes(status)) {
-      notValidStatusRequestError();
+      generateErrorUtil(
+        "Acción no válida. Debe ser 'APPROVED' ,'REJECTED','ACTIVE' o 'CANCELLED",
+        400
+      );
     }
     // Obtenemos los detalles del alquiler
     const rent = await selectRentByIdModel(rentId);
@@ -23,7 +23,9 @@ const approveVisitController = async (req, res, next) => {
       notFoundError("solicitud alquiler.");
     }
     if (request[0].status !== "PENDING") {
-      onlyCanAcceptPendingRequestError();
+      generateErrorUtil(
+        "Solo se pueden modificar solicitudes en estado 'PENDING'"
+      );
     }
 
     await approveVisitModel(status, requestId, rentId);
