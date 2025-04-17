@@ -16,6 +16,8 @@ const updateUserController = async (req, res, next) => {
 
     const user = await selectUserByIdModel(userId);
 
+    const type = "avatar";
+
     // Validamos el body con Joi.
     await validateSchemaUtil(updateUserSchema, req.body);
     // Validamos el body con Joi. Si "files" no existe enviamos un objeto vacío.
@@ -23,12 +25,18 @@ const updateUserController = async (req, res, next) => {
 
     // Si el usuario tiene un avatar previo lo eliminamos.
     if (user.avatar) {
-      await deletePhotoService(user.avatar);
+      await deletePhotoService(user.avatar, type, user.username);
     }
     // Guardamos el avatar en la carpeta de subida de archivos. Redimensionamos a un ancho
     // de 100 píxeles.
     if (req.files.avatar) {
-      const avatarName = await savePhotoService(req.files?.avatar, 100);
+      const avatarName = await savePhotoService(
+        req.files?.avatar,
+        100,
+        type,
+        user.username
+      );
+
       // Actualizamos los datos del usuario con el nombre de avatar que hemos obtenido.
       await updateUserAvatarModel(avatarName, userId);
     }

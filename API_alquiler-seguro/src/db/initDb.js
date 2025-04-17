@@ -1,12 +1,17 @@
 import getPool from "./getPool.js";
 import bcrypt from "bcryptjs";
 import { randomUUID as uuid } from "crypto";
+import fs from "fs/promises";
+import path from "path";
+
+import { UPLOADS_DIR } from "../../env.js";
 
 const main = async () => {
   // Variable que almacenará una conexión con la base de datos.
   let pool;
 
   const hashedPass = await bcrypt.hash("abc123", 10);
+  const uploads = path.resolve(UPLOADS_DIR);
 
   try {
     pool = await getPool();
@@ -16,6 +21,10 @@ const main = async () => {
     await pool.query(
       "DROP TABLE IF EXISTS rental_history, ratings, rent_images, rents, users"
     );
+
+    // Cada vez que se ejecute el initDb se borrara la carpeta uploads que almacena las imagenes
+    await fs.rm(uploads, { recursive: true, force: true });
+    console.log("Carpeta 'uploads' eliminada correctamente.");
 
     console.log("Creando tablas...");
 

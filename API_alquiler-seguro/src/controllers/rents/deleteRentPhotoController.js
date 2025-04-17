@@ -7,6 +7,7 @@ import { deletePhotoService } from "../../services/photoService.js";
 
 // Importamos los errores.
 import generateErrorUtil from "../../utils/generateErrorUtil.js";
+import selectUserByIdModel from "../../models/users/selectUserByIdModel.js";
 
 // Función controladora final que elimina una foto del alquiler.
 const deleteRentPhotoController = async (req, res, next) => {
@@ -14,6 +15,7 @@ const deleteRentPhotoController = async (req, res, next) => {
     // Obtenemos el id del alquiler y el id de la foto de los path params.
     const { rentId, photoId: photoIdStr } = req.params;
 
+    const type = "rent";
     // req.params photoId siempre va a enviar un string desde POSTMAN, nos tenemos que asegurar que, al tener en la base de datos un número como id de la imagen (en AUTOINCREMENT), transformamos el string req.params.photoId a un número antes de utilizarlo. Aunque se haga console.log(photoId) y muestre un número sin "", lo interpreta como un string igualmente
     const photoId = parseInt(photoIdStr, 10);
 
@@ -22,13 +24,15 @@ const deleteRentPhotoController = async (req, res, next) => {
     // Variable que almacenará la foto que queremos eliminar.
     const photo = rent.photos.find((photo) => photo.id === photoId);
 
+    const user = await selectUserByIdModel(rent.property_owner_id);
+
     // Si la foto no existe en el array de fotos del alquiler lanzamos un error.
     if (!photo) {
       generateErrorUtil("La foto no existe", 500);
     }
 
     // Borramos la foto de la carpeta de subida de archivos.
-    await deletePhotoService(photo.name);
+    await deletePhotoService(photo.name, type, user.username);
 
     // Borramos la foto de la base de datos.
     await deletePhotoModel(photoId);
