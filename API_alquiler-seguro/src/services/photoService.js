@@ -5,7 +5,7 @@ import sharp from "sharp";
 import { randomUUID as uuid } from "crypto";
 
 // Importamos los errores.
-import { saveFileError, deleteFileError } from "./errorService.js";
+import generateErrorUtil from "../utils/generateErrorUtil.js";
 
 // Importamos las variables de entorno necesarias.
 import { UPLOADS_DIR } from "../../env.js";
@@ -61,8 +61,7 @@ export const savePhotoService = async (img, width, type, name) => {
     // Retornamos el nombre con el que hemos guardado la imagen.
     return imgName;
   } catch (err) {
-    console.error(err);
-    saveFileError();
+    generateErrorUtil("Error al guardar el archivo en el disco", 500);
   }
 };
 
@@ -92,6 +91,6 @@ export const deletePhotoService = async (imgName, type) => {
     await fs.unlink(imgPath);
   } catch (err) {
     console.error(err);
-    deleteFileError();
+    generateErrorUtil("Error al eliminar el archivo del disco", 409);
   }
 };

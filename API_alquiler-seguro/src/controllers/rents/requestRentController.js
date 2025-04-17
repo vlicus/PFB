@@ -1,6 +1,6 @@
 import insertRentHistoryModel from "../../models/rent_history/insertRentHistoryModel.js";
 import selectRentByIdModel from "../../models/rents/selectRentByIdModel.js";
-import { cannotRequestOwnRentError } from "../../services/errorService.js";
+import generateErrorUtil from "../../utils/generateErrorUtil.js";
 
 const requestRentController = async (req, res, next) => {
   try {
@@ -12,7 +12,7 @@ const requestRentController = async (req, res, next) => {
 
     // Si somos los dueños del alquiler lanzamos un error.
     if (rent.property_owner_id === req.user.id) {
-      cannotRequestOwnRentError();
+      generateErrorUtil("No puedes alquilarte tu piso a ti mismo!", 500);
     }
 
     await insertRentHistoryModel(rentId, req.user.id);

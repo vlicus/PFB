@@ -10,11 +10,11 @@ const approveRentModel = async (rentId) => {
   );
 
   if (rents.length === 0) {
-    throw generateErrorUtil("El alquiler no existe", 404);
+    generateErrorUtil("El alquiler no existe", 404);
   }
 
   if (rents[0].is_approved === 1) {
-    throw generateErrorUtil("El alquiler ya fue aprobado", 400);
+    generateErrorUtil("El alquiler ya fue aprobado", 400);
   }
 
   await pool.query(

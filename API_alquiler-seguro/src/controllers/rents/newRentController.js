@@ -6,14 +6,13 @@ const newRentController = async (req, res, next) => {
     const { address, price, num_rooms, description } = req.body;
 
     if (!address || !price) {
-      return res.status(400).json({
-        status: "error",
-        message:
-          "Faltan campos obligatorios: address, price, numero de habitaciones, descripción",
-      });
+      generateErrorUtil(
+        "Faltan campos obligatorios: address, price, numero de habitaciones, descripción",
+        500
+      );
     }
     const userId = req.user.id;
-    console.log("REQ.USER:", req.user.id);
+
     const rentId = await insertRentModel(
       userId,
       address,

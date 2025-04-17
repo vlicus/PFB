@@ -10,10 +10,7 @@ import getPool from "../../db/getPool.js";
 import sendMailUtil from "../../utils/sendMailUtil.js";
 
 // Importamos errores de registro
-import {
-  emailAlreadyRegisteredError,
-  userAlreadyRegisteredError,
-} from "../../services/errorService.js";
+import generateErrorUtil from "../../utils/generateErrorUtil.js";
 
 // Creamos la función que realiza una consulta a la base de datos para crear un nuevo usuario
 
@@ -34,13 +31,16 @@ const insertUserModel = async (
 
   // Si existe algún usuario con ese nombre lanzamos un error
   if (users.length > 0) {
-    userAlreadyRegisteredError();
+    generateErrorUtil("El username ya está registrado", 409);
   }
 
-  [users] = await pool.query(`SELECT id FROM users WHERE email = ?`, [email]);
+  const [emailCheck] = await pool.query(
+    `SELECT id FROM users WHERE email = ?`,
+    [email]
+  );
 
-  if (users.length > 0) {
-    emailAlreadyRegisteredError();
+  if (emailCheck.length > 0) {
+    generateErrorUtil("El email ya está registrado", 500);
   }
 
   //Verificación por email:
