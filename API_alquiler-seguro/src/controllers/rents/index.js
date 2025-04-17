@@ -8,6 +8,7 @@ import listRentRequestController from "./listRentRequestController;.js";
 import approveRentController from "./approveRentController.js";
 import editStatusRentController from "./editStatusRentController.js";
 import approveVisitController from "./approveVisitController.js";
+import listFilteredRentsController from "./listFilteredRentsController.js";
 
 export {
   getRentController,
@@ -20,4 +21,5 @@ export {
   approveRentController,
   editStatusRentController,
   approveVisitController,
+  listFilteredRentsController,
 };
