@@ -10,18 +10,30 @@ import generateErrorUtil from "../utils/generateErrorUtil.js";
 // Importamos las variables de entorno necesarias.
 import { UPLOADS_DIR } from "../../env.js";
 
-export const savePhotoService = async (img, width) => {
+export const savePhotoService = async (img, width, type, name) => {
   try {
-    // Ruta absoluta al directorio de subida de archivos.
-    const uploadsDir = path.resolve(UPLOADS_DIR);
+    // Generamos un nombre único para la imagen para evitar que haya dos imágenes con el
+    // mismo nombre.
+    let imgName = `${name}.jpg`;
 
+    // Ruta absoluta a la imagen.
+    let imgPath;
+    let uploadsDir;
+    if (type === "rent") {
+      // Ruta absoluta al directorio de subida de archivos.
+      imgName = `${uuid()}.jpg`;
+      uploadsDir = path.resolve(UPLOADS_DIR + "/" + type + "/" + name);
+    } else {
+      uploadsDir = path.resolve(UPLOADS_DIR + "/" + type);
+    }
+    imgPath = path.join(uploadsDir, imgName);
     // Creamos la carpeta uploads si no existe con la ayuda del método "access".
     try {
       await fs.access(uploadsDir);
     } catch {
       // Si el método anterior lanza un error quiere decir que el directorio no existe.
       // En ese caso entraríamos en el catch y lo crearíamos.
-      await fs.mkdir(uploadsDir);
+      await fs.mkdir(uploadsDir, { recursive: true });
     }
 
     // Creamos un objeto de tipo Sharp con la imagen recibida.
@@ -30,14 +42,8 @@ export const savePhotoService = async (img, width) => {
     // Redimensionamos la imagen. El parámetro "width" representa un ancho en píxeles.
     sharpImg.resize(width);
 
-    // Generamos un nombre único para la imagen para evitar que haya dos imágenes con el
-    // mismo nombre.
-    const imgName = `${uuid()}.jpg`;
-
-    // Ruta absoluta a la imagen.
-    const imgPath = path.join(uploadsDir, imgName);
-
     // Guardamos la imagen en la carpeta de subida de archivos.
+
     await sharpImg.toFile(imgPath);
 
     // Retornamos el nombre con el que hemos guardado la imagen.
@@ -47,10 +53,20 @@ export const savePhotoService = async (img, width) => {
   }
 };
 
-export const deletePhotoService = async (imgName) => {
+export const deletePhotoService = async (imgName, type, name) => {
   try {
-    // Ruta absoluta al archivo que queremos eliminar.
-    const imgPath = path.resolve(UPLOADS_DIR, imgName);
+    let imgPath = "";
+    if (type === "avatar") {
+      // Ruta absoluta al directorio de subida de archivos.
+      imgPath = path.resolve(UPLOADS_DIR + "/" + type + "/" + imgName);
+    }
+
+    if (type === "rent") {
+      // Ruta absoluta al directorio de subida de archivos.
+      imgPath = path.resolve(
+        UPLOADS_DIR + "/" + type + "/" + name + "/" + imgName
+      );
+    }
 
     // Comprobamos si la imagen existe con la ayuda del método "access".
     try {
