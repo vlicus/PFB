@@ -14,38 +14,26 @@ export const savePhotoService = async (img, width, type, name) => {
   try {
     // Generamos un nombre único para la imagen para evitar que haya dos imágenes con el
     // mismo nombre.
-    const imgName = `${name}.jpg`;
+    let imgName = `${name}.jpg`;
 
     // Ruta absoluta a la imagen.
     let imgPath;
-
-    if (type === "avatar") {
-      // Ruta absoluta al directorio de subida de archivos.
-      const uploadsAvatar = path.resolve(UPLOADS_DIR + "/" + type);
-      imgPath = path.join(uploadsAvatar, imgName);
-      // Creamos la carpeta uploads si no existe con la ayuda del método "access".
-      try {
-        await fs.access(uploadsAvatar);
-      } catch {
-        // Si el método anterior lanza un error quiere decir que el directorio no existe.
-        // En ese caso entraríamos en el catch y lo crearíamos.
-        await fs.mkdir(uploadsAvatar, { recursive: true });
-      }
-    }
-
+    let uploadsDir;
     if (type === "rent") {
       // Ruta absoluta al directorio de subida de archivos.
-      const uploadsRent = path.resolve(UPLOADS_DIR + "/" + type + "/" + name);
-
-      imgPath = path.join(uploadsRent, imgName);
-
-      try {
-        await fs.access(uploadsRent);
-      } catch {
-        // Si el método anterior lanza un error quiere decir que el directorio no existe.
-        // En ese caso entraríamos en el catch y lo crearíamos.
-        await fs.mkdir(uploadsRent, { recursive: true });
-      }
+      imgName = `${uuid()}.jpg`;
+      uploadsDir = path.resolve(UPLOADS_DIR + "/" + type + "/" + name);
+    } else {
+      uploadsDir = path.resolve(UPLOADS_DIR + "/" + type);
+    }
+    imgPath = path.join(uploadsDir, imgName);
+    // Creamos la carpeta uploads si no existe con la ayuda del método "access".
+    try {
+      await fs.access(uploadsDir);
+    } catch {
+      // Si el método anterior lanza un error quiere decir que el directorio no existe.
+      // En ese caso entraríamos en el catch y lo crearíamos.
+      await fs.mkdir(uploadsDir, { recursive: true });
     }
 
     // Creamos un objeto de tipo Sharp con la imagen recibida.
@@ -65,17 +53,19 @@ export const savePhotoService = async (img, width, type, name) => {
   }
 };
 
-export const deletePhotoService = async (imgName, type) => {
+export const deletePhotoService = async (imgName, type, name) => {
   try {
-    const imgPath = "";
+    let imgPath = "";
     if (type === "avatar") {
       // Ruta absoluta al directorio de subida de archivos.
-      imgPath = path.resolve(UPLOADS_AVATAR, imgName);
+      imgPath = path.resolve(UPLOADS_DIR + "/" + type + "/" + imgName);
     }
 
     if (type === "rent") {
       // Ruta absoluta al directorio de subida de archivos.
-      imgPath = path.resolve(UPLOADS_RENT, imgName);
+      imgPath = path.resolve(
+        UPLOADS_DIR + "/" + type + "/" + name + "/" + imgName
+      );
     }
 
     // Comprobamos si la imagen existe con la ayuda del método "access".

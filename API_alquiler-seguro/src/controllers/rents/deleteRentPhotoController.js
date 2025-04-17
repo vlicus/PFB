@@ -7,6 +7,7 @@ import { deletePhotoService } from "../../services/photoService.js";
 
 // Importamos los errores.
 import generateErrorUtil from "../../utils/generateErrorUtil.js";
+import selectUserByIdModel from "../../models/users/selectUserByIdModel.js";
 
 // Función controladora final que elimina una foto del alquiler.
 const deleteRentPhotoController = async (req, res, next) => {
@@ -23,13 +24,15 @@ const deleteRentPhotoController = async (req, res, next) => {
     // Variable que almacenará la foto que queremos eliminar.
     const photo = rent.photos.find((photo) => photo.id === photoId);
 
+    const user = await selectUserByIdModel(rent.property_owner_id);
+
     // Si la foto no existe en el array de fotos del alquiler lanzamos un error.
     if (!photo) {
       generateErrorUtil("La foto no existe", 500);
     }
 
     // Borramos la foto de la carpeta de subida de archivos.
-    await deletePhotoService(photo.name, type);
+    await deletePhotoService(photo.name, type, user.username);
 
     // Borramos la foto de la base de datos.
     await deletePhotoModel(photoId);
