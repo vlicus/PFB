@@ -7,6 +7,7 @@ import validationController from "./validationController.js";
 import userPasswordChangeController from "./userPasswordChangeController.js";
 import updateUserController from "./updateUserController.js";
 import voteUserController from "./voteUserController.js";
+import editUserPassWithRecoverController from "./editUserPassWithRecoverController.js";
 
 export {
   newUserController,
@@ -18,4 +19,5 @@ export {
   userPasswordChangeController,
   updateUserController,
   voteUserController,
+  editUserPassWithRecoverController,
 };

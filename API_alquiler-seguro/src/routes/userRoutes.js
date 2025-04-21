@@ -10,6 +10,7 @@ import {
   userDetailsController,
   updateUserController,
   voteUserController,
+  editUserPassWithRecoverController,
 } from "../controllers/users/index.js";
 
 // Importamos las funciones controladoras intermedias.
@@ -47,6 +48,9 @@ router.get(
 
 // Middleware que permite enviar un correo de recuperación de contraseña.
 router.put("/users/password/recover", sendRecoverPassController);
+
+// Editar la contraseña de un usuario con un código de recuperación.
+router.put("/users/password", editUserPassWithRecoverController);
 
 // Creamos un endpoint que permite cambiar la contraseña al usuario
 router.post(
