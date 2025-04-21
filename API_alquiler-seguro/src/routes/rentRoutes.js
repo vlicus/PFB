@@ -12,6 +12,7 @@ import {
   editStatusRentController,
   approveVisitController,
   listFilteredRentsController,
+  updateRentController,
 } from "../controllers/rents/index.js";
 
 import {
@@ -90,6 +91,15 @@ router.put(
   authUserController,
   rentExistsController,
   approveVisitController
+);
+
+//Actualizar info  de un alquiler
+router.put(
+  "/rent/:rentId/update",
+  authUserController,
+  rentExistsController,
+  canEditController,
+  updateRentController
 );
 
 export default router;
