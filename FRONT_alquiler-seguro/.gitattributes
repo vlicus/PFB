@@ -1,0 +1,2 @@
+*.svg text eol=lf 
+# esto es para que el git no se queje del svg 
