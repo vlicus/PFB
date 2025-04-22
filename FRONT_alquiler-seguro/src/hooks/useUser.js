@@ -22,7 +22,6 @@ export default function useUser() {
 
     if (res.status === 401) {
       logout();
-      //setToken("")
     }
 
     let { data } = await res.json();
