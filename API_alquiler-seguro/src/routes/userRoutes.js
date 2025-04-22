@@ -11,6 +11,7 @@ import {
   updateUserController,
   voteUserController,
   editUserPassWithRecoverController,
+  getOwnUserController,
 } from "../controllers/users/index.js";
 
 // Importamos las funciones controladoras intermedias.
@@ -34,10 +35,18 @@ router.post("/users/validation", validationController);
 router.post("/users/login", loginUserController);
 
 // Obtener el listado de usuarios.
-router.get("/users", authUserController, listUsersController);
+router.get("/users/list", authUserController, listUsersController);
 
 //Creamos un endpoint para los detalles de un usuario
-router.get("/users/:userId", authUserController, userDetailsController);
+router.get("/users/:userId", userExistsController, userDetailsController);
+
+// Obtener perfil privado de un usuario.
+router.get(
+  "/users",
+  authUserController,
+  userExistsController,
+  getOwnUserController
+);
 
 //Creamos un endpoint para detalles de usuario  con el histórico de alquileres hechos
 router.get(

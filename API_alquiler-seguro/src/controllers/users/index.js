@@ -8,6 +8,7 @@ import userPasswordChangeController from "./userPasswordChangeController.js";
 import updateUserController from "./updateUserController.js";
 import voteUserController from "./voteUserController.js";
 import editUserPassWithRecoverController from "./editUserPassWithRecoverController.js";
+import getOwnUserController from "./getOwnUserController.js";
 
 export {
   newUserController,
@@ -20,4 +21,5 @@ export {
   updateUserController,
   voteUserController,
   editUserPassWithRecoverController,
+  getOwnUserController,
 };
