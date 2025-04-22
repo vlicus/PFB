@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useState } from "react";
 
+import { Bounce, toast } from "react-toastify";
+
 export default function useLogin() {
   //const {setToken} = useAuth()
   const { login } = useAuth();
@@ -33,8 +35,21 @@ export default function useLogin() {
       login(data.token);
 
       /* setFormState(initalState); */
+      toast("Usuario logeado correctamente!", {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
+
       navigate("/");
     } catch (e) {
+      toast.error(e.message);
       setError(e.message);
     }
   }

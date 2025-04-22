@@ -2,12 +2,11 @@ import PasswordInput from "../Components/PasswordInput";
 import useRegister from "../hooks/useRegister";
 
 export default function Register() {
-  const { error, handleChange, formState, handleSubmit } = useRegister();
+  const { handleChange, formState, handleSubmit } = useRegister();
 
   return (
     <main>
       <h2>Registro</h2>
-      {error && <p className="error">{error}</p>}
       <form onSubmit={handleSubmit}>
         <ul>
           <li>
