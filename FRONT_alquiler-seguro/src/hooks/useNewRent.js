@@ -18,8 +18,6 @@ export default function useNewRent() {
   const [formState, setFormState] = useState(initialState);
 
   async function handleSubmit(formData) {
-    //console.log(e);
-    //e.preventDefault();
     setError("");
 
     try {
@@ -60,8 +58,7 @@ export default function useNewRent() {
         throw new Error(json.message);
       }
 
-      //setFormState(initialState);
-      toast("Rent creada!", {
+      toast("Alquiler creado!", {
         position: "bottom-right",
         autoClose: 2000,
         hideProgressBar: false,
