@@ -1,8 +1,6 @@
 const { VITE_API_URL } = import.meta.env;
 
 export async function registerService(userData) {
-  console.log(userData);
-
   //Opción para que el back no se queje:
   delete userData.passwordRepeat;
 
