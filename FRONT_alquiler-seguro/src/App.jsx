@@ -4,7 +4,10 @@ import { useAuth } from "./contexts/AuthContext";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Header from "./components/Header";
-function App() {
+import Profile from "./pages/Profile";
+
+import "./index.css";
+const App = () => {
   const { token } = useAuth();
   return (
     <>
@@ -19,9 +22,13 @@ function App() {
           path="login"
           element={!token ? <Login /> : <Navigate to="/" />}
         />
+        <Route
+          path="/profile"
+          element={token ? <Profile /> : <Navigate to="/login" />}
+        />
       </Routes>
     </>
   );
-}
+};
 
 export default App;

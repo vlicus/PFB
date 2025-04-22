@@ -1,0 +1,44 @@
+.avatar {
+  width: 20rem;
+}
+
+nav menu {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  background-color: #1e3a8a;
+  border-bottom: 3px solid #2563eb;
+}
+
+nav menu li {
+  flex: 1;
+}
+
+/* Estilo común para NavLink y button */
+nav menu li a,
+nav menu li button {
+  all: unset; /* Borra estilos por defecto, incluido height/line-height */
+  display: block;
+  width: 100%;
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  background-color: #1e3a8a;
+  border-left: 1px solid #3b82f6;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* El primero no necesita borde izquierdo */
+nav menu li:first-child a,
+nav menu li:first-child button {
+  border-left: none;
+}
+
+/* Hover común */
+nav menu li a:hover,
+nav menu li button:hover {
+  background-color: #2563eb;
+}
