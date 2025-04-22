@@ -1,5 +1,6 @@
 import PasswordInput from "../Components/PasswordInput";
 import useRegister from "../hooks/useRegister";
+import { ToastContainer } from "react-toastify";
 
 export default function Register() {
   const { error, handleChange, formState, handleSubmit } = useRegister();

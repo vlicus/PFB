@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Header from "./components/Header";
 import Profile from "./pages/Profile";
+import NotFound from "./pages/NotFound";
 
 import "./index.css";
 const App = () => {
@@ -14,18 +15,10 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route
-          path="/register"
-          element={!token ? <Register /> : <Navigate to="/" />}
-        />
-        <Route
-          path="login"
-          element={!token ? <Login /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/profile"
-          element={token ? <Profile /> : <Navigate to="/login" />}
-        />
+        <Route path="/register" element={!token ? <Register /> : <Navigate to="/" />} />
+        <Route path="login" element={!token ? <Login /> : <Navigate to="/" />} />
+        <Route path="/profile" element={token ? <Profile /> : <Navigate to="/login" />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
