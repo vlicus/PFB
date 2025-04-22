@@ -32,7 +32,7 @@ router.post("/users/register", newUserController);
 router.post("/users/validation", validationController);
 
 //Creamos un endpoint para login de un usuario registrado
-router.post("/users/login", userExistsController, loginUserController);
+router.post("/users/login", loginUserController);
 
 // Obtener el listado de usuarios.
 router.get("/users/list", authUserController, listUsersController);
