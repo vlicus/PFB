@@ -1,7 +1,18 @@
-export default function Home() {
+import RentList from "../components/RentList";
+import LandingHeader from "../components/Landing/LandingHeader";
+
+import UserTypeGrid from "../components/Landing/UserTypeGrid";
+
+const Home = () => {
   return (
-    <main>
-      <h2>¿Propietario? ¿Inquilino? tenemos la solución para ti</h2>
-    </main>
+    <div className="p-6">
+      <LandingHeader />
+      <UserTypeGrid />
+      <h1 className="text-2xl font-bold mb-4">Alquileres disponibles</h1>
+
+      <RentList />
+    </div>
   );
-}
+};
+
+export default Home;
