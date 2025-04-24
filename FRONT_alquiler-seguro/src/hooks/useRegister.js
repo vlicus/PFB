@@ -17,7 +17,6 @@ export default function useRegister() {
 
   const [formState, setFormState] = useState(initalState);
   const [error, setError] = useState(" ");
-
   function handleChange({ target: { name, value } }) {
     setError("");
     setFormState({ ...formState, [name]: value });
