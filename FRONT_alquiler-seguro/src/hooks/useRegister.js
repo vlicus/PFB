@@ -2,6 +2,8 @@ import { useState } from "react";
 import { registerService } from "../services/userServices";
 import { useNavigate } from "react-router-dom";
 
+import { Bounce, toast } from "react-toastify";
+
 export default function useRegister() {
   const navigate = useNavigate();
   let initalState = {
@@ -35,8 +37,21 @@ export default function useRegister() {
 
       console.log("Usuario registrado correctamente");
       setFormState(initalState);
+
+      toast("Usuario registrado!", {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
       navigate("/login");
     } catch (e) {
+      toast.error(e.message);
       setError(e.message);
     }
   }

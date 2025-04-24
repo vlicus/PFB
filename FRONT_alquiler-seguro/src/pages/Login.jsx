@@ -2,12 +2,11 @@ import PasswordInput from "../Components/PasswordInput";
 import useLogin from "../hooks/useLogin";
 
 export default function Login() {
-  const { error, formState, handleSubmit, handleChange } = useLogin();
+  const { formState, handleSubmit, handleChange } = useLogin();
 
   return (
     <main>
       <h2>Login</h2>
-      {error && <p className="error">{error}</p>}
       <form onSubmit={handleSubmit}>
         <ul>
           <li>

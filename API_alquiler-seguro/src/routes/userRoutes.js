@@ -47,6 +47,7 @@ router.get(
   userExistsController,
   getOwnUserController
 );
+router.get("/users/:userId", userDetailsController);
 
 //Creamos un endpoint para detalles de usuario  con el histórico de alquileres hechos
 router.get(

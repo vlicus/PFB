@@ -1,6 +1,8 @@
 import { NavLink, Outlet } from "react-router-dom";
 import Avatar from "../Components/Avatar";
 import useUser from "../hooks/useUser";
+import UserRentalHistory from "../components/User/UserRentalHistory";
+import UserRatings from "../components/User/UserRatings";
 
 export default function Profile() {
   const user = useUser();
@@ -9,6 +11,11 @@ export default function Profile() {
     <main>
       {user.is_admin ? <Admin /> : <User />}
       <Outlet />
+      <h2>{user.username}</h2>
+      <Avatar user={user} />
+      {user.email && <p>Email: {user.email}</p>}
+      <UserRentalHistory />
+      <UserRatings />
     </main>
   );
 }

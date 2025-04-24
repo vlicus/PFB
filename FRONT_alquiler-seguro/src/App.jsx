@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Header from "./components/Header";
 import Profile from "./pages/Profile";
+import NotFound from "./pages/NotFound";
+import NewRentForm from "./pages/NewRentForm";
 
 import "./index.css";
 import ApproveRents from "./pages/ApproveRents";
@@ -41,6 +43,11 @@ const App = () => {
           />
         </Route>
         <Route path="/password" element={<UpdatePassword />} />
+        <Route path="/register" element={!token ? <Register /> : <Navigate to="/" />} />
+        <Route path="login" element={!token ? <Login /> : <Navigate to="/" />} />
+        <Route path="/profile" element={token ? <Profile /> : <Navigate to="/login" />} />
+        <Route path="/rent/register" element={token ? <NewRentForm /> : <Navigate to="/login" />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

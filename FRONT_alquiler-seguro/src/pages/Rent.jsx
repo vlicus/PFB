@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import RentImage from "../components/Rent/RentImage";
 import RentInfo from "../components/Rent/RentInfo";
+import { toast } from "react-toastify";
 
 const Rent = () => {
   const { id } = useParams();
@@ -18,7 +19,7 @@ const Rent = () => {
   }, [id]);
 
   if (loading) return <p>Cargando alquiler...</p>;
-  if (error) return <p className="text-red-500">{error}</p>;
+  if (error) return toast.error(error.message);
 
   return (
     <div className="p-4 max-w-2xl mx-auto">
