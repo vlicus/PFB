@@ -10,12 +10,11 @@ export default function Profile() {
   return (
     <main>
       {user.is_admin ? <Admin /> : <User />}
-      <Outlet />
-      <h2>{user.username}</h2>
+      {/*       <h2>{user.username}</h2>
       <Avatar user={user} />
       {user.email && <p>Email: {user.email}</p>}
       <UserRentalHistory />
-      <UserRatings />
+      <UserRatings /> */}
     </main>
   );
 }
@@ -44,17 +43,12 @@ function User() {
         <li>
           <NavLink to={"/profile/rent/new"}>Nueva Propiedad</NavLink>
         </li>
-        <li>
+        {/*         <li>
           <NavLink to={"/profile/rent/update"}>Editar Propiedad</NavLink>
-        </li>
+        </li> */}
         <li>
-          <NavLink to={"/profile/rent/requests/visit"}>
-            Solicitudes de visita
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to={"/profile/rent/requests/rental"}>
-            Solicitudes de alquiler
+          <NavLink to={"/profile/rent/requests"}>
+            Solicitudes de visita/alquiler
           </NavLink>
         </li>
       </menu>
