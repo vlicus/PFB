@@ -16,18 +16,15 @@ export default function useRegister() {
   };
 
   const [formState, setFormState] = useState(initalState);
-
   const [error, setError] = useState(" ");
 
   function handleChange({ target: { name, value } }) {
     setError("");
     setFormState({ ...formState, [name]: value });
   }
-
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
-
     try {
       if (formState.password !== formState.passwordRepeat) {
         throw new Error("Las contraseñas no coinciden");
@@ -35,7 +32,6 @@ export default function useRegister() {
 
       await registerService(formState);
 
-      console.log("Usuario registrado correctamente");
       setFormState(initalState);
 
       toast("Usuario registrado!", {

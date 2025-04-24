@@ -69,6 +69,7 @@ export default function useNewRent() {
         theme: "colored",
         transition: Bounce,
       });
+      setFormState(initialState);
     } catch (e) {
       toast.error(e.message);
       setError(e.message);
