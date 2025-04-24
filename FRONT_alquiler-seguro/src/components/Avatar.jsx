@@ -1,10 +1,14 @@
-import avatar from "../assets/user.png";
+import avatarDefecto from "../assets/user.png";
 import ApiImage from "./ApiImage";
 
 export default function Avatar({ user }) {
   return user.avatar ? (
-    <ApiImage className="avatar" name={user.avatar} alt={user.username} />
+    <ApiImage
+      className="avatar"
+      name={"avatar/" + user.avatar}
+      alt={user.username}
+    />
   ) : (
-    <img className="avatar" src={avatar} />
+    <img className="avatar" src={avatarDefecto} />
   );
 }

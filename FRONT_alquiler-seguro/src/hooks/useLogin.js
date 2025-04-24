@@ -6,7 +6,6 @@ import { useState } from "react";
 import { Bounce, toast } from "react-toastify";
 
 export default function useLogin() {
-  //const {setToken} = useAuth()
   const { login } = useAuth();
 
   const navigate = useNavigate();
@@ -31,7 +30,6 @@ export default function useLogin() {
     try {
       const { data } = await loginService(formState);
 
-      console.log(data.token);
       login(data.token);
 
       /* setFormState(initalState); */
