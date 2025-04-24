@@ -54,7 +54,8 @@ const insertUserModel = async (
 
   Gracias por registrarte en Alquiler Seguro. Para activar tu cuenta, haz clic en el siguiente enlace:
 
-            <a href="${API_URL + "/" + PORT}/users/validation/${
+            <a href="${API_URL + ":" + PORT}/users/validation/${
+
               registration_code
             }">Activar mi cuenta</a>
         `;

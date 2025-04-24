@@ -8,6 +8,7 @@ import { PORT, UPLOADS_DIR } from "./env.js";
 // Importamos las rutas
 import userRoutes from "./src/routes/userRoutes.js";
 import rentRoutes from "./src/routes/rentRoutes.js";
+import morgan from "morgan";
 
 //Importamos los errores
 import {
@@ -17,6 +18,7 @@ import {
 
 // Se crea el servidor
 const app = express();
+app.use(morgan("dev"));
 
 app.use(cors());
 // Middleware que "desencripta" un body en formato "raw" creando la propiedad "body" en el objeto "request".
