@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import NewRentForm from "./pages/NewRentForm";
+import Validation from "./pages/Validation";
 
 import "./index.css";
 import ApproveRents from "./pages/ApproveRents";
@@ -23,6 +24,7 @@ const App = () => {
           path="/register"
           element={!token ? <Register /> : <Navigate to="/" />}
         />
+            <Route path="/validation" element={<Validation />} />
         <Route
           path="login"
           element={!token ? <Login /> : <Navigate to="/" />}
@@ -35,7 +37,6 @@ const App = () => {
         <Route path="/profile/rent/new" element={<NewRentForm />} />
         {/*  <Route path="/profile/rent/update" element={<ApproveRents />} /> */}
         <Route path="/profile/rent/requests" element={<RentsRequested />} />
-
         <Route path="/password" element={<UpdatePassword />} />
         <Route
           path="/rent/register"

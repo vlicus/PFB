@@ -1,4 +1,3 @@
-import { ToastContainer } from "react-toastify";
 import useNewRent from "../hooks/useNewRent";
 
 export default function NewPostForm() {
