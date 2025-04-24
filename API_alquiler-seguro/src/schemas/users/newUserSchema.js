@@ -15,6 +15,13 @@ const newUserSchema = joi.object({
     )
     .required()
     .messages(joiErrorMessages),
+  passwordRepeat: joi
+    .string()
+    .pattern(
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[¡!$%^&*()_+|~=`{}:";'<>¿?,.])[a-zA-Z0-9¡!$%^&*()_+|~=`{}:";'<>¿?,.]{8,}$/
+    )
+    .required()
+    .messages(joiErrorMessages),
   bio: joi.string().min(1).max(65535).messages(joiErrorMessages).required(),
   /* passwordRepeat: joi.string(), */
   phone_number: joi

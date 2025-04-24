@@ -1,14 +1,11 @@
 import validationModel from "../../models/users/validationModel.js";
-import emailValidationSchema from "../../schemas/users/emailValidationSchema.js";
-import validateSchemaUtil from "../../utils/validateSchemaUtil.js";
 
 const validationController = async (req, res, next) => {
   try {
-    const { email } = req.body;
+    const { regcode } = req.params;
 
-    await validateSchemaUtil(emailValidationSchema, req.body);
-
-    await validationModel(email);
+    console.log(req.params);
+    await validationModel(regcode);
 
     res.send({
       status: "ok",

@@ -29,7 +29,7 @@ const router = express.Router();
 router.post("/users/register", newUserController);
 
 // Endpoint validacion usuario
-router.post("/users/validation", validationController);
+router.get("/users/validation/:regcode", validationController);
 
 //Creamos un endpoint para login de un usuario registrado
 router.post("/users/login", loginUserController);

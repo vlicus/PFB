@@ -1,29 +1,76 @@
+import insertPhotoModel from "../../models/rents/insertPhotoModel.js";
 import insertRentModel from "../../models/rents/insertRentModel.js";
+import selectRentByIdModel from "../../models/rents/selectRentByIdModel.js";
+import selectUserByIdModel from "../../models/users/selectUserByIdModel.js";
+import addRentPhotoSchema from "../../schemas/rents/addRentPhotoSchema.js";
+import { savePhotoService } from "../../services/photoService.js";
 import generateErrorUtil from "../../utils/generateErrorUtil.js";
+import validateSchemaUtil from "../../utils/validateSchemaUtil.js";
 
 const newRentController = async (req, res, next) => {
   try {
     const { address, price, num_rooms, description } = req.body;
+    const userId = req.user.id;
+    const property_owner_id = userId;
 
-    if (!address || !price) {
+    if (!address || !price || !num_rooms || !description) {
       generateErrorUtil(
         "Faltan campos obligatorios: address, price, numero de habitaciones, descripción",
         500
       );
     }
-    const userId = req.user.id;
-
     const rentId = await insertRentModel(
-      userId,
+      property_owner_id,
       address,
       price,
       num_rooms,
       description
     );
 
+    // Validamos el body con Joi. Dado que "files" podría no existir enviamos un objeto vacío
+    // si se da el caso.
+    //await validateSchemaUtil(addRentPhotoSchema, req.files || {});
+
+    // Obtenemos la información de la entrada para comprobar si somos los propietarios.
+    const rent = await selectRentByIdModel(rentId);
+
+    const user = await selectUserByIdModel(rent.property_owner_id);
+
+    const photos = [];
+    const type = "rent";
+
+    if (req.files) {
+      for (const photo of Object.values(req.files).slice(0, 3)) {
+        const photoName = await savePhotoService(
+          photo,
+          500,
+          type,
+          user.username
+        );
+
+        const photoId = await insertPhotoModel(photoName, rentId);
+
+        photos.push({
+          id: photoId,
+          rent_id: rentId,
+          name: photoName,
+        });
+      }
+    }
+
     res.send({
       status: "ok",
       message: `Alquiler creado con id ${rentId}`,
+      data: {
+        rent: {
+          id: rentId,
+          address,
+          price,
+          userId: userId,
+          photos,
+          createdAt: new Date(),
+        },
+      },
     });
   } catch (error) {
     generateErrorUtil(error);

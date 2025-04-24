@@ -1,16 +1,18 @@
-import getPool from "../../db/getPool.js";
-import sendMailUtil from "../../utils/sendMailUtil.js";
+import getPool from "../../db/getPool.js"; /* 
+import sendMailUtil from "../../utils/sendMailUtil.js"; */
 
-const validationModel = async (email) => {
+const validationModel = async (regcode) => {
   const pool = await getPool();
 
-  if (email) {
-    await pool.query(
+  console.log(regcode);
+  if (regcode) {
+    let result = await pool.query(
       `
-          UPDATE users SET active = ? WHERE email = ?
+          UPDATE users SET active = ? WHERE registration_code = ?
           `,
-      [true, email]
+      [true, regcode]
     );
+    console.log(result);
   }
 
   // Asunto del email de activación del email
@@ -18,10 +20,10 @@ const validationModel = async (email) => {
 
   // Contenido del email:
   const emailBody = `
-    La activación de su email: ${email} ha sido realizada correctamente!
+    La activación de su email ha sido realizada correctamente!
     `;
 
-  await sendMailUtil(email, emailSubject, emailBody);
+  //await sendMailUtil(regcode, emailSubject, emailBody);
 };
 
 export default validationModel;
