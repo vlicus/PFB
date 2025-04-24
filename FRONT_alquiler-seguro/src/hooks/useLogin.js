@@ -4,7 +4,6 @@ import { useAuth } from "../contexts/AuthContext";
 import { useState } from "react";
 
 export default function useLogin() {
-  //const {setToken} = useAuth()
   const { login } = useAuth();
 
   const navigate = useNavigate();
@@ -29,10 +28,8 @@ export default function useLogin() {
     try {
       const { data } = await loginService(formState);
 
-      console.log(data.token);
       login(data.token);
 
-      /* setFormState(initalState); */
       navigate("/");
     } catch (e) {
       setError(e.message);

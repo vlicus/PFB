@@ -28,11 +28,11 @@ const updateUserController = async (req, res, next) => {
       await deletePhotoService(user.avatar, type, user.username);
     }
     // Guardamos el avatar en la carpeta de subida de archivos. Redimensionamos a un ancho
-    // de 100 píxeles.
+    // de 300 píxeles.
     if (req.files.avatar) {
       const avatarName = await savePhotoService(
         req.files?.avatar,
-        100,
+        300,
         type,
         user.username
       );

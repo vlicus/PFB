@@ -7,6 +7,8 @@ import Header from "./components/Header";
 import Profile from "./pages/Profile";
 
 import "./index.css";
+import ApproveRents from "./pages/ApproveRents";
+import UpdatePassword from "./pages/UpdatePassword";
 const App = () => {
   const { token } = useAuth();
   return (
@@ -25,7 +27,20 @@ const App = () => {
         <Route
           path="/profile"
           element={token ? <Profile /> : <Navigate to="/login" />}
-        />
+        >
+          <Route path="/profile/rent/approve" element={<ApproveRents />} />
+          <Route path="/profile/rent/new" element={<ApproveRents />} />
+          <Route path="/profile/rent/update" element={<ApproveRents />} />
+          <Route
+            path="/profile/rent/requests/visit"
+            element={<ApproveRents />}
+          />
+          <Route
+            path="/profile/rent/requests/rental"
+            element={<ApproveRents />}
+          />
+        </Route>
+        <Route path="/password" element={<UpdatePassword />} />
       </Routes>
     </>
   );

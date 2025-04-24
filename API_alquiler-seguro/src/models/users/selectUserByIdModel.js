@@ -7,7 +7,7 @@ const selectUserByIdModel = async (userId) => {
 
   // Comprobamos si hay algún usuario con el id proporcionado.
   const [users] = await pool.query(
-    `SELECT id, username, email, avatar, created_at FROM users WHERE id = ?`,
+    `SELECT id, username, email, avatar, created_at, first_name, last_name, phone_number, bio, is_admin  FROM users WHERE id = ?`,
     [userId]
   );
 
