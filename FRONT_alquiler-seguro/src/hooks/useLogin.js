@@ -32,7 +32,6 @@ export default function useLogin() {
 
       login(data.token);
 
-      /* setFormState(initalState); */
       toast("Usuario logeado correctamente!", {
         position: "bottom-right",
         autoClose: 2000,
