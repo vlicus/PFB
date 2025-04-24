@@ -11,21 +11,18 @@ export default function useUser() {
 
   async function loadUser() {
     let ruta = `${VITE_API_URL}/users/${userId ?? ""}`;
-    console.log(ruta);
 
     let res = await fetch(ruta, {
       headers: {
         authorization: "Bearer " + token,
       },
     });
-    console.log(res);
 
     if (res.status === 401) {
       logout();
     }
 
     let { data } = await res.json();
-    console.log(data);
     setUser(data.user);
   }
 

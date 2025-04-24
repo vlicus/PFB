@@ -4,11 +4,11 @@ import validateSchemaUtil from "../../utils/validateSchemaUtil.js";
 
 const validationController = async (req, res, next) => {
   try {
-    const { email } = req.body;
+    const { regcode } = req.params;
 
-    await validateSchemaUtil(emailValidationSchema, req.body);
+    console.log(req);
 
-    await validationModel(email);
+    await validationModel(regcode);
 
     res.send({
       status: "ok",
