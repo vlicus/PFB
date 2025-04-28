@@ -1,10 +1,10 @@
-import { useState } from "react";
 import { toast } from "react-toastify";
+import { useAuth } from "../contexts/AuthContext";
 const { VITE_API_URL } = import.meta.env;
 
 export function useRentRequestActions() {
-  const token = localStorage.getItem("token"); // o del contexto si usás uno
-  const [error, setError] = useState(" ");
+  const { token, logout } = useAuth();
+
   const changeStatus = async (rentId, requestId, status) => {
     try {
       const res = await fetch(
@@ -25,7 +25,6 @@ export function useRentRequestActions() {
       return true;
     } catch (error) {
       toast.error(error.message);
-      setError(error.message);
       return false;
     }
   };

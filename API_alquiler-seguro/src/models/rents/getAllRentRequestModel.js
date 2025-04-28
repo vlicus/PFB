@@ -1,6 +1,6 @@
 import getPool from "../../db/getPool.js";
 
-const getAllRentRequestModel = async () => {
+const getAllRentRequestModel = async (userId) => {
   const pool = await getPool();
 
   const [rent_requests] = await pool.query(
@@ -18,15 +18,17 @@ const getAllRentRequestModel = async () => {
     r.price,
     r.num_rooms,
     r.is_available,
-    start_date,
-    end_date,
-    status,
+    rh.start_date,
+    rh.end_date,
+    rh.status,
     rh.created_at
     FROM rental_history rh
     JOIN users u ON rh.renter_id = u.id
     JOIN rents r ON rh.rent_id = r.id
-    WHERE rh.status = "PENDING";
-`
+    WHERE rh.status = "PENDING"
+    AND r.property_owner_id = ?;
+`,
+    [userId]
   );
 
   for (const rent_request of rent_requests) {

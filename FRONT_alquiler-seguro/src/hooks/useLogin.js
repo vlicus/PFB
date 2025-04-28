@@ -30,7 +30,7 @@ export default function useLogin() {
     try {
       const { data } = await loginService(formState);
 
-      login(data.token);
+      login(data);
 
       toast("Usuario logeado correctamente!", {
         position: "bottom-right",
