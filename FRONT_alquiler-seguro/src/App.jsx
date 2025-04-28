@@ -19,7 +19,7 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/validation" element={<Validation />} />
+        <Route path="/validation/:regcode" element={<Validation />} />
         <Route path="/register" element={!token ? <Register /> : <Navigate to="/" />} />
         <Route path="login" element={!token ? <Login /> : <Navigate to="/" />} />
         <Route path="/profile" element={token ? <Profile /> : <Navigate to="/login" />}>

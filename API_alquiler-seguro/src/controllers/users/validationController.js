@@ -3,7 +3,7 @@ import validationModel from "../../models/users/validationModel.js";
 const validationController = async (req, res, next) => {
   try {
     const { regcode } = req.params;
-    
+    console.log(regcode);
     await validationModel(regcode);
 
     res.send({

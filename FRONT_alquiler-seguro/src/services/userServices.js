@@ -39,16 +39,8 @@ export async function loginService(userData) {
 }
 
 export async function validationService(regcode) {
-  let res = await fetch(VITE_API_URL + "/validation", {
-    method: "POST",
-    body: JSON.stringify(regcode),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  console.log(res);
+  let res = await fetch(VITE_API_URL + "/validation/" + regcode);
   let json = await res.json();
-  console.log(json);
   if (!res.ok) {
     throw new Error(json.message);
   }

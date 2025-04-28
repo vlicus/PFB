@@ -35,10 +35,10 @@ app.use(fileUpload());
 app.use(userRoutes);
 app.use(rentRoutes);
 
-// Inicio (/), Sin esto da error por que intenta cargar la ruta / igualmente, aunque no esté definida
+/* // Inicio (/), Sin esto da error por que intenta cargar la ruta / igualmente, aunque no esté definida
 app.use("/", (req, res) => {
   res.send("Hello, world!");
-});
+}); */
 
 //Middleware de ruta no encontrada
 app.use(notFoundController);
