@@ -17,4 +17,5 @@ export const {
   SMTP_PASS,
   FRONT_URL,
   API_URL,
+  FRONT_PORT,
 } = process.env;

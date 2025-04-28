@@ -24,7 +24,7 @@ const App = () => {
           path="/register"
           element={!token ? <Register /> : <Navigate to="/" />}
         />
-            <Route path="/validation" element={<Validation />} />
+            <Route path="/validation/:regcode" element={<Validation />} />
         <Route
           path="login"
           element={!token ? <Login /> : <Navigate to="/" />}

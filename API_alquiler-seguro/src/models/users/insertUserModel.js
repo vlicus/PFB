@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import { randomUUID as uuid } from "crypto";
-import { API_URL, PORT } from "../../../env.js";
+import { API_URL, FRONT_PORT } from "../../../env.js";
 
 // Importamos la función que devuelve una conexión con la base de datos
 import getPool from "../../db/getPool.js";
@@ -54,10 +54,7 @@ const insertUserModel = async (
 
   Gracias por registrarte en Alquiler Seguro. Para activar tu cuenta, haz clic en el siguiente enlace:
 
-            <a href="${API_URL + ":" + PORT}/users/validation/${
-
-              registration_code
-            }">Activar mi cuenta</a>
+            <a href="${API_URL + ":" + FRONT_PORT}/validation/${registration_code}">Activar mi cuenta</a>
         `;
 
   // Enviamos el email de verificación al usuario.
