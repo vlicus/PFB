@@ -52,6 +52,10 @@ ul li a:hover {
   background-color: #333;
 }
 
+article {
+  margin: 10px;
+}
+
 @media (min-width: 1000px) {
   nav {
     position: absolute;

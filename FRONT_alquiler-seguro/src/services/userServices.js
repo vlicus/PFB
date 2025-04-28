@@ -3,6 +3,7 @@ const { VITE_API_URL } = import.meta.env;
 export async function registerService(userData) {
   //Opción para que el back no se queje:
   //delete userData.passwordRepeat;
+  
   let res = await fetch(VITE_API_URL + "/users/register", {
     method: "POST",
     body: JSON.stringify(userData),
