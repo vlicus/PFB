@@ -61,7 +61,7 @@ router.post(
 );
 
 // Obtener el listado de las solicitudes de visita/alquiler.
-router.get("/rents/requests", listRentRequestController);
+router.get("/rents/requests", authUserController, listRentRequestController);
 
 // Obtener el listado de alquileres.
 router.get("/rents", listRentController);

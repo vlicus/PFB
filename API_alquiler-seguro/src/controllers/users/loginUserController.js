@@ -39,6 +39,8 @@ const loginUserController = async (req, res, next) => {
     const tokenInfo = {
       id: user.id,
       role: user.role,
+      myUsername: user.username,
+      email: user.email,
     };
 
     const token = jwt.sign(tokenInfo, process.env.SECRET, {
@@ -47,7 +49,7 @@ const loginUserController = async (req, res, next) => {
 
     res.send({
       status: "ok",
-      data: { token },
+      data: { token, myUsername: user.username },
     });
   } catch (err) {
     next(err);

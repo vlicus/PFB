@@ -1,6 +1,7 @@
 import Date from "./Date";
 import ApiImage from "../ApiImage";
 import { useRentRequestActions } from "../../hooks/useRentRequestActions";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function RentRequest({ rentRequest }) {
   const {
@@ -19,8 +20,12 @@ export default function RentRequest({ rentRequest }) {
     num_rooms,
     is_available,
     photo,
-    property_owner_id,
   } = rentRequest;
+
+  const { myUsername } = useAuth();
+
+  console.log(myUsername);
+
   const { changeStatus } = useRentRequestActions();
   return (
     <article>
@@ -37,12 +42,13 @@ export default function RentRequest({ rentRequest }) {
       {address && <p>address: {address}</p>}
       {price && <p>price: {price}</p>}
       {num_rooms && <p>num_rooms: {num_rooms}</p>}
+
       {is_available && <p>is_available: {is_available}</p>}
-      {/*       <ApiImage
-        name={"rents/" + property_owner_id + photo}
+      <ApiImage
+        name={"rent/" + myUsername + "/" + photo}
         alt={photo}
         height={200}
-      /> */}
+      />
       {/* QUEDA COMENTADO EL APIIMAGE PORQUE NO SE VE LA FOTO */}
       <li>
         <button

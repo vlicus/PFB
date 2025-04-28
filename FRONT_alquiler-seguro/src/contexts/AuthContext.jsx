@@ -5,23 +5,33 @@ const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(localStorage.getItem("token") || "");
+  const [myUsername, setUsername] = useState(
+    localStorage.getItem("myUsername") || ""
+  );
 
   const navigate = useNavigate();
 
   useEffect(() => {
     localStorage.setItem("token", token);
-  }, [token]);
+    localStorage.setItem("myUsername", myUsername);
+  }, [token, myUsername]);
 
-  function login(newToken) {
-    setToken(newToken);
+  function login(data) {
+    setToken(data.token);
+    setUsername(data.myUsername);
   }
 
   function logout() {
-    navigate("/");
-    setTimeout(() => setToken(""), 10);
+    setToken("");
+    setUsername("");
+    setTimeout(() => navigate("/"), 10);
   }
 
-  return <AuthContext.Provider value={{ token, login, logout }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ token, login, logout, myUsername }}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
 export const useAuth = () => useContext(AuthContext);
