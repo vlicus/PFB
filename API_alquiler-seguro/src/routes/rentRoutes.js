@@ -15,6 +15,7 @@ import {
   updateRentController,
   listApprovedRentController,
   notApprovedRentController,
+  getRentRequestController,
 } from "../controllers/rents/index.js";
 
 import {
@@ -23,6 +24,7 @@ import {
   userExistsController,
   canEditController,
   authUserControllerOptional,
+  rentRequestExistsController,
 } from "../middlewares/index.js";
 
 // Creamos un router.
@@ -53,6 +55,14 @@ router.delete(
 
 // Obtener info de un alquiler concreto
 router.get("/rent/:rentId", rentExistsController, getRentController);
+
+// Obtener info de una solicitud de alquiler concreta
+router.get(
+  "/rent/request/:requestId",
+  authUserController,
+  rentRequestExistsController,
+  getRentRequestController
+);
 
 // Solicitar visita/alquiler
 router.post(

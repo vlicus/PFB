@@ -1,0 +1,37 @@
+.main-header {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+  padding: 1rem 2rem;
+  gap: 1rem;
+}
+
+.logo {
+  height: 170px;
+  object-fit: contain;
+}
+
+.header-slogan {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+@media (max-width: 768px) {
+  .main-header {
+    grid-template-columns: 1fr;
+    text-align: center;
+    justify-items: center;
+  }
+
+  .nav-buttons {
+    margin-top: 0.5rem;
+  }
+}
