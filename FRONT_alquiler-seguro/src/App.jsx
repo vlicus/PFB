@@ -26,12 +26,14 @@ const App = () => {
         <Route path="login" element={!token ? <Login /> : <Navigate to="/" />} />
         <Route path="/profile" element={token ? <Profile /> : <Navigate to="/login" />} />
         <Route path="/profile/rent/approve" element={<ApproveRents />} />
-        <Route path="/profile/rent/new" element={token ? <NewRentForm /> : <Navigate to="login" />} />
+        <Route
+          path="/profile/rent/new"
+          element={token ? <NewRentForm /> : <Navigate to="login" />}
+        />
         <Route path="/rent/request/:requestId" element={<RentRequestDetail />} />
         {/*  <Route path="/profile/rent/update" element={<ApproveRents />} /> */}
         <Route path="/profile/rent/requests" element={<RentsRequested />} />
         <Route path="/password" element={<UpdatePassword />} />
-        <Route path="/rent/register" element={token ? <NewRentForm /> : <Navigate to="/login" />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
