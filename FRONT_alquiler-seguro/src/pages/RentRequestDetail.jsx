@@ -4,6 +4,7 @@ import useRentRequest from "../hooks/useRentRequest";
 import useRating from "../hooks/useRating";
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
+import ApiImage from "../components/ApiImage";
 
 export default function RentRequestDetail() {
   const { token } = useAuth();
@@ -12,12 +13,11 @@ export default function RentRequestDetail() {
   const [rate, setRating] = useState(0);
   const { handleChange, formState, handleSubmit } = useRating();
 
-
   formState.rating = rate;
   if (!token) {
     navigate("/login");
   }
-  
+
   async function handleRating(rate) {
     setRating(rate);
   }
@@ -44,10 +44,7 @@ export default function RentRequestDetail() {
       <ul>
         {photos?.map((photo) => (
           <li key={photo.id}>
-            <ApiImage
-              name={"rent/" + owner_username + "/" + photo.name}
-              alt={photo.name}
-            />
+            <ApiImage name={"rent/" + owner_username + "/" + photo.name} alt={photo.name} />
           </li>
         ))}
       </ul>

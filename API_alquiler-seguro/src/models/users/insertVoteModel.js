@@ -29,12 +29,12 @@ const insertVoteModel = async (
   // Comprobamos si ya existe un voto previo por parte del usuario que está intentando votar.
   const [votes] = await pool.query(
     `SELECT id FROM ratings WHERE recipient_id = ? AND author_id = ?`,
-    [author_id, recipient_id]
+    [recipient_id, author_id]
   );
 
   // Si la longitud del array de votos es mayor que cero lanzamos un error indicando que el usuario ya ha sido votada por este usuario.
   if (votes.length > 0) {
-    generateErrorUtil("El voto ya existe", 409);
+    generateErrorUtil("No puedes votar dos veces al mismo usuario", 409);
   }
 
   // Insertamos el voto con comentario
