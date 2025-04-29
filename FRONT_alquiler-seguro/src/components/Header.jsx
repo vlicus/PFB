@@ -1,13 +1,22 @@
 import { Link } from "react-router-dom";
 import Nav from "./Nav";
+import "../styles/Header.css";
 
 export default function Header() {
   return (
-    <header>
-      <Link to={"/"}>
-        <h1>Alquiler Seguro</h1>
+    <header className="main-header">
+      <Link to="/" className="logo-link">
+        <img
+          src="/clickAlquilerLogo.png"
+          alt="Alquiler Seguro"
+          className="logo"
+        />
       </Link>
-      <p>Un espacio para narrar tus experiencias y descubrir nuevos hogares</p>
+
+      <h2 className="header-slogan">
+        Un espacio para narrar tus experiencias y descubrir nuevos hogares
+      </h2>
+
       <Nav />
     </header>
   );

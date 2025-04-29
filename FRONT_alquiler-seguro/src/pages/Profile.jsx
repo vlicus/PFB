@@ -51,6 +51,11 @@ function User() {
             Solicitudes de visita/alquiler
           </NavLink>
         </li>
+        <li>
+          <NavLink to={"/profile/renter/requests"}>
+            Mis solicitudes de visita/alquiler
+          </NavLink>
+        </li>
       </menu>
     </>
   );

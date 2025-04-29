@@ -1,10 +1,11 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import "../styles/Buttons.css";
 
 export default function Nav() {
   const { token } = useAuth();
   return (
-    <nav className="nav-top-right">
+    <nav className="nav-buttons">
       <menu>{token ? <UserNav /> : <AnonNav />}</menu>
     </nav>
   );
@@ -14,16 +15,14 @@ function UserNav() {
   const { logout } = useAuth();
   return (
     <>
-      <>
-        <li>
-          <NavLink to="/profile">Perfil</NavLink>
-        </li>
-        <li>
-          <button className="logout-btn" onClick={logout}>
-            Logout
-          </button>
-        </li>
-      </>
+      <div className="nav-buttons">
+        <NavLink to="/profile" className="nav-button">
+          Perfil
+        </NavLink>
+        <button className="nav-button" onClick={logout}>
+          Logout
+        </button>
+      </div>
     </>
   );
 }
@@ -31,12 +30,14 @@ function UserNav() {
 function AnonNav() {
   return (
     <>
-      <li>
-        <NavLink to="/register">Registro</NavLink>
-      </li>
-      <li>
-        <NavLink to="/login">Login</NavLink>
-      </li>
+      <div className="nav-buttons">
+        <NavLink to="/register" className="nav-button">
+          Registro
+        </NavLink>
+        <NavLink to="/login" className="nav-button">
+          Login
+        </NavLink>
+      </div>
     </>
   );
 }
