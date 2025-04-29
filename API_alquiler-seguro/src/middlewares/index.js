@@ -4,6 +4,7 @@ import userExistsController from "./userExistsController.js";
 import rentExistsController from "./rentExistsController.js";
 import canEditController from "./canEditController.js";
 import authUserControllerOptional from "./authUserControllerOptional.js";
+import rentRequestExistsController from "./rentRequestExistsController.js";
 
 export {
   authUserController,
@@ -11,4 +12,5 @@ export {
   canEditController,
   authUserControllerOptional,
   rentExistsController,
+  rentRequestExistsController,
 };

@@ -13,6 +13,7 @@ import "./index.css";
 import ApproveRents from "./pages/ApproveRents";
 import UpdatePassword from "./pages/UpdatePassword";
 import RentsRequested from "./pages/RentsRequested";
+import RentRequestDetail from "./pages/RentRequestDetail";
 const App = () => {
   const { token } = useAuth();
   return (
@@ -21,10 +22,14 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
+          path="/rent/request/:requestId"
+          element={<RentRequestDetail />}
+        />
+        <Route
           path="/register"
           element={!token ? <Register /> : <Navigate to="/" />}
         />
-            <Route path="/validation/:regcode" element={<Validation />} />
+        <Route path="/validation/:regcode" element={<Validation />} />
         <Route
           path="login"
           element={!token ? <Login /> : <Navigate to="/" />}
