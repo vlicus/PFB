@@ -1,4 +1,4 @@
-import RentList from "../components/RentList";
+import ApprovedRentList from "../components/ApprovedRentList";
 import LandingHeader from "../components/Landing/LandingHeader";
 import UserTypeGrid from "../components/Landing/UserTypeGrid";
 import RentPageDiv from "../components/RentPageDiv";
@@ -9,7 +9,7 @@ const Home = () => {
       <LandingHeader />
       <UserTypeGrid />
       <h1 className="text-2xl font-bold mb-4">Alquileres disponibles</h1>
-      <RentList />
+      <ApprovedRentList />
       <RentPageDiv />
       <CaserosRedirect />
     </div>
