@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useRentRequestActions } from "../hooks/useRentRequestActions";
 import ApiImage from "../components/ApiImage";
+import "../styles/RentalCard.css";
+import "../styles/Buttons.css";
 
 const RentalCard = ({ rental }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { sendRentRequest } = useRentRequestActions();
 
   const images = rental.images
     ? rental.images.filter((img) => img !== null)
@@ -26,7 +30,7 @@ const RentalCard = ({ rental }) => {
   };
 
   return (
-    <div className="border p-4 rounded-lg shadow relative">
+    <div className="rental-card">
       {/* Carrusel de imágenes */}
       <div className="relative">
         {totalImages > 0 ? (
@@ -46,16 +50,10 @@ const RentalCard = ({ rental }) => {
 
         {totalImages > 1 && (
           <>
-            <button
-              onClick={handlePrev}
-              className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white bg-opacity-70 rounded-full p-2 shadow"
-            >
+            <button onClick={handlePrev} className="carousel-button left">
               ‹
             </button>
-            <button
-              onClick={handleNext}
-              className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white bg-opacity-70 rounded-full p-2 shadow"
-            >
+            <button onClick={handleNext} className="carousel-button right">
               ›
             </button>
           </>
@@ -80,12 +78,26 @@ const RentalCard = ({ rental }) => {
       <h3 className="text-xl font-semibold mt-2">{rental.title}</h3>
       <p className="text-gray-600">{rental.address}</p>
       <p className="font-bold text-blue-600">{rental.price} €/mes</p>
-
-      <Link to={`/rent/${rental.id}`}>
-        <button className="mt-2 text-sm text-white bg-blue-500 px-4 py-1 rounded">
-          Ver más
+      <p className="rental-owner">
+        Publicado por{" "}
+        <Link
+          to={`/users/${rental.property_owner_id}/history`}
+          className="owner-link"
+        >
+          @{rental.property_owner_username}
+        </Link>
+      </p>
+      <div className="rental-card-buttons">
+        <Link to={`/rent/${rental.id}`}>
+          <button className="view-more-btn">Ver más</button>
+        </Link>
+        <button
+          className="book-visit-btn"
+          onClick={() => sendRentRequest(rental.id)}
+        >
+          Reservar visita
         </button>
-      </Link>
+      </div>
     </div>
   );
 };

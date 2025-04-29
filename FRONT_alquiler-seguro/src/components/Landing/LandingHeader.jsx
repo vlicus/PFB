@@ -1,10 +1,10 @@
 const LandingHeader = () => (
-  <section className="text-center mb-8">
-    <h1 className="text-4xl font-bold">Descubre</h1>
-    <p className="text-gray-600 mt-2">
+  <section className="rents-background landing-header">
+    <h1 className="landing-title">Descubre</h1>
+    <h2 className="landing-subtitle">
       Alquileres en tu zona, si eres casero o inquilino te ofrecemos las mejores
-      ofertas del mercado y evaluaciones de otros blablablablabla
-    </p>
+      ofertas del mercado.
+    </h2>
   </section>
 );
 
