@@ -48,10 +48,6 @@ const App = () => {
         <Route path="/profile/rent/requests" element={<RentsRequested />} />
         <Route path="/profile/renter/requests" element={<MyRentsRequested />} />
         <Route path="/password" element={<UpdatePassword />} />
-        <Route
-          path="/rent/register"
-          element={token ? <NewRentForm /> : <Navigate to="/login" />}
-        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
