@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import RentCard from "./RentCard";
 import { fetchApprovedRentals } from "../services/fetchApprovedRentals.js";
 import "../styles/ApprovedRentList.css";
+
 const ApprovedRentList = () => {
   const [rents, setRents] = useState([]);
   const [loading, setLoading] = useState(true);
