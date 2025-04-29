@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import RentCard from "./RentCard";
 import { fetchApprovedRentals } from "../services/fetchApprovedRentals.js";
 
-const RentList = () => {
+const ApprovedRentList = () => {
   const [rents, setRents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -27,4 +27,4 @@ const RentList = () => {
   );
 };
 
-export default RentList;
+export default ApprovedRentList;

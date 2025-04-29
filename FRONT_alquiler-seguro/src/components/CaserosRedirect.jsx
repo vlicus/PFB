@@ -46,13 +46,7 @@ const CaserosRedirect = () => {
             </p>
           </div>
         </div>
-        <div className="md:w-1/2">
-          <img
-            src="/src/assets/owners.jpeg"
-            alt="Propietaria"
-            className="rounded object-cover max-w-[300px] w-full h-auto mx-auto"
-          />
-        </div>
+        <div className="md:w-1/2"></div>
         <button
           onClick={handleClick}
           className="bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition"
