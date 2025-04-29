@@ -8,12 +8,13 @@ const getAllRentRequestModel = async (userId) => {
     rh.id,
     rh.rent_id,
     rh.renter_id,
-    u.username,
-    u.email,
-    u.phone_number,
-    u.first_name,
-    u.last_name,
+    renter.username AS renter_username,
+    renter.email,
+    renter.phone_number,
+    renter.first_name,
+    renter.last_name,
     r.property_owner_id,
+    owner.username AS owner_username,
     r.address,
     r.price,
     r.num_rooms,
@@ -23,9 +24,9 @@ const getAllRentRequestModel = async (userId) => {
     rh.status,
     rh.created_at
     FROM rental_history rh
-    JOIN users u ON rh.renter_id = u.id
+    JOIN users renter ON rh.renter_id = renter.id
     JOIN rents r ON rh.rent_id = r.id
-    WHERE rh.status = "PENDING"
+    JOIN users owner ON r.property_owner_id = owner.id
     AND r.property_owner_id = ?;
 `,
     [userId]
