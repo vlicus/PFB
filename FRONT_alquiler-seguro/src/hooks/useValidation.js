@@ -7,7 +7,6 @@ export default function useValidation() {
   const navigate = useNavigate();
   const { regcode } = useParams();
 
-  console.log(regcode);
   /* 
   const [error, setError] = useState(""); */
 
