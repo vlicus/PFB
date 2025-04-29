@@ -20,28 +20,19 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route
-          path="/register"
-          element={!token ? <Register /> : <Navigate to="/" />}
-        />
-            <Route path="/validation/:regcode" element={<Validation />} />
-        <Route
-          path="login"
-          element={!token ? <Login /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/profile"
-          element={token ? <Profile /> : <Navigate to="/login" />}
-        />
+        <Route path="/register" element={!token ? <Register /> : <Navigate to="/" />} />
+        <Route path="/validation/:regcode" element={<Validation />} />
+        <Route path="login" element={!token ? <Login /> : <Navigate to="/" />} />
+        <Route path="/profile" element={token ? <Profile /> : <Navigate to="/login" />} />
         <Route path="/profile/rent/approve" element={<ApproveRents />} />
-        <Route path="/profile/rent/new" element={<NewRentForm />} />
+        <Route
+          path="/profile/rent/new"
+          element={token ? <NewRentForm /> : <Navigate to="login" />}
+        />
         {/*  <Route path="/profile/rent/update" element={<ApproveRents />} /> */}
         <Route path="/profile/rent/requests" element={<RentsRequested />} />
         <Route path="/password" element={<UpdatePassword />} />
-        <Route
-          path="/rent/register"
-          element={token ? <NewRentForm /> : <Navigate to="/login" />}
-        />
+        <Route path="/rent/register" element={token ? <NewRentForm /> : <Navigate to="/login" />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
