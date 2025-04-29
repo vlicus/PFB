@@ -1,0 +1,84 @@
+.nav-buttons {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.nav-button {
+  background-color: black;
+  color: white;
+  padding: 0.35rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-decoration: none;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-button:hover {
+  background-color: #1a1a1a;
+  transform: scale(1.05);
+}
+.view-more-btn {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  font-size: 0.875rem;
+  color: white;
+  background-color: black;
+  border: none;
+  border-radius: 0.375rem;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.view-more-btn:hover {
+  transform: scale(1.05);
+  background-color: #111;
+}
+
+.book-visit-btn {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  font-size: 0.875rem;
+  color: white;
+  background-color: black;
+  border: none;
+  border-radius: 0.375rem;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.book-visit-btn:hover {
+  transform: scale(1.05);
+  background-color: #111;
+}
+
+.rents-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.rents-btn {
+  padding: 0.5rem 1.5rem;
+  font-size: 0.875rem;
+  color: white;
+  background-color: black;
+  border: none;
+  border-radius: 0.375rem;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.rents-btn:hover {
+  transform: scale(1.05);
+  background-color: #111;
+}
