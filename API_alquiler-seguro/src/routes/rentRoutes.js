@@ -13,6 +13,7 @@ import {
   approveVisitController,
   listFilteredRentsController,
   updateRentController,
+  listApprovedRentController,
   getRentRequestController,
 } from "../controllers/rents/index.js";
 
@@ -76,6 +77,8 @@ router.get("/rents/requests", authUserController, listRentRequestController);
 // Obtener el listado de alquileres.
 router.get("/rents", listRentController);
 
+//Obtener listado de rentas aprobadas
+router.get("/rents/approved", listApprovedRentController);
 //Obtener el listado de alquileres filtrados
 router.get("/rents/filter", listFilteredRentsController);
 
