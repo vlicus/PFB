@@ -12,8 +12,16 @@ export default function RentRequestDetail() {
 
   const rentRequest = useRentRequest();
 
-  const { id, rent_id, status, address, price, is_available, photo } =
-    rentRequest;
+  const {
+    id,
+    rent_id,
+    status,
+    address,
+    price,
+    is_available,
+    photos,
+    owner_username,
+  } = rentRequest;
 
   async function sendVote(value) {
     if (!token) {
@@ -40,6 +48,16 @@ export default function RentRequestDetail() {
       {status && <p>Estado: {status}</p>}
       {price && <p>Precio: {price}</p>}
       {is_available && <p>is_available: {is_available}</p>}
+      <ul>
+        {photos?.map((photo) => (
+          <li key={photo.id}>
+            <ApiImage
+              name={"rent/" + owner_username + "/" + photo.name}
+              alt={photo.name}
+            />
+          </li>
+        ))}
+      </ul>
     </main>
   );
 }

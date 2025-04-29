@@ -38,8 +38,9 @@ const selectRentRequestByIdModel = async (requestId) => {
   // Obtenemos el array de fotos del alquiler.
   const [photos] = await pool.query(
     `SELECT id, name FROM rent_images WHERE rent_id = ?`,
-    [requestId.rentId]
+    [rent_request.rent_id]
   );
+
   // Agregamos el array de fotos al alquiler.
   rent_request.photos = photos;
 
