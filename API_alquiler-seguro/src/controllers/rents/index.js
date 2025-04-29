@@ -11,6 +11,7 @@ import approveVisitController from "./approveVisitController.js";
 import listFilteredRentsController from "./listFilteredRentsController.js";
 import updateRentController from "./updateRentController.js";
 import listApprovedRentController from "./approvedListRentController.js";
+import notApprovedRentController from "./notApprovedRentController.js";
 export {
   getRentController,
   deleteRentPhotoController,
@@ -25,4 +26,5 @@ export {
   listFilteredRentsController,
   updateRentController,
   listApprovedRentController,
+  notApprovedRentController,
 };

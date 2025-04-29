@@ -14,6 +14,7 @@ import {
   listFilteredRentsController,
   updateRentController,
   listApprovedRentController,
+  notApprovedRentController,
 } from "../controllers/rents/index.js";
 
 import {
@@ -73,7 +74,7 @@ router.get("/rents/approved", listApprovedRentController);
 router.get("/rents/filter", listFilteredRentsController);
 
 //aprobar un alquiler
-router.post(
+router.put(
   "/rent/:rentId/approve",
   authUserController,
   rentExistsController,
@@ -104,5 +105,7 @@ router.put(
   canEditController,
   updateRentController
 );
+//Obtener lista de los alquileres no aprobados aun por el admin.
+router.get("/rents/notapproved", notApprovedRentController);
 
 export default router;
