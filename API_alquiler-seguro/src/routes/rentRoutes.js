@@ -16,6 +16,7 @@ import {
   listApprovedRentController,
   notApprovedRentController,
   getRentRequestController,
+  listMyRentRequestController,
 } from "../controllers/rents/index.js";
 
 import {
@@ -72,8 +73,14 @@ router.post(
   requestRentController
 );
 
-// Obtener el listado de las solicitudes de visita/alquiler.
+// Obtener el listado de las solicitudes de visita/alquiler.(como casero)
 router.get("/rents/requests", authUserController, listRentRequestController);
+// Obtener el listado de las solicitudes de visita/alquiler.(como inquilino)
+router.get(
+  "/rents/renter/requests",
+  authUserController,
+  listMyRentRequestController
+);
 
 // Obtener el listado de alquileres.
 router.get("/rents", listRentController);

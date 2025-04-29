@@ -3,6 +3,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.avatar {
+  width: 20rem;
+  
 .main-header {
   display: flex;
   align-items: center;

@@ -4,7 +4,7 @@ import addRentPhotoController from "./addRentPhotoController.js";
 import listRentController from "./listRentController.js";
 import newRentController from "./newRentController.js";
 import requestRentController from "./requestRentController.js";
-import listRentRequestController from "./listRentRequestController;.js";
+import listRentRequestController from "./listRentRequestController.js";
 import approveRentController from "./approveRentController.js";
 import editStatusRentController from "./editStatusRentController.js";
 import approveVisitController from "./approveVisitController.js";
@@ -13,6 +13,7 @@ import updateRentController from "./updateRentController.js";
 import listApprovedRentController from "./approvedListRentController.js";
 import notApprovedRentController from "./notApprovedRentController.js";
 import getRentRequestController from "./getRentRequestController.js";
+import listMyRentRequestController from "./listMyRentRequestController.js";
 
 export {
   getRentController,
@@ -29,5 +30,6 @@ export {
   updateRentController,
   getRentRequestController,
   listApprovedRentController,
+  listMyRentRequestController,
   notApprovedRentController,
 };
