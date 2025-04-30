@@ -16,6 +16,7 @@ import RentsRequested from "./pages/RentsRequested";
 import MyRentsRequested from "./pages/MyRentsRequested";
 import RentRequestDetail from "./pages/RentRequestDetail";
 import FooterComponent from "./pages/Footer";
+import RentDetailPage from "./pages/RentDetails";
 
 const App = () => {
   const { token } = useAuth();
@@ -24,20 +25,33 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/register" element={!token ? <Register /> : <Navigate to="/" />} />
+        <Route
+          path="/register"
+          element={!token ? <Register /> : <Navigate to="/" />}
+        />
         <Route path="/validation/:regcode" element={<Validation />} />
-        <Route path="login" element={!token ? <Login /> : <Navigate to="/" />} />
-        <Route path="/profile" element={token ? <Profile /> : <Navigate to="/login" />} />
+        <Route
+          path="login"
+          element={!token ? <Login /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/profile"
+          element={token ? <Profile /> : <Navigate to="/login" />}
+        />
         <Route path="/profile/rent/approve" element={<ApproveRents />} />
         <Route
           path="/profile/rent/new"
           element={token ? <NewRentForm /> : <Navigate to="login" />}
         />
-        <Route path="/rent/request/:requestId" element={<RentRequestDetail />} />
+        <Route
+          path="/rent/request/:requestId"
+          element={<RentRequestDetail />}
+        />
         {/*  <Route path="/profile/rent/update" element={<ApproveRents />} /> */}
         <Route path="/profile/rent/requests" element={<RentsRequested />} />
         <Route path="/profile/renter/requests" element={<MyRentsRequested />} />
         <Route path="/password" element={<UpdatePassword />} />
+        <Route path="/rent/:rentId" element={<RentDetailPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <FooterComponent />
