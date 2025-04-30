@@ -35,27 +35,27 @@ export default function RentRequest({ rentRequest }) {
           alt={photo}
           height={200}
         />
-        {status === "PENDING" && myUsername === owner_username && (
-          <>
-            <li>
-              <button
-                className="logout-btn"
-                onClick={() => changeStatus(rent_id, id, "APPROVED")}
-              >
-                Aprobar
-              </button>
-            </li>
-            <li>
-              <button
-                className="logout-btn"
-                onClick={() => changeStatus(rent_id, id, "REJECTED")}
-              >
-                Rechazar
-              </button>
-            </li>
-          </>
-        )}
       </Link>
+      {status === "PENDING" && myUsername === owner_username && (
+        <>
+          <li>
+            <button
+              className="logout-btn"
+              onClick={() => changeStatus(rent_id, id, "APPROVED")}
+            >
+              Aprobar
+            </button>
+          </li>
+          <li>
+            <button
+              className="logout-btn"
+              onClick={() => changeStatus(rent_id, id, "REJECTED")}
+            >
+              Rechazar
+            </button>
+          </li>
+        </>
+      )}
     </article>
   );
 }
