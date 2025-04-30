@@ -8,6 +8,7 @@ import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import NewRentForm from "./pages/NewRentForm";
 import Validation from "./pages/Validation";
+import PublicProfile from "./pages/PublicProfile";
 
 import "./index.css";
 import ApproveRents from "./pages/ApproveRents";
@@ -38,6 +39,8 @@ const App = () => {
           path="/profile"
           element={token ? <Profile /> : <Navigate to="/login" />}
         />
+
+        <Route path="/profile/:userId" element={<PublicProfile />} />
         <Route path="/profile/rent/approve" element={<ApproveRents />} />
         <Route
           path="/profile/rent/new"

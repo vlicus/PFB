@@ -12,6 +12,7 @@ import {
   voteUserController,
   editUserPassWithRecoverController,
   getOwnUserController,
+  getUserRatingsController,
 } from "../controllers/users/index.js";
 
 // Importamos las funciones controladoras intermedias.
@@ -38,7 +39,18 @@ router.post("/users/login", loginUserController);
 router.get("/users/list", authUserController, listUsersController);
 
 //Creamos un endpoint para los detalles de un usuario
-router.get("/users/:userId", userExistsController, userDetailsController);
+router.get(
+  "/users/:userId",
+  userExistsController,
+  userHistoryAndDetailsController
+);
+
+//Endpoint para obtener los ratings de los usuarios
+router.get(
+  "/users/:userId/ratings",
+  userExistsController,
+  getUserRatingsController
+);
 
 // Obtener perfil privado de un usuario.
 router.get(
@@ -52,7 +64,7 @@ router.get("/users/:userId", userDetailsController);
 //Creamos un endpoint para detalles de usuario  con el histórico de alquileres hechos
 router.get(
   "/users/:userId/history",
-  authUserController,
+  userExistsController,
   userHistoryAndDetailsController
 );
 

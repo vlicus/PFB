@@ -1,6 +1,8 @@
 import { NavLink, Outlet } from "react-router-dom";
-import Avatar from "../Components/Avatar";
+import Avatar from "../components/Avatar";
 import useUser from "../hooks/useUser";
+import "../styles/UserPrivateProfile.css";
+import "../styles/Buttons.css";
 import UserRentalHistory from "../components/User/UserRentalHistory";
 import UserRatings from "../components/User/UserRatings";
 
@@ -8,7 +10,7 @@ export default function Profile() {
   const user = useUser();
 
   return (
-    <main>
+    <main className="profile-container">
       {user.is_admin ? <Admin /> : <User />}
       {/*       <h2>{user.username}</h2>
       <Avatar user={user} />
@@ -23,40 +25,41 @@ function User() {
   const user = useUser();
   return (
     <>
-      <section>
+      <section className="profile-header">
         <h2>{user.username}</h2>
         <Avatar user={user} />
+      </section>
+
+      <section className="profile-info">
         {user.email && <p>Email: {user.email}</p>}
         {user.phone_number && <p>Número de teléfono: {user.phone_number}</p>}
         {user.first_name && <p>Nombre: {user.first_name}</p>}
         {user.last_name && <p>Apellidos: {user.last_name}</p>}
         {user.bio && <p>Biografía: {user.bio}</p>}
-        <ul>
-          <li>
-            <NavLink to={"/password"} className="password-btn">
-              Cambiar Contraseña
-            </NavLink>
-          </li>
-        </ul>
       </section>
-      <menu>
-        <li>
-          <NavLink to={"/profile/rent/new"}>Nueva Propiedad</NavLink>
-        </li>
-        {/*         <li>
-          <NavLink to={"/profile/rent/update"}>Editar Propiedad</NavLink>
-        </li> */}
-        <li>
-          <NavLink to={"/profile/rent/requests"}>
-            Solicitudes de visita/alquiler
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to={"/profile/renter/requests"}>
-            Mis solicitudes de visita/alquiler
-          </NavLink>
-        </li>
-      </menu>
+
+      {/* 🔁 Botones de acción en fila */}
+      <div className="profile-actions">
+        <NavLink to="/password" className="nav-button">
+          Cambiar Contraseña
+        </NavLink>
+
+        <NavLink to="/profile/rent/new" className="nav-button">
+          Nueva Propiedad
+        </NavLink>
+
+        {/*         <NavLink to="/profile/rent/update" className="nav-button">
+          Editar Propiedad
+        </NavLink> */}
+
+        <NavLink to="/profile/rent/requests" className="nav-button">
+          Solicitudes de visita/alquiler
+        </NavLink>
+
+        <NavLink to="/profile/renter/requests" className="nav-button">
+          Mis solicitudes de visita/alquiler
+        </NavLink>
+      </div>
     </>
   );
 }
@@ -65,11 +68,16 @@ function Admin() {
   const user = useUser();
   return (
     <>
-      <h2>{user.username}</h2>
-      {user.is_admin && <p>Es admin: {user.is_admin}</p>}
-      <menu>
+      <section className="profile-header">
+        <h2>{user.username}</h2>
+        {user.is_admin && (
+          <p className="profile-info">Es admin: {user.is_admin}</p>
+        )}
+      </section>
+
+      <menu className="nav-links">
         <li>
-          <NavLink to={"/profile/rent/approve"}>
+          <NavLink to={"/profile/rent/approve"} className="nav-button">
             Aprobar nuevos alquileres
           </NavLink>
         </li>

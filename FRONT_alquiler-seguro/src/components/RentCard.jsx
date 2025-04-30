@@ -81,7 +81,7 @@ const RentalCard = ({ rental }) => {
       <p className="rental-owner">
         Publicado por{" "}
         <Link
-          to={`/users/${rental.property_owner_id}/history`}
+          to={`/profile/${rental.property_owner_id}`}
           className="owner-link"
         >
           @{rental.property_owner_username}
