@@ -31,7 +31,7 @@ const addRentPhotoController = async (req, res, next) => {
     const user = await selectUserByIdModel(rent.property_owner_id);
 
     // Si la entrada tiene más 20 fotos lanzamos un error.
-    if (rent.photos.length === 20) {
+    if (rent.photos.length + photos.length > 20) {
       generateErrorUtil("Se ha superado el límite de fotos", 404);
     }
 
