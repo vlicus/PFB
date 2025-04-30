@@ -58,7 +58,7 @@ export default function useNewRent() {
         throw new Error(json.message);
       }
 
-      toast("Alquiler creado!", {
+      toast.success("Alquiler creado!", {
         position: "bottom-right",
         autoClose: 2000,
         hideProgressBar: false,

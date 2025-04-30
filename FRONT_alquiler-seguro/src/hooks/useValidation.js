@@ -20,7 +20,7 @@ export default function useValidation() {
     try {
       await validationService(regcode);
 
-      toast("Validación correcta!", {
+      toast.success("Validación correcta!", {
         position: "bottom-right",
         autoClose: 2000,
         hideProgressBar: false,
