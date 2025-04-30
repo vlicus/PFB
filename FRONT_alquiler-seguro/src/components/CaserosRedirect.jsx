@@ -7,7 +7,7 @@ const CaserosRedirect = () => {
 
   const handleClick = () => {
     if (token) {
-      navigate("/rent/register");
+      navigate("/profile/rent/new");
     } else {
       navigate("/login");
     }
@@ -15,9 +15,7 @@ const CaserosRedirect = () => {
 
   return (
     <section className="section-title">
-      <h2 className="section-sub-title">
-        Alquila tu propiedad con seguridad y tranquilidad
-      </h2>
+      <h2 className="section-sub-title">Alquila tu propiedad con seguridad y tranquilidad</h2>
 
       <div className="space-y-4">
         <div>
@@ -25,22 +23,17 @@ const CaserosRedirect = () => {
           <p>Body text for whatever you’d like to expand on the main point.</p>
 
           <div>
-            <h3 className="section-sub-title">
-              Publica de forma fácil, rápida y segura
-            </h3>
+            <h3 className="section-sub-title">Publica de forma fácil, rápida y segura</h3>
             <p>
-              Body text for whatever you’d like to say. Add main takeaway
-              points, quotes, anecdotes.
+              Body text for whatever you’d like to say. Add main takeaway points, quotes, anecdotes.
             </p>
           </div>
 
           <div>
-            <h3 className="section-sub-title">
-              Nos encargamos de los trámites
-            </h3>
+            <h3 className="section-sub-title">Nos encargamos de los trámites</h3>
             <p>
-              Body text for whatever you’d like to add more to the main point.
-              It provides details, explanations, and context.
+              Body text for whatever you’d like to add more to the main point. It provides details,
+              explanations, and context.
             </p>
           </div>
         </div>
