@@ -40,7 +40,10 @@ const newRentController = async (req, res, next) => {
     const type = "rent";
 
     if (req.files) {
-      for (const photo of Object.values(req.files).slice(0, 3)) {
+      if (!Array.isArray(req.files.photos)) {
+        req.files.photos = [req.files.photos];
+      }
+      for (const photo of req.files.photos.slice(0, 20)) {
         const photoName = await savePhotoService(
           photo,
           500,

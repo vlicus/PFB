@@ -49,6 +49,7 @@ export const savePhotoService = async (img, width, type, name) => {
     // Retornamos el nombre con el que hemos guardado la imagen.
     return imgName;
   } catch (err) {
+    console.log(err);
     generateErrorUtil("Error al guardar el archivo en el disco", 500);
   }
 };

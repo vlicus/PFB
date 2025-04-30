@@ -52,12 +52,14 @@ export default function NewPostForm() {
             ></textarea>
           </li>
           <li>
-            <label htmlFor="photoA">Photo 1:</label>
+            <label htmlFor="photos">Photos:</label>
             <input
               type="file"
-              name="photoA"
+              name="photos"
+              id="photos"
               onChange={handleFileChange}
               accept="image/png, image/jpeg"
+              multiple
             />
           </li>
         </ul>
