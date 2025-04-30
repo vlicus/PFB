@@ -35,7 +35,6 @@ export default function RentDetailPage() {
   const goToImage = (index) => {
     setCurrentImageIndex(index);
   };
-  console.log(images[0]);
   return (
     <div className="p-6">
       <h1>{address}</h1>
