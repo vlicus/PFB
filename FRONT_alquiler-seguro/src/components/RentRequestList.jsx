@@ -4,7 +4,7 @@ export default function RentRequestList({ list }) {
   return (
     <ul>
       {list.map((rentRequest) => (
-        <li key={rentRequest.id}>
+        <li className="rent-request-list-li" key={rentRequest.id}>
           <RentRequest rentRequest={rentRequest} />
         </li>
       ))}
