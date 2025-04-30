@@ -32,15 +32,14 @@ export default function useLogin() {
 
       login(data);
 
-      toast("Usuario logeado correctamente!", {
+      toast.success("Usuario logeado correctamente!", {
         position: "bottom-right",
-        autoClose: 2000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: false,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "colored",
         transition: Bounce,
       });
 

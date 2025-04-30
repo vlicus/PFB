@@ -10,8 +10,7 @@ import "../styles/RentRequestDetail.css";
 
 export default function RentRequestDetail() {
   const { token } = useAuth();
-  const { address, status, owner_username, photos, price, is_available } =
-    useRentRequest();
+  const { address, status, owner_username, photos, price, is_available } = useRentRequest();
   const navigate = useNavigate();
   const [rate, setRating] = useState(0);
   const { handleChange, formState, handleSubmit } = useRating();
@@ -35,10 +34,7 @@ export default function RentRequestDetail() {
         <ul>
           {photos?.map((photo) => (
             <li key={photo.id}>
-              <ApiImage
-                name={"rent/" + owner_username + "/" + photo.name}
-                alt={photo.name}
-              />
+              <ApiImage name={"rent/" + owner_username + "/" + photo.name} alt={photo.name} />
             </li>
           ))}
         </ul>
@@ -48,7 +44,7 @@ export default function RentRequestDetail() {
               initialValue={1}
               allowFraction={true}
               onClick={handleRating}
-              fillColor={"blue"}
+              fillColor={"yellow"}
             />
             <br />
             <label htmlFor="comment">Comentario</label>
