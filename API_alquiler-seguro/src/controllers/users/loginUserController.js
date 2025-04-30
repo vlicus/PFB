@@ -49,7 +49,7 @@ const loginUserController = async (req, res, next) => {
 
     res.send({
       status: "ok",
-      data: { token, myUsername: user.username },
+      data: { token, myUsername: user.username, myId: user.id },
     });
   } catch (err) {
     next(err);

@@ -81,7 +81,25 @@ export default function useNewRent() {
   }
 
   function handleFileChange({ target }) {
-    setFormState({ ...formState, [target.name]: target.files[0] });
+    try {
+      setFormState({ ...formState, [target.name]: target.files[0] });
+      toast("Fotos añadidas correctamente!", {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
+    } catch (error) {
+      if (target.files.length > 20) {
+        toast.error("No se pueden añadir más de 20 fotos");
+        setError(error);
+      }
+    }
   }
 
   return { formState, error, handleSubmit, handleTextChange, handleFileChange };

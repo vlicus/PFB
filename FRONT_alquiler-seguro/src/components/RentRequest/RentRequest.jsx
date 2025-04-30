@@ -3,6 +3,8 @@ import { useRentRequestActions } from "../../hooks/useRentRequestActions";
 import { useAuth } from "../../contexts/AuthContext";
 import ApiImage from "../ApiImage.jsx";
 import { Link } from "react-router-dom";
+import "../../styles/RentRequest.css";
+import "../../styles/Buttons.css";
 
 export default function RentRequest({ rentRequest }) {
   const {
@@ -22,40 +24,38 @@ export default function RentRequest({ rentRequest }) {
   const { changeStatus } = useRentRequestActions();
 
   return (
-    <article>
+    <article className="rent-request-list">
       <Link to={"/rent/request/" + id}>
+        <ApiImage
+          name={"rent/" + owner_username + "/" + photo}
+          alt={photo}
+          height={200}
+        />
         {address && <p>Dirección: {address}</p>}
         {status && <p>Estado: {status}</p>}
         {price && <p>Precio: {price}</p>}
         {is_available && <p>is_available: {is_available}</p>}
         {renter_username && <p>Solicitante: {renter_username}</p>}
         {owner_username && <p>Casero: {owner_username}</p>}
-        <ApiImage
-          name={"rent/" + owner_username + "/" + photo}
-          alt={photo}
-          height={200}
-        />
-        {status === "PENDING" && myUsername === owner_username && (
-          <>
-            <li>
-              <button
-                className="logout-btn"
-                onClick={() => changeStatus(rent_id, id, "APPROVED")}
-              >
-                Aprobar
-              </button>
-            </li>
-            <li>
-              <button
-                className="logout-btn"
-                onClick={() => changeStatus(rent_id, id, "REJECTED")}
-              >
-                Rechazar
-              </button>
-            </li>
-          </>
-        )}
       </Link>
+      {status === "PENDING" && myUsername === owner_username && (
+        <>
+          <div className="rental-card-buttons">
+            <button
+              className="book-visit-btn"
+              onClick={() => changeStatus(rent_id, id, "APPROVED")}
+            >
+              Aprobar
+            </button>
+            <button
+              className="book-visit-btn"
+              onClick={() => changeStatus(rent_id, id, "REJECTED")}
+            >
+              Rechazar
+            </button>
+          </div>
+        </>
+      )}
     </article>
   );
 }

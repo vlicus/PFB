@@ -35,7 +35,7 @@ export default function useRating() {
 
       setFormState(initalState);
 
-      toast("Voto realizado!", {
+      toast("Reseña realizada correctamente!", {
         position: "bottom-right",
         autoClose: 2000,
         hideProgressBar: false,

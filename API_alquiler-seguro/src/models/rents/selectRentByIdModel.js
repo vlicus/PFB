@@ -7,7 +7,8 @@ const selectRentByIdModel = async (rentId) => {
 
   // Comprobamos si hay algún alquiler con el id proporcionado.
   const [[rents]] = await pool.query(
-    `SELECT id, property_owner_id, address, price, num_rooms, description , is_available, created_at FROM rents WHERE id = ?`,
+    `SELECT r.id, property_owner_id,u.username, address, price, num_rooms, description , is_available, r.created_at 
+     FROM rents r INNER JOIN users u ON u.id = r.property_owner_id WHERE r.id =?`,
     [rentId]
   );
 

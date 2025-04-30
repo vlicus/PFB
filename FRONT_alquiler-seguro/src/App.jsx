@@ -17,6 +17,7 @@ import RentsRequested from "./pages/RentsRequested";
 import MyRentsRequested from "./pages/MyRentsRequested";
 import RentRequestDetail from "./pages/RentRequestDetail";
 import FooterComponent from "./pages/Footer";
+import RentDetailPage from "./pages/RentDetails";
 
 const App = () => {
   const { token } = useAuth();
@@ -38,6 +39,7 @@ const App = () => {
           path="/profile"
           element={token ? <Profile /> : <Navigate to="/login" />}
         />
+
         <Route path="/profile/:userId" element={<PublicProfile />} />
         <Route path="/profile/rent/approve" element={<ApproveRents />} />
         <Route
@@ -52,6 +54,7 @@ const App = () => {
         <Route path="/profile/rent/requests" element={<RentsRequested />} />
         <Route path="/profile/renter/requests" element={<MyRentsRequested />} />
         <Route path="/password" element={<UpdatePassword />} />
+        <Route path="/rent/:rentId" element={<RentDetailPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <FooterComponent />

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import ApiImage from "../components/ApiImage";
+import ApiImage from "./ApiImage";
 import "../styles/RentalCard.css";
 import "../styles/Buttons.css";
 import useRent from "../hooks/useRent";
 
-export default function RentDetailPage() {
+const RentDetailPage = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const {
     id,
@@ -35,6 +35,7 @@ export default function RentDetailPage() {
   const goToImage = (index) => {
     setCurrentImageIndex(index);
   };
+
   return (
     <div className="p-6">
       <h1>{address}</h1>
@@ -52,7 +53,7 @@ export default function RentDetailPage() {
       <div className="relative mb-4">
         {totalImages > 0 ? (
           <ApiImage
-            name={`rent/${username}/${images[currentImageIndex].name}`}
+            name={`rent/${username}/${images[currentImageIndex]}`}
             alt={`Imagen ${currentImageIndex + 1}`}
             height={300}
             className="w-full object-cover rounded"
@@ -103,4 +104,6 @@ export default function RentDetailPage() {
       </h3>
     </div>
   );
-}
+};
+
+export default RentDetailPage;
