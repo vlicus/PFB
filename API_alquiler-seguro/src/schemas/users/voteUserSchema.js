@@ -6,13 +6,7 @@ import joiErrorMessages from "../joiErrorMessages.js";
 
 // Creamos el esquema de Joi donde comprobamos todas las propiedades necesarias.
 const voteUserSchema = joi.object({
-  rating: joi
-    .number()
-    .integer()
-    .min(1)
-    .max(5)
-    .required()
-    .messages(joiErrorMessages),
+  rating: joi.number().min(1).max(5).required().messages(joiErrorMessages),
   comment: joi
     .string()
     .pattern(/^[\s\S]{3,65000}$/)

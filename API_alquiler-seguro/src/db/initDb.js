@@ -139,7 +139,35 @@ CREATE TABLE IF NOT EXISTS ratings (
       ]
     );
 
-    console.log("¡Admin insertado!");
+    await pool.query(
+      `
+  INSERT INTO users (
+    id,
+    email,
+    username,
+    phone_number,
+    bio,
+    password,
+    active,
+    is_admin,
+    registration_code,
+    recovery_code
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        uuid(),
+        "casero@yopmail.com",
+        "casero",
+        "+34911111222",
+        "Casero.",
+        hashedPass,
+        true,
+        false,
+        "123456abcd",
+        null,
+      ]
+    );
+
+    console.log("¡Admin y casero insertado!");
   } catch (err) {
     console.error(err);
   } finally {
