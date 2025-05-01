@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Bounce, toast } from "react-toastify";
 import { useAuth } from "../contexts/AuthContext";
 const { VITE_API_URL } = import.meta.env;
 
 export default function useRegister() {
-  const navigate = useNavigate();
   const initalState = {
     email: "",
     password: "",
@@ -49,11 +47,16 @@ export default function useRegister() {
         throw new Error(json.message);
       }
 
-      toast("Contraseña actualizada", {
-        autoClose: 2000,
+      toast.success("Contraseña actualizada!", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        transition: Bounce,
       });
-
-      console.log("Contraseña actualizada");
       setFormState(initalState);
       logout();
     } catch (e) {
