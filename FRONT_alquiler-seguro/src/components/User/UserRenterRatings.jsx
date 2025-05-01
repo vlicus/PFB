@@ -10,6 +10,7 @@ export default function UserRenterRatings({ userId }) {
       .then((res) => res.json())
       .then((data) => {
         const soloInquilino = data.data.filter((r) => r.is_owner === 0);
+        console.log("ratings como inquilino", soloInquilino);
         setRatings(soloInquilino);
       })
       .catch(() => setRatings([]))

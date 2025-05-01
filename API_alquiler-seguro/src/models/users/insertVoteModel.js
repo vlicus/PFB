@@ -1,10 +1,6 @@
-// Importamos la función que devuelve una conexión con la base de datos.
 import getPool from "../../db/getPool.js";
-
-// Importamos los errores.
 import generateErrorUtil from "../../utils/generateErrorUtil.js";
 
-// Función que realiza una consulta a la base de datos para votar un usuario.
 const insertVoteModel = async (
   rating,
   recipient_id,
@@ -14,11 +10,9 @@ const insertVoteModel = async (
 ) => {
   const pool = await getPool();
 
-  // Comprobamos si la visita ha sido aprobada
+  // Comprobamos si la solicitud de alquiler está aprobada.
   const [[{ status }]] = await pool.query(
-    `
-    SELECT status FROM rental_history WHERE id = ?   
-    `,
+    `SELECT status FROM rental_history WHERE id = ?`,
     [rental_history_id]
   );
 
@@ -26,13 +20,12 @@ const insertVoteModel = async (
     generateErrorUtil("La solicitud está todavía en 'PENDING'", 409);
   }
 
-  // Comprobamos si ya existe un voto previo por parte del usuario que está intentando votar.
+  // Comprobamos si ya existe un voto.
   const [votes] = await pool.query(
     `SELECT id FROM ratings WHERE recipient_id = ? AND author_id = ? AND rental_history_id = ?`,
     [recipient_id, author_id, rental_history_id]
   );
 
-  // Si la longitud del array de votos es mayor que cero lanzamos un error indicando que el usuario ya ha sido votada por este usuario.
   if (votes.length > 0) {
     generateErrorUtil(
       "No puedes votar dos veces al mismo usuario sobre la misma solicitud",
@@ -40,19 +33,29 @@ const insertVoteModel = async (
     );
   }
 
-  // Insertamos el voto con comentario
-  await pool.query(
-    `INSERT INTO ratings(rating, recipient_id, author_id, comment, rental_history_id) VALUES(?, ?, ?, ?, ?)`,
-    [rating, recipient_id, author_id, comment, rental_history_id]
+  //  obtenemos si el usuario valorado es casero o inquilino
+  const [[{ property_owner_id }]] = await pool.query(
+    `SELECT r.property_owner_id
+     FROM rental_history rh
+     JOIN rents r ON rh.rent_id = r.id
+     WHERE rh.id = ?`,
+    [rental_history_id]
   );
 
-  // Obtenemos la media de votos.
+  const isOwner = property_owner_id === recipient_id ? 1 : 0; // Si el valorado es casero → 1, si es inquilino → 0
+
+  // Insertamos el voto.
+  await pool.query(
+    `INSERT INTO ratings(rating, recipient_id, author_id, comment, rental_history_id, is_owner) VALUES(?, ?, ?, ?, ?, ?)`,
+    [rating, recipient_id, author_id, comment, rental_history_id, isOwner]
+  );
+
+  // Obtenemos la media de votos del usuario valorado.
   const [votesAvg] = await pool.query(
     `SELECT AVG(rating) AS avg FROM ratings WHERE recipient_id = ?`,
     [recipient_id]
   );
 
-  // Retornamos la media de votos.
   return Number(votesAvg[0].avg);
 };
 
