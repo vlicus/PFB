@@ -1,10 +1,11 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Avatar from "../components/Avatar";
 import useUser from "../hooks/useUser";
 import "../styles/UserPrivateProfile.css";
 import "../styles/Buttons.css";
-import UserRentalHistory from "../components/User/UserRentalHistory";
-import UserRatings from "../components/User/UserRatings";
+
+import UserOwnerRatings from "../components/User/UserOwnerRatings";
+import UserRenterRatings from "../components/User/UserRenterRatings";
 
 export default function Profile() {
   const user = useUser();
@@ -12,11 +13,6 @@ export default function Profile() {
   return (
     <main className="profile-container">
       {user.is_admin ? <Admin /> : <User />}
-      {/*       <h2>{user.username}</h2>
-      <Avatar user={user} />
-      {user.email && <p>Email: {user.email}</p>}
-      <UserRentalHistory />
-      <UserRatings /> */}
     </main>
   );
 }
@@ -60,6 +56,8 @@ function User() {
           Mis solicitudes de visita/alquiler
         </NavLink>
       </div>
+      <UserOwnerRatings userId={user.id} />
+      <UserRenterRatings userId={user.id} />
     </>
   );
 }
