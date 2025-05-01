@@ -3,7 +3,7 @@ import { useAuth } from "../contexts/AuthContext";
 const { VITE_API_URL } = import.meta.env;
 
 export function useRentRequestActions() {
-  const { token, logout } = useAuth();
+  const { token } = useAuth();
 
   const sendRentRequest = async (rentId) => {
     try {
@@ -18,15 +18,14 @@ export function useRentRequestActions() {
       if (!res.ok) {
         throw new Error("Error al crear la solicitud");
       }
-      toast("Visita solicitada!", {
+      toast.success("Visita solicitada!", {
         position: "bottom-right",
-        autoClose: 2000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: false,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "colored",
         transition: Bounce,
       });
 
@@ -42,30 +41,26 @@ export function useRentRequestActions() {
 
   const changeStatus = async (rentId, requestId, status) => {
     try {
-      const res = await fetch(
-        VITE_API_URL + "/rent/" + rentId + "/response/" + requestId,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: token ? "Bearer " + token : "",
-          },
-          body: JSON.stringify({ status: status }),
-        }
-      );
+      const res = await fetch(VITE_API_URL + "/rent/" + rentId + "/response/" + requestId, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: token ? "Bearer " + token : "",
+        },
+        body: JSON.stringify({ status: status }),
+      });
 
       if (!res.ok) {
         throw new Error("Error al actualizar la solicitud");
       }
-      toast("Alquiler " + status + "!", {
+      toast.success("Alquiler " + status + "!", {
         position: "bottom-right",
-        autoClose: 2000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: false,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "colored",
         transition: Bounce,
       });
 

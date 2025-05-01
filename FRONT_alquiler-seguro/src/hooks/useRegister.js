@@ -33,15 +33,14 @@ export default function useRegister() {
 
       setFormState(initalState);
 
-      toast("Usuario registrado!", {
+      toast.success("Usuario registrado!", {
         position: "bottom-right",
-        autoClose: 2000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: false,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "colored",
         transition: Bounce,
       });
       navigate("/login");

@@ -83,15 +83,14 @@ export default function useNewRent() {
   function handleFileChange({ target }) {
     try {
       setFormState({ ...formState, [target.name]: target.files[0] });
-      toast("Fotos añadidas correctamente!", {
+      toast.success("Fotos añadidas correctamente!", {
         position: "bottom-right",
-        autoClose: 2000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: false,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "colored",
         transition: Bounce,
       });
     } catch (error) {

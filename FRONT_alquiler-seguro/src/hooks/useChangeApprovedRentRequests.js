@@ -3,7 +3,7 @@ import { useAuth } from "../contexts/AuthContext";
 const { VITE_API_URL } = import.meta.env;
 
 export function useRentApprovaltActions() {
-  const { token, logout } = useAuth();
+  const { token } = useAuth();
 
   const changeApproval = async (rentId, approval) => {
     try {
@@ -19,15 +19,14 @@ export function useRentApprovaltActions() {
       if (!res.ok) {
         throw new Error("Error al actualizar la solicitud");
       }
-      toast("Alquiler aprobado!", {
+      toast.success("Alquiler aprobado!", {
         position: "bottom-right",
-        autoClose: 2000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: false,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "colored",
         transition: Bounce,
       });
       return true;
