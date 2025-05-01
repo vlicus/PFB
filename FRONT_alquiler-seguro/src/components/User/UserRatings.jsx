@@ -1,3 +1,3 @@
 export default function Rating({ rating }) {
-  return <p className="rating">{rating}⭐</p>;
+  return <span className="rating">{rating}⭐</span>;
 }

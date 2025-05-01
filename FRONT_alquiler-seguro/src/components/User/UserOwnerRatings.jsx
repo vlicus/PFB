@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Rating from "./UserRatings";
+import { Link } from "react-router-dom";
 
 export default function UserOwnerRatings({ userId }) {
   const [ratings, setRatings] = useState([]);
@@ -30,14 +31,12 @@ export default function UserOwnerRatings({ userId }) {
         <div className="card-list">
           {ratings.map((r) => (
             <div key={r.id} className="card">
+              <p>{r.comment || "Sin comentario"}</p>
               <p>
-                <strong>Comentario:</strong> {r.comment || "Sin comentario"}
+                <Rating rating={r.rating} />
               </p>
-              <div>
-                <strong>Valoración:</strong> <Rating rating={r.rating} />
-              </div>
               <p>
-                <strong>De:</strong> @{r.renter_username}
+                <Link to={`/profile/${r.renter_id}`}>@{r.renter_username}</Link>
               </p>
             </div>
           ))}
