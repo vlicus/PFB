@@ -21,15 +21,12 @@ const updateUserController = async (req, res, next) => {
     // Validamos el body con Joi.
     await validateSchemaUtil(updateUserSchema, req.body);
     // Validamos el body con Joi. Si "files" no existe enviamos un objeto vacío.
-    await validateSchemaUtil(editUserAvatarSchema, req.files || {});
-
-    // Si el usuario tiene un avatar previo lo eliminamos.
-    if (user.avatar) {
-      await deletePhotoService(user.avatar, type, user.username);
-    }
-    // Guardamos el avatar en la carpeta de subida de archivos. Redimensionamos a un ancho
-    // de 300 píxeles.
-    if (req.files.avatar) {
+    if (req.files && req.files.avatar) {
+      await validateSchemaUtil(editUserAvatarSchema, req.files);
+      // Si el usuario tiene un avatar previo lo eliminamos.
+      if (user.avatar) {
+        await deletePhotoService(user.avatar, type, user.username);
+      }
       const avatarName = await savePhotoService(
         req.files?.avatar,
         300,
@@ -37,7 +34,6 @@ const updateUserController = async (req, res, next) => {
         user.username
       );
 
-      // Actualizamos los datos del usuario con el nombre de avatar que hemos obtenido.
       await updateUserAvatarModel(avatarName, userId);
     }
 

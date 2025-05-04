@@ -39,14 +39,12 @@ function User() {
         <NavLink to="/password" className="nav-button">
           Cambiar Contraseña
         </NavLink>
-
+        <NavLink to="/profile/update" className="nav-button">
+          Editar usuario
+        </NavLink>
         <NavLink to="/profile/rent/new" className="nav-button">
           Nueva Propiedad
         </NavLink>
-
-        {/*         <NavLink to="/profile/rent/update" className="nav-button">
-          Editar Propiedad
-        </NavLink> */}
 
         <NavLink to="/profile/rent/requests" className="nav-button">
           Solicitudes de visita/alquiler
@@ -68,9 +66,6 @@ function Admin() {
     <>
       <section className="profile-header">
         <h2>{user.username}</h2>
-        {user.is_admin && (
-          <p className="profile-info">Es admin: {user.is_admin}</p>
-        )}
       </section>
 
       <menu className="nav-links">

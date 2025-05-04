@@ -1,4 +1,5 @@
-.newrentcontainer {
+.newrentcontainer,
+.updateUserContainer {
   background-color: #fff;
   border-radius: 15px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
@@ -15,13 +16,15 @@
   list-style: none;
 }
 
-.newrentcontainer h2 {
+.newrentcontainer h2,
+.updateUserContainer h2 {
   font-size: x-large;
   text-align: center;
   color: black;
 }
 
-.newrentcontainer input {
+.newrentcontainer input,
+.updateUserContainer input {
   display: block;
   width: 100%;
   /* margin-bottom: 15px; */
@@ -32,7 +35,8 @@
   font-size: 12px;
 }
 
-.newrentcontainer label {
+.newrentcontainer label,
+.updateUserContainer label {
   font-size: 15px;
   display: block;
   width: 100%;
@@ -43,7 +47,8 @@
   font-weight: bold;
 }
 
-.newrentcontainer button {
+.newrentcontainer button,
+.updateUserContainer button {
   padding: 15px;
   border-radius: 10px;
   margin: 15px;
@@ -62,7 +67,8 @@ textarea {
   max-height: 150px;
 }
 
-.newrentcontainer button:hover {
+.newrentcontainer button:hover,
+.updateUserContainer button:hover {
   background-color: black;
   color: #e7c61b;
 }
