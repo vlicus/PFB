@@ -12,12 +12,19 @@ export default function RentRequest({ rentRequest }) {
     rent_id,
     status,
     address,
-    price,
-    is_available,
     photo,
     owner_username,
     renter_username,
   } = rentRequest;
+
+  const statusLabels = {
+    PENDING: "Pendiente",
+    APPROVED: "Aprobado",
+    ACTIVE: "Activo",
+    COMPLETED: "Completado",
+    CANCELLED: "Cancelado",
+    REJECTED: "Rechazado",
+  };
 
   const { myUsername } = useAuth();
 
@@ -32,11 +39,13 @@ export default function RentRequest({ rentRequest }) {
           height={200}
         />
         {address && <p>Dirección: {address}</p>}
-        {status && <p>Estado: {status}</p>}
-        {price && <p>Precio: {price}</p>}
-        {is_available && <p>is_available: {is_available}</p>}
-        {renter_username && <p>Solicitante: {renter_username}</p>}
-        {owner_username && <p>Casero: {owner_username}</p>}
+        {myUsername != renter_username && (
+          <>{renter_username && <p>Solicitante: {renter_username}</p>}</>
+        )}
+        {myUsername != owner_username && (
+          <> {owner_username && <p>Casero: {owner_username}</p>}</>
+        )}
+        <p>Estado: {statusLabels[status] || status}</p>
       </Link>
       {status === "PENDING" && myUsername === owner_username && (
         <>
@@ -52,6 +61,42 @@ export default function RentRequest({ rentRequest }) {
               onClick={() => changeStatus(rent_id, id, "REJECTED")}
             >
               Rechazar
+            </button>
+          </div>
+        </>
+      )}
+      {status === "APPROVED" && myUsername === owner_username && (
+        <>
+          <div className="rental-card-buttons">
+            <button
+              className="book-visit-btn"
+              onClick={() => changeStatus(rent_id, id, "ACTIVE")}
+            >
+              Dar llaves
+            </button>
+            <button
+              className="book-visit-btn"
+              onClick={() => changeStatus(rent_id, id, "CANCELLED")}
+            >
+              Cancelar
+            </button>
+          </div>
+        </>
+      )}
+      {status === "ACTIVE" && myUsername === owner_username && (
+        <>
+          <div className="rental-card-buttons">
+            <button
+              className="book-visit-btn"
+              onClick={() => changeStatus(rent_id, id, "COMPLETED")}
+            >
+              Completar
+            </button>
+            <button
+              className="book-visit-btn"
+              onClick={() => changeStatus(rent_id, id, "CANCELLED")}
+            >
+              Cancelar
             </button>
           </div>
         </>

@@ -19,6 +19,7 @@ const selectAllApprovedRents = async () => {
     LEFT JOIN rent_images ri ON r.id = ri.rent_id
     LEFT JOIN users u ON r.property_owner_id = u.id
     WHERE r.is_approved = 1
+    AND r.is_available = 1
     GROUP BY r.id
     `
   );

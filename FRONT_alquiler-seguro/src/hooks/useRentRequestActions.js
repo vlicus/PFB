@@ -5,6 +5,15 @@ const { VITE_API_URL } = import.meta.env;
 export function useRentRequestActions() {
   const { token } = useAuth();
 
+  const statusLabels = {
+    PENDING: "Pendiente",
+    APPROVED: "Aprobado",
+    ACTIVE: "Activo",
+    COMPLETED: "Completado",
+    CANCELLED: "Cancelado",
+    REJECTED: "Rechazado",
+  };
+
   const sendRentRequest = async (rentId) => {
     try {
       const res = await fetch(VITE_API_URL + "/rent/" + rentId + "/request", {
@@ -41,19 +50,23 @@ export function useRentRequestActions() {
 
   const changeStatus = async (rentId, requestId, status) => {
     try {
-      const res = await fetch(VITE_API_URL + "/rent/" + rentId + "/response/" + requestId, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: token ? "Bearer " + token : "",
-        },
-        body: JSON.stringify({ status: status }),
-      });
+      const res = await fetch(
+        VITE_API_URL + "/rent/" + rentId + "/response/" + requestId,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: token ? "Bearer " + token : "",
+          },
+          body: JSON.stringify({ status: status }),
+        }
+      );
 
       if (!res.ok) {
         throw new Error("Error al actualizar la solicitud");
       }
-      toast.success("Alquiler " + status + "!", {
+      const displayedStatus = statusLabels[status] || status;
+      toast.success("Alquiler " + displayedStatus + "!", {
         position: "bottom-right",
         autoClose: 3000,
         hideProgressBar: false,

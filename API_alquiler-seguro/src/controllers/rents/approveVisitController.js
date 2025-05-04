@@ -9,9 +9,13 @@ const approveVisitController = async (req, res, next) => {
     const { rentId, requestId } = req.params; // rentId y requestId desde los parámetros
     const { status } = req.body; // "APPROVED" o "REJECTED" desde el cuerpo de la solicitud
 
-    if (!["APPROVED", "REJECTED", "ACTIVE", "CANCELLED"].includes(status)) {
+    if (
+      !["APPROVED", "REJECTED", "ACTIVE", "CANCELLED", "COMPLETED"].includes(
+        status
+      )
+    ) {
       generateErrorUtil(
-        "Acción no válida. Debe ser 'APPROVED' ,'REJECTED','ACTIVE' o 'CANCELLED",
+        "Acción no válida. Debe ser 'APPROVED' ,'REJECTED','ACTIVE', 'CANCELLED', 'COMPLETED'",
         400
       );
     }
@@ -28,11 +32,11 @@ const approveVisitController = async (req, res, next) => {
     if (request.length === 0) {
       notFoundError("solicitud alquiler.");
     }
-    if (request[0].status !== "PENDING") {
+    /*     if (request[0].status !== "PENDING") {
       generateErrorUtil(
         "Solo se pueden modificar solicitudes en estado 'PENDING'"
       );
-    }
+    } */
 
     await approveVisitModel(status, requestId, rentId);
     res.send({
