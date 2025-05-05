@@ -31,6 +31,17 @@ export default function UpdateRentForm() {
               />
             </li>
             <li>
+              <label htmlFor="city">Ciudad: </label>
+              <input
+                type="text"
+                name="city"
+                id="city"
+                required
+                onChange={handleTextChange}
+                value={formState.city}
+              />
+            </li>
+            <li>
               <label htmlFor="price">Precio: </label>
               <input
                 type="text"
