@@ -14,7 +14,7 @@ import listApprovedRentController from "./approvedListRentController.js";
 import notApprovedRentController from "./notApprovedRentController.js";
 import getRentRequestController from "./getRentRequestController.js";
 import listMyRentRequestController from "./listMyRentRequestController.js";
-
+import listCitiesController from "./ListCitiesController.js";
 export {
   getRentController,
   deleteRentPhotoController,
@@ -32,4 +32,5 @@ export {
   listApprovedRentController,
   listMyRentRequestController,
   notApprovedRentController,
+  listCitiesController,
 };

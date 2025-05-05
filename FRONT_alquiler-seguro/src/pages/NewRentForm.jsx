@@ -2,7 +2,8 @@ import useNewRent from "../hooks/useNewRent";
 import "../styles/FormStyle.css";
 
 export default function NewPostForm() {
-  const { formState, handleSubmit, handleTextChange, handleFileChange } = useNewRent();
+  const { formState, handleSubmit, handleTextChange, handleFileChange } =
+    useNewRent();
 
   return (
     <main>
@@ -20,6 +21,18 @@ export default function NewPostForm() {
                 onChange={handleTextChange}
                 value={formState.address}
                 minLength={5}
+              />
+            </li>
+            <li>
+              <label htmlFor="city">Ciudad: </label>
+              <input
+                type="text"
+                name="city"
+                id="city"
+                required
+                onChange={handleTextChange}
+                value={formState.city}
+                minLength={3}
               />
             </li>
             <li>

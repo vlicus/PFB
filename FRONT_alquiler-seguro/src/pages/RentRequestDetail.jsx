@@ -10,11 +10,19 @@ import "../styles/RentRequestDetail.css";
 
 export default function RentRequestDetail() {
   const { token } = useAuth();
-  const { address, status, owner_username, photos, price, is_available } = useRentRequest();
+  const {
+    address,
+    status,
+    owner_username,
+    photos,
+    price,
+    num_rooms,
+    renter_username,
+  } = useRentRequest();
   const navigate = useNavigate();
   const [rate, setRating] = useState(0);
   const { handleChange, formState, handleSubmit } = useRating();
-
+  const { myUsername } = useAuth();
   formState.rating = rate;
   if (!token) {
     navigate("/login");
@@ -28,13 +36,22 @@ export default function RentRequestDetail() {
     <main className="rent-request-detail-main">
       <div className="rent-request-detail">
         {address && <p>Dirección: {address}</p>}
-        {status && <p>Estado: {status}</p>}
         {price && <p>Precio: {price}</p>}
-        {is_available && <p>is_available: {is_available}</p>}
+        {num_rooms && <p>Nº habitaciones: {num_rooms}</p>}
+        {myUsername != renter_username && (
+          <>{renter_username && <p>Solicitante: {renter_username}</p>}</>
+        )}
+        {myUsername != owner_username && (
+          <> {owner_username && <p>Casero: {owner_username}</p>}</>
+        )}
+        {status && <p>Estado: {status}</p>}
         <ul>
           {photos?.map((photo) => (
             <li key={photo.id}>
-              <ApiImage name={"rent/" + owner_username + "/" + photo.name} alt={photo.name} />
+              <ApiImage
+                name={"rent/" + owner_username + "/" + photo.name}
+                alt={photo.name}
+              />
             </li>
           ))}
         </ul>

@@ -19,6 +19,9 @@ import RentRequestDetail from "./pages/RentRequestDetail";
 import FooterComponent from "./pages/Footer";
 import RentDetailPage from "./pages/RentDetails";
 import UpdateRentForm from "./pages/UpdateRentForm";
+import UpdateProfile from "./pages/UpdateProfile";
+import RentsPage from "./pages/RentsPage";
+
 
 const App = () => {
   const { token } = useAuth();
@@ -40,9 +43,10 @@ const App = () => {
           path="/profile"
           element={token ? <Profile /> : <Navigate to="/login" />}
         />
-
+        <Route path="/profile/update" element={<UpdateProfile />} />
         <Route path="/profile/:userId" element={<PublicProfile />} />
         <Route path="/profile/rent/approve" element={<ApproveRents />} />
+        <Route path="/rents" element={<RentsPage />} />
         <Route
           path="/profile/rent/new"
           element={token ? <NewRentForm /> : <Navigate to="login" />}

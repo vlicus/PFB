@@ -6,7 +6,6 @@ export default function UserRenterRatings({ userId }) {
   const [ratings, setRatings] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  console.log("uuuuuseeer", userId);
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/users/${userId}/ratings`)
       .then((res) => res.json())

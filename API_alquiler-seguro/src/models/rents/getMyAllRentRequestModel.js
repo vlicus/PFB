@@ -16,6 +16,7 @@ const getAllRentRequestModel = async (userId) => {
     r.property_owner_id,
     owner.username AS owner_username,
     r.address,
+    r.city,
     r.price,
     r.num_rooms,
     r.is_available,
