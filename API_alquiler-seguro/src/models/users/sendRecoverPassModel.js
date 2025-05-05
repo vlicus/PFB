@@ -1,4 +1,5 @@
 // Importamos la función que devuelve una conexión con la base de datos.
+import { API_URL, FRONT_PORT } from "../../../env.js";
 import getPool from "../../db/getPool.js";
 
 // Importamos los servicios.
@@ -21,7 +22,9 @@ const sendRecoverPassModel = async (email, recovery_code) => {
   const emailBody = `
             Se ha solicitado la recuperación de contraseña para este email en Alquiler Seguro. 
                 
-            Utiliza el siguiente código para crear una nueva contraseña: ${recovery_code}
+            Utiliza el siguiente código para crear una nueva contraseña: ${recovery_code} haciendo click en el siguiente enlace:
+            
+            <a href="${API_URL + ":" + FRONT_PORT}/passwordRecovery">Recuperar contraseña</a>
 
             Si no has sido tú ignora este email.
         `;

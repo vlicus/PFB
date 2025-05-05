@@ -13,8 +13,6 @@ const updateUserPassWithRecoverModel = async (
   // Obtenemos al usuario en base al email recibido.
   const user = await selectUserByEmailModel(email);
 
-  console.log(user);
-
   // Si no encontramos ningún usuario o si el código es incorrecto lanzamos un error.
   if (!user || user.recovery_code !== recoverPassCode) {
     generateErrorUtil("Código de recuperación incorrecto", 401);
