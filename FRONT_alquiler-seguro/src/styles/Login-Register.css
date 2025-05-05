@@ -1,0 +1,90 @@
+.form-card {
+  max-width: 400px;
+  margin: 50px auto;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  text-align: center;
+}
+
+.form-card h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.form-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.form-card li {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-card label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+.form-card input[type="email"],
+.form-card input[type="password"],
+.form-card input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+.form-card > form > button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.form-card button:hover {
+  background-color: #333;
+}
+
+.input-password-container {
+  position: relative;
+}
+
+.input-password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.toggle-password-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #555;
+  cursor: pointer;
+  font-size: 0.9rem;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.toggle-password-icon:hover {
+  background-color: #838282;
+  border-radius: 70%;
+}

@@ -4,7 +4,7 @@ import Avatar from "../components/Avatar";
 import UserRentalHistory from "../components/User/UserRentalHistory";
 import UserOwnerRatings from "../components/User/UserOwnerRatings";
 import UserRenterRatings from "../components/User/UserRenterRatings";
-import "../styles/UserProfile.css";
+import "../styles/UserPrivateProfile.css";
 
 export default function PublicProfile() {
   const { userId } = useParams();

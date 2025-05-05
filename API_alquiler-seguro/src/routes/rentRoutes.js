@@ -18,6 +18,7 @@ import {
   getRentRequestController,
   listMyRentRequestController,
   listCitiesController,
+  listOwnRentsController,
 } from "../controllers/rents/index.js";
 
 import {
@@ -129,4 +130,6 @@ router.get("/rents/notapproved", notApprovedRentController);
 //Lista de ciudades donde hay alquileres
 router.get("/cities", listCitiesController);
 
+//Obtener un listado de alquileres por usuario como casero
+router.get("/rents/own", authUserController, listOwnRentsController);
 export default router;

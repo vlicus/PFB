@@ -4,7 +4,7 @@
   border: 1px solid #e2e8f0;
   border-radius: 0.5rem;
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
   cursor: pointer;
   position: relative;
@@ -51,13 +51,13 @@
 .rent-card-price {
   font-size: 1.2rem;
   font-weight: 500;
-  color: #2b8a3e; /* verde o usa otro color */
+  color: #2b8a3e;
   margin-bottom: 8px;
 }
 .rent-card-rooms {
   font-size: 1.2rem;
   font-weight: 500;
-  color: #000000; /* verde o usa otro color */
+  color: #000000;
   margin-bottom: 8px;
 }
 .rental-owner {
@@ -114,4 +114,10 @@
 
 .owner-link:hover {
   text-decoration: underline;
+}
+.rental-card h1,
+.rental-card h2,
+.rental-card h3,
+.rental-card p {
+  text-align: center;
 }

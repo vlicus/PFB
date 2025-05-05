@@ -36,71 +36,69 @@ export default function RentDetailPage() {
     setCurrentImageIndex(index);
   };
   return (
-    <div className="p-6">
-      <h1>{address}</h1>
+    <div style={{ display: "flex", justifyContent: "center", padding: "2rem" }}>
+      <div className="rental-card">
+        <h1 className="rent-card-city">{address}</h1>
 
-      <div className="p-6">
-        <p>Precio: {price} €/mes</p>
+        <p className="rent-card-price">Precio: {price} €/mes</p>
+        <p className="rent-card-rooms">Habitaciones: {num_rooms}</p>
 
-        <p>Habitaciones: {num_rooms}</p>
-      </div>
+        <h2>Descripción</h2>
+        <p>{description}</p>
 
-      <h2>Descripción</h2>
-      <p>{description}</p>
+        {/* Carrusel de imágenes */}
+        <div className="relative mb-4">
+          {totalImages > 0 ? (
+            <ApiImage
+              name={`rent/${username}/${images[currentImageIndex].name}`}
+              alt={`Imagen ${currentImageIndex + 1}`}
+              height={300}
+              className="w-full object-cover rounded"
+            />
+          ) : (
+            <img
+              src="/default-image.jpg"
+              alt="sin imagen"
+              className="w-full h-60 object-cover rounded"
+            />
+          )}
 
-      {/* Carrusel de imágenes */}
-      <div className="relative mb-4">
-        {totalImages > 0 ? (
-          <ApiImage
-            name={`rent/${username}/${images[currentImageIndex].name}`}
-            alt={`Imagen ${currentImageIndex + 1}`}
-            height={300}
-            className="w-full object-cover rounded"
-          />
-        ) : (
-          <img
-            src="/default-image.jpg"
-            alt="sin imagen"
-            className="w-full h-60 object-cover rounded"
-          />
-        )}
+          {totalImages > 1 && (
+            <>
+              <button onClick={handlePrev} className="carousel-button left">
+                ‹
+              </button>
+              <button onClick={handleNext} className="carousel-button right">
+                ›
+              </button>
+            </>
+          )}
+        </div>
 
         {totalImages > 1 && (
-          <>
-            <button onClick={handlePrev} className="carousel-button left">
-              ‹
-            </button>
-            <button onClick={handleNext} className="carousel-button right">
-              ›
-            </button>
-          </>
+          <div className="flex justify-center mb-6">
+            {images.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToImage(index)}
+                className={`h-2 w-2 mx-1 rounded-full ${
+                  index === currentImageIndex ? "bg-blue-600" : "bg-gray-400"
+                }`}
+              />
+            ))}
+          </div>
         )}
+
+        <h3 className="rental-owner">
+          Publicado por{" "}
+          <Link
+            to={`/users/${property_owner_id}/history`}
+            className="owner-link"
+          >
+            @{username}
+          </Link>
+        </h3>
       </div>
-
-      {totalImages > 1 && (
-        <div className="flex justify-center mb-6">
-          {images.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToImage(index)}
-              className={`h-2 w-2 mx-1 rounded-full ${
-                index === currentImageIndex ? "bg-blue-600" : "bg-gray-400"
-              }`}
-            />
-          ))}
-        </div>
-      )}
-
-      {/* Publicado por */}
-      <h3 className="text-lg mt-4">
-        Publicado por{" "}
-        <Link
-          to={`/users/${property_owner_id}/history`}
-          className="text-blue-600 font-semibold hover:underline"
-        >
-          @{username}
-        </Link>
-      </h3>
     </div>
   );
 }

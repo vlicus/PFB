@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import "../styles/Buttons.css";
+import SplitBasicExample from "../components/SplitBasicExample";
 
 export default function Nav() {
   const { token } = useAuth();
@@ -12,16 +13,10 @@ export default function Nav() {
 }
 
 function UserNav() {
-  const { logout } = useAuth();
   return (
     <>
       <div className="nav-buttons">
-        <NavLink to="/profile" className="nav-button">
-          Perfil
-        </NavLink>
-        <button className="nav-button" onClick={logout}>
-          Logout
-        </button>
+        <SplitBasicExample></SplitBasicExample>
       </div>
     </>
   );

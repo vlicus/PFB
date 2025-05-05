@@ -1,6 +1,10 @@
 import PasswordInput from "../Components/PasswordInput";
 import useLogin from "../hooks/useLogin";
+
 import useSendRecoveryEmail from "../hooks/useSendRecoveryEmail";
+
+import "../styles/Login-Register.css";
+
 
 export default function Login() {
   const { formState, handleSubmit, handleChange } = useLogin();
@@ -9,7 +13,8 @@ export default function Login() {
 
   return (
     <main>
-      <h2>Login</h2>
+      <div className="form-card">
+         <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <ul>
           <li>
@@ -39,6 +44,7 @@ export default function Login() {
       <form onSubmit={handleRecoverySubmit}>
         <button>Recuperar Contraseña</button>
       </form>
+      </div>
     </main>
   );
 }
