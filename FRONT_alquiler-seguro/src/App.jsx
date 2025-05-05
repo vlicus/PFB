@@ -22,7 +22,6 @@ import UpdateRentForm from "./pages/UpdateRentForm";
 import UpdateProfile from "./pages/UpdateProfile";
 import RentsPage from "./pages/RentsPage";
 
-
 const App = () => {
   const { token } = useAuth();
   return (
@@ -45,10 +44,10 @@ const App = () => {
         />
         <Route path="/profile/update" element={<UpdateProfile />} />
         <Route path="/profile/:userId" element={<PublicProfile />} />
-        <Route path="/profile/rent/approve" element={<ApproveRents />} />
+        <Route path="/rent/approve" element={<ApproveRents />} />
         <Route path="/rents" element={<RentsPage />} />
         <Route
-          path="/profile/rent/new"
+          path="/rent/new"
           element={token ? <NewRentForm /> : <Navigate to="login" />}
         />
         <Route
@@ -56,8 +55,8 @@ const App = () => {
           element={<RentRequestDetail />}
         />
         {/*  <Route path="/profile/rent/update" element={<ApproveRents />} /> */}
-        <Route path="/profile/rent/requests" element={<RentsRequested />} />
-        <Route path="/profile/renter/requests" element={<MyRentsRequested />} />
+        <Route path="/rent/requests" element={<RentsRequested />} />
+        <Route path="/renter/requests" element={<MyRentsRequested />} />
         <Route path="/password" element={<UpdatePassword />} />
         <Route path="/rent/:rentId" element={<RentDetailPage />} />
         <Route path="/rent/:rentId/update" element={<UpdateRentForm />} />
