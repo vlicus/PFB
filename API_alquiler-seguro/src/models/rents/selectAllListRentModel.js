@@ -7,6 +7,7 @@ const selectAllListRentModel = async () => {
     `SELECT
     r.id,
     r.address,
+    r.city,
     r.price,
     r.num_rooms,
     r.description,

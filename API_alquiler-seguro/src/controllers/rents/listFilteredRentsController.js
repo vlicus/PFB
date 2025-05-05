@@ -2,10 +2,10 @@ import selectFilteredRentsModel from "../../models/rents/selectFilteredRentsMode
 
 const listFilteredRentsController = async (req, res, next) => {
   try {
-    const { address, maxPrice, minRooms } = req.query;
+    const { city, maxPrice, minRooms } = req.query;
 
     const rents = await selectFilteredRentsModel({
-      address,
+      city,
       maxPrice,
       minRooms,
     });

@@ -11,6 +11,7 @@ const RentDetailPage = () => {
     id,
     property_owner_id,
     address,
+    city,
     price,
     num_rooms,
     description,
@@ -38,12 +39,13 @@ const RentDetailPage = () => {
 
   return (
     <div className="p-6">
-      <h1>{address}</h1>
+      <h1>{city}</h1>
 
       <div className="p-6">
         <p>Precio: {price} €/mes</p>
 
         <p>Habitaciones: {num_rooms}</p>
+        <p>{address}</p>
       </div>
 
       <h2>Descripción</h2>
