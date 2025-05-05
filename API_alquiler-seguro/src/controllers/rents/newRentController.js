@@ -9,11 +9,11 @@ import validateSchemaUtil from "../../utils/validateSchemaUtil.js";
 
 const newRentController = async (req, res, next) => {
   try {
-    const { address, price, num_rooms, description } = req.body;
+    const { address, city, price, num_rooms, description } = req.body;
     const userId = req.user.id;
     const property_owner_id = userId;
 
-    if (!address || !price || !num_rooms || !description) {
+    if (!address || !city || !price || !num_rooms || !description) {
       generateErrorUtil(
         "Faltan campos obligatorios: address, price, numero de habitaciones, descripción",
         500
@@ -22,6 +22,7 @@ const newRentController = async (req, res, next) => {
     const rentId = await insertRentModel(
       property_owner_id,
       address,
+      city,
       price,
       num_rooms,
       description
@@ -68,6 +69,7 @@ const newRentController = async (req, res, next) => {
         rent: {
           id: rentId,
           address,
+          city,
           price,
           userId: userId,
           photos,

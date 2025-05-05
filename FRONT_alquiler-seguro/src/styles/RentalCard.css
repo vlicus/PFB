@@ -41,6 +41,36 @@
   text-align: center;
 }
 
+.rent-card-city {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 10px 0 5px;
+  color: #333;
+}
+
+.rent-card-price {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #2b8a3e; /* verde o usa otro color */
+  margin-bottom: 8px;
+}
+.rent-card-rooms {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #000000; /* verde o usa otro color */
+  margin-bottom: 8px;
+}
+.rental-owner {
+  font-size: 1.1rem;
+  color: #000000;
+  margin-bottom: 12px;
+}
+
+.rental-owner span {
+  color: #1a73e8;
+  font-weight: 500;
+}
+
 .carousel-button {
   position: absolute;
   top: 50%;
@@ -74,13 +104,6 @@
     padding: 0.4rem 0.6rem;
     font-size: 1rem;
   }
-}
-
-.rental-owner {
-  font-size: 0.875rem;
-  text-align: center;
-  color: #4b5563;
-  margin-top: 0.5rem;
 }
 
 .owner-link {

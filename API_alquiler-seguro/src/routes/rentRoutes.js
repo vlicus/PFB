@@ -17,6 +17,7 @@ import {
   notApprovedRentController,
   getRentRequestController,
   listMyRentRequestController,
+  listCitiesController,
 } from "../controllers/rents/index.js";
 
 import {
@@ -124,5 +125,8 @@ router.put(
 );
 //Obtener lista de los alquileres no aprobados aun por el admin.
 router.get("/rents/notapproved", notApprovedRentController);
+
+//Lista de ciudades donde hay alquileres
+router.get("/cities", listCitiesController);
 
 export default router;

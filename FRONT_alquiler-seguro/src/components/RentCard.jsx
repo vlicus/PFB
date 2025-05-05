@@ -75,17 +75,22 @@ const RentalCard = ({ rental }) => {
       )}
 
       {/* Información del alquiler */}
-      <h3 className="text-xl font-semibold mt-2">{rental.title}</h3>
-      <p className="text-gray-600">{rental.address}</p>
-      <p className="font-bold text-blue-600">{rental.price} €/mes</p>
+      <p className="rent-card-city">{rental.city}</p>
+      <p className="rent-card-price">{rental.price} €/mes</p>
+      <p className="rent-card-rooms">
+        {rental.num_rooms}{" "}
+        {rental.num_rooms > 1 ? "Habitaciones" : "Habitación"}
+      </p>
       <p className="rental-owner">
         Publicado por{" "}
-        <Link
-          to={`/profile/${rental.property_owner_id}`}
-          className="owner-link"
-        >
-          @{rental.property_owner_username}
-        </Link>
+        <span>
+          <Link
+            to={`/profile/${rental.property_owner_id}`}
+            className="owner-link"
+          >
+            @{rental.property_owner_username}
+          </Link>
+        </span>
       </p>
       <div className="rental-card-buttons">
         <Link to={`/rent/${rental.id}`}>

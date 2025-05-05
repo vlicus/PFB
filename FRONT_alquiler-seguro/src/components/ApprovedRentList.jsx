@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { Children, useEffect, useState } from "react";
 import RentCard from "./RentCard";
 import { fetchApprovedRentals } from "../services/fetchApprovedRentals.js";
 import "../styles/ApprovedRentList.css";
 
-const ApprovedRentList = () => {
+const ApprovedRentList = ({ filters }) => {
   const [rents, setRents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -13,16 +13,22 @@ const ApprovedRentList = () => {
   const handleLoadMore = () => {
     setVisibleCount((prev) => prev + itemsPerPage);
   };
+
   useEffect(() => {
-    fetchApprovedRentals()
-      .then((data) => setRents(data))
+    console.log("Filtros enviados al fetch:", filters);
+    setLoading(true);
+    fetchApprovedRentals(filters)
+      .then((data) => {
+        setRents(data);
+      })
       .catch(() => setError("Error al cargar los alquileres"))
       .finally(() => setLoading(false));
-  }, []);
+  }, [filters]);
 
   if (loading) return <p>Cargando alquileres...</p>;
   if (error) return <p className="text-red-500">{error}</p>;
-  if (!rents.length) return <p>No hay alquileres disponibles.</p>;
+  if (!Array.isArray(rents) || rents.length === 0)
+    return <p className="no-disp">No hay alquileres disponibles.</p>;
 
   return (
     <>

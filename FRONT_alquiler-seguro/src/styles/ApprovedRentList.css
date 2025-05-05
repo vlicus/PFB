@@ -21,8 +21,15 @@
   display: flex;
   justify-content: center;
   margin-top: 2rem;
+  padding-bottom: 0.75rem;
 }
 
+.no-disp {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 20px;
+  color: #070707;
+}
 .load-more-btn {
   background-color: black;
   color: white;

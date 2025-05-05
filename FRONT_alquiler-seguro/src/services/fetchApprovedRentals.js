@@ -1,6 +1,9 @@
-export async function fetchApprovedRentals() {
-  const res = await fetch("http://localhost:3000/rents/approved");
+export async function fetchApprovedRentals(filters) {
+  const params = new URLSearchParams(filters).toString();
+  const url = `${import.meta.env.VITE_API_URL}/rents/filter?${params}`;
+
+  const res = await fetch(url);
   const json = await res.json();
-  //console.log(json);
-  return json.data.rents;
+
+  return json.data;
 }

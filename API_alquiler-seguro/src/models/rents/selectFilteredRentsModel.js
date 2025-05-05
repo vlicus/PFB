@@ -1,29 +1,34 @@
 import getPool from "../../db/getPool.js";
 
-const selectFilteredRentsModel = async ({ address, maxPrice, minRooms }) => {
+const selectFilteredRentsModel = async ({ city, maxPrice, minRooms }) => {
   const pool = await getPool();
 
   let query = `
-    SELECT
-      r.id,
-      r.address,
-      r.price,
-      r.num_rooms,
-      r.description,
-      r.is_available,
-      r.is_approved,
-      r.property_owner_id
-    FROM rents r
-    WHERE 1=1
+  SELECT
+    r.id,
+    r.address,
+    r.city,
+    r.price,
+    r.num_rooms,
+    r.description,
+    r.is_available,
+    r.is_approved,
+    r.property_owner_id,
+    u.username AS property_owner_username,
+    JSON_ARRAYAGG(ri.name) AS images
+  FROM rents r
+  LEFT JOIN rent_images ri ON r.id = ri.rent_id
+  LEFT JOIN users u ON r.property_owner_id = u.id
+  WHERE r.is_approved = 1
+  AND r.is_available = 1
   `;
-
   const values = [];
 
-  if (address && address !== "undefined" && address !== "") {
-    query += " AND r.address LIKE ?";
-    values.push(`%${address}%`);
+  if (city && city !== "undefined" && city !== "") {
+    query += " AND r.city LIKE ?";
+    values.push(`%${city}%`);
   }
-
+  console.log("city recibido en model:", city);
   if (maxPrice && maxPrice !== "undefined" && !isNaN(maxPrice)) {
     query += " AND r.price <= ?";
     values.push(Number(maxPrice));
@@ -34,7 +39,7 @@ const selectFilteredRentsModel = async ({ address, maxPrice, minRooms }) => {
     values.push(Number(minRooms));
   }
 
-  query += " ORDER BY r.price DESC";
+  query += " GROUP BY r.id ORDER BY r.price DESC";
 
   console.log("QUERY:", query);
   console.log("VALUES:", values);

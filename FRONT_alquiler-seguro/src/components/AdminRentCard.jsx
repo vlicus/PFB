@@ -86,6 +86,7 @@ const AdminRentalCard = ({ rental, onUpdate }) => {
 
       {/* Información del alquiler */}
       <h3 className="text-xl font-semibold mt-2">{rental.title}</h3>
+      <p className="text-gray-600">{rental.city}</p>
       <p className="text-gray-600">{rental.address}</p>
       <p className="font-bold text-blue-600">{rental.price} €/mes</p>
 

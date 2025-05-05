@@ -55,6 +55,7 @@ const main = async () => {
     id CHAR(36) PRIMARY KEY NOT NULL,
     property_owner_id CHAR(36) NOT NULL,
     address VARCHAR(255) NOT NULL,
+    city VARCHAR(100) NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
     num_rooms SMALLINT NOT NULL,
     description TEXT NOT NULL,

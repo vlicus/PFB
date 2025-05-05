@@ -6,6 +6,7 @@ const { VITE_API_URL } = import.meta.env;
 export default function useNewRent() {
   const initialState = {
     address: "",
+    city: "",
     price: "",
     num_rooms: "",
     description: "",
@@ -24,7 +25,12 @@ export default function useNewRent() {
       if (formState.address.trim().length < 5) {
         throw new Error("La dirección debe tener al menos 5 caracteres");
       }
-
+      if (formState.city.trim().length < 3) {
+        throw new Error("La ciudad debe tener al menos 3 caracteres");
+      }
+      if (!formState.city.trim()) {
+        throw new Error("La ciudad es obligatoria");
+      }
       if (!formState.address.trim()) {
         throw new Error("La dirección es obligatoria");
       }
@@ -38,7 +44,9 @@ export default function useNewRent() {
       }
 
       if (!formState.num_rooms.trim()) {
-        throw new Error("El número de habitaciones de la vivienda es obligatorio");
+        throw new Error(
+          "El número de habitaciones de la vivienda es obligatorio"
+        );
       }
 
       const res = await fetch(VITE_API_URL + "/rent/register", {
