@@ -19,12 +19,17 @@ export default function FilterBar({ setFilters }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    if ((name === "minRooms" || name === "maxPrice") && value < 0) {
+      newValue = 0;
+    }
     setTempFilters({ ...tempFilters, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setFilters(tempFilters);
+    setTempFilters({ minRooms: "", maxPrice: "", city: "" });
   };
 
   return (
@@ -50,6 +55,7 @@ export default function FilterBar({ setFilters }) {
         value={tempFilters.minRooms}
         onChange={handleChange}
         className="filter-input"
+        min="0"
       />
 
       <input
@@ -60,6 +66,7 @@ export default function FilterBar({ setFilters }) {
         onChange={handleChange}
         className="filter-input"
         step="100"
+        min="0"
       />
 
       <button type="submit" className="filter-button">
