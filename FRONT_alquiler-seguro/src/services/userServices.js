@@ -84,3 +84,37 @@ export async function ratingServiceRenter(rating, renter_id, id, token) {
 
   return json;
 }
+
+export async function recoveryPasswordService(newPasswordData) {
+  let res = await fetch(VITE_API_URL + "/users/password", {
+    method: "PUT",
+    body: JSON.stringify(newPasswordData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  let json = await res.json();
+  console.log(json);
+  if (!res.ok) {
+    throw new Error(json.message);
+  }
+  return json;
+}
+
+export async function emailRecoveryPasswordService(emailData) {
+  let res = await fetch(VITE_API_URL + "/users/password/recover", {
+    method: "PUT",
+    body: JSON.stringify(emailData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  let json = await res.json();
+
+  if (!res.ok) {
+    throw new Error(json.message);
+  }
+
+  return json;
+}
