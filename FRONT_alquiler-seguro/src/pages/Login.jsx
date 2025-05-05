@@ -1,8 +1,11 @@
 import PasswordInput from "../Components/PasswordInput";
 import useLogin from "../hooks/useLogin";
+import useSendRecoveryEmail from "../hooks/useSendRecoveryEmail";
 
 export default function Login() {
   const { formState, handleSubmit, handleChange } = useLogin();
+
+  const { handleRecoverySubmit } = useSendRecoveryEmail();
 
   return (
     <main>
@@ -31,7 +34,10 @@ export default function Login() {
             />
           </li>
         </ul>
-        <button>Enviar</button>
+        <button>Log in</button>
+      </form>
+      <form onSubmit={handleRecoverySubmit}>
+        <button>Recuperar Contraseña</button>
       </form>
     </main>
   );

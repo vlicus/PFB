@@ -7,8 +7,8 @@ import { Bounce, toast } from "react-toastify";
 
 export default function useLogin() {
   const { login } = useAuth();
-
   const navigate = useNavigate();
+
   let initalState = {
     email: "",
     password: "",
@@ -18,7 +18,7 @@ export default function useLogin() {
 
   const [error, setError] = useState(" ");
 
-  function handleChange({ target: { name, value } }) {
+  async function handleChange({ target: { name, value } }) {
     setError("");
     setFormState({ ...formState, [name]: value });
   }

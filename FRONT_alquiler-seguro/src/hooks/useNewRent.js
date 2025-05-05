@@ -44,9 +44,7 @@ export default function useNewRent() {
       }
 
       if (!formState.num_rooms.trim()) {
-        throw new Error(
-          "El número de habitaciones de la vivienda es obligatorio"
-        );
+        throw new Error("El número de habitaciones de la vivienda es obligatorio");
       }
 
       const res = await fetch(VITE_API_URL + "/rent/register", {
@@ -74,7 +72,6 @@ export default function useNewRent() {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "colored",
         transition: Bounce,
       });
       setFormState(initialState);
