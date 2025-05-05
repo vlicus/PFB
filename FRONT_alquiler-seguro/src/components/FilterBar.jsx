@@ -29,7 +29,6 @@ export default function FilterBar({ setFilters }) {
 
   return (
     <form className="filter-bar" onSubmit={handleSubmit}>
-      {/* ✅ Ciudad PRIMERO */}
       <select
         name="city"
         value={tempFilters.city}
@@ -60,6 +59,7 @@ export default function FilterBar({ setFilters }) {
         value={tempFilters.maxPrice}
         onChange={handleChange}
         className="filter-input"
+        step="100"
       />
 
       <button type="submit" className="filter-button">
