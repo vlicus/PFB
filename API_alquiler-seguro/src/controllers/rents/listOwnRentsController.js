@@ -1,10 +1,10 @@
 // Importamos los modelos.
-import selectAllListRentModel from "../../models/rents/selectAllListRentModel.js";
+import selectOwnRentsModel from "../../models/rents/selectOwnRentsModel.js";
 
 // Función controladora final que retorna el listado de entradas.
 const listOwnRentsController = async (req, res, next) => {
   try {
-    const rents = await selectAllListRentModel(req.user.id);
+    const rents = await selectOwnRentsModel(req.user.id);
 
     res.send({
       status: "ok",
