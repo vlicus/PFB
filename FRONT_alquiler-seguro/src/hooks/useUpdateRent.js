@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 export default function useUpdateRent() {
   const initialState = {
     address: "",
+    city: "",
     price: "",
     num_rooms: "",
     description: "",
@@ -28,6 +29,9 @@ export default function useUpdateRent() {
 
       if (!formState.address.trim()) {
         throw new Error("La dirección es obligatoria");
+      }
+      if (!formState.city.trim()) {
+        throw new Error("La ciudad de la vivienda es obligatoria");
       }
 
       if (!formState.description.trim()) {
