@@ -114,17 +114,7 @@ CREATE TABLE IF NOT EXISTS ratings (
 
     await pool.query(
       `
-  INSERT INTO users (
-    id,
-    email,
-    username,
-    phone_number,
-    bio,
-    password,
-    active,
-    is_admin,
-    registration_code,
-    recovery_code
+  INSERT INTO users (id,email,username,phone_number,bio,password,active,is_admin,registration_code,recovery_code
   ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         uuid(),
@@ -142,17 +132,7 @@ CREATE TABLE IF NOT EXISTS ratings (
 
     await pool.query(
       `
-  INSERT INTO users (
-    id,
-    email,
-    username,
-    phone_number,
-    bio,
-    password,
-    active,
-    is_admin,
-    registration_code,
-    recovery_code
+  INSERT INTO users (id,email,username,phone_number,bio,password,active,is_admin,registration_code,recovery_code
   ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         uuid(),
@@ -166,6 +146,103 @@ CREATE TABLE IF NOT EXISTS ratings (
         "123456abcd",
         null,
       ]
+    );
+    await pool.query(
+      `
+  INSERT INTO users (id, email, username, phone_number, bio, password, first_name, last_name, active, is_admin
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)`,
+      [
+        "aaaa1111-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+        "alicia@example.com",
+        "alicia123",
+        "+34123456789",
+        "Me encanta alquilar pisos bonitos.",
+        hashedPass,
+        "Alicia",
+        "Gómez",
+        true,
+        false,
+      ]
+    );
+    await pool.query(
+      `
+  INSERT INTO users (id, email, username, phone_number, bio, password, first_name, last_name, active, is_admin
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        "bbbb2222-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+        "bob@example.com",
+        "bob456",
+        "+34698765432",
+        "Propietario de varios pisos en Madrid.",
+        hashedPass,
+        "Bob",
+        "Martínez",
+        true,
+        false,
+      ]
+    );
+    await pool.query(
+      `
+  INSERT INTO users (id, email, username, phone_number, bio, password, first_name, last_name, active, is_admin
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)`,
+      [
+        "cccc3333-cccc-cccc-cccc-cccccccccccc",
+        "carla@example.com",
+        "carla789",
+        "+34987654321",
+        "Buscando mi primer alquiler.",
+        hashedPass,
+        "Carla",
+        "López",
+        true,
+        false,
+      ]
+    );
+    await pool.query(
+      `
+  INSERT INTO rents (id, property_owner_id, address, city, price, num_rooms, description, is_available, is_approved)
+VALUES
+('d1a1-a1a1-a1a1-a1a1-d1a1a1a1a1a1', 'aaaa1111-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'Calle Sol 45', 'Valencia', 780.00, 2, 'Apartamento soleado en el centro de Valencia.', true, true),
+('d1a2-a1a2-a1a2-a1a2-d1a2a2a2a2a2', 'aaaa1111-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'Paseo Marítimo 8', 'Valencia', 950.00, 3, 'Piso con vistas al mar.', true, true);`
+    );
+    await pool.query(
+      `
+INSERT INTO rents (id, property_owner_id, address, city, price, num_rooms, description, is_available, is_approved)
+VALUES
+('d2b1-b2b1-b2b1-b2b1-d2b1b1b1b1b1', 'bbbb2222-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 'Calle Serrano 90', 'Madrid', 2000.00, 4, 'Ático de lujo en barrio Salamanca.', true, true),
+('d2b2-b2b2-b2b2-b2b2-d2b2b2b2b2b2', 'bbbb2222-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 'Calle Lavapiés 3', 'Madrid', 700.00, 2, 'Piso artístico y bohemio.', true, true);
+`
+    );
+    await pool.query(
+      `
+INSERT INTO rents (id, property_owner_id, address, city, price, num_rooms, description, is_available, is_approved)
+VALUES
+('d3c1-c3c1-c3c1-c3c1-d3c1c1c1c1c1', 'cccc3333-cccc-cccc-cccc-cccccccccccc', 'Calle Verano 12', 'Sevilla', 630.00, 1, 'Estudio reformado con patio interior.', true, true),
+('d3c2-c3c2-c3c2-c3c2-d3c2c2c2c2c2', 'cccc3333-cccc-cccc-cccc-cccccccccccc', 'Av. de Andalucía 20', 'Sevilla', 980.00, 3, 'Ideal para familias, con balcón grande.', true, true);
+`
+    );
+    await pool.query(
+      `
+INSERT INTO rent_images (rent_id, name)
+VALUES
+-- Alice
+('d1a1-a1a1-a1a1-a1a1-d1a1a1a1a1a1', 'sol_45_1.jpg'),
+('d1a1-a1a1-a1a1-a1a1-d1a1a1a1a1a1', 'sol_45_2.jpg'),
+('d1a2-a1a2-a1a2-a1a2-d1a2a2a2a2a2', 'maritimo_8_1.jpg'),
+('d1a2-a1a2-a1a2-a1a2-d1a2a2a2a2a2', 'maritimo_8_2.jpg'),
+
+-- Bob
+('d2b1-b2b1-b2b1-b2b1-d2b1b1b1b1b1', 'serrano_90_1.jpg'),
+('d2b1-b2b1-b2b1-b2b1-d2b1b1b1b1b1', 'serrano_90_2.jpg'),
+('d2b2-b2b2-b2b2-b2b2-d2b2b2b2b2b2', 'lavapies_3_1.jpg'),
+('d2b2-b2b2-b2b2-b2b2-d2b2b2b2b2b2', 'lavapies_3_2.jpg'),
+
+-- Carla
+('d3c1-c3c1-c3c1-c3c1-d3c1c1c1c1c1', 'verano_12_1.jpg'),
+('d3c1-c3c1-c3c1-c3c1-d3c1c1c1c1c1', 'verano_12_2.jpg'),
+('d3c2-c3c2-c3c2-c3c2-d3c2c2c2c2c2', 'andalucia_20_1.jpg'),
+('d3c2-c3c2-c3c2-c3c2-d3c2c2c2c2c2', 'andalucia_20_2.jpg');
+`
     );
 
     console.log("¡Admin y casero insertado!");
