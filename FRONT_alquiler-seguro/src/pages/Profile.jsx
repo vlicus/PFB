@@ -43,17 +43,6 @@ function User() {
         <NavLink to="/profile/update" className="nav-button">
           Editar usuario
         </NavLink>
-        <NavLink to="/profile/rent/new" className="nav-button">
-          Nueva Propiedad
-        </NavLink>
-
-        <NavLink to="/profile/rent/requests" className="nav-button">
-          Solicitudes de visita/alquiler
-        </NavLink>
-
-        <NavLink to="/profile/renter/requests" className="nav-button">
-          Mis solicitudes de visita/alquiler
-        </NavLink>
       </div>
       <UserOwnerRatings userId={user.id} />
       <UserRenterRatings userId={user.id} />
