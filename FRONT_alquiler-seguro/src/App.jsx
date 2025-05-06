@@ -23,6 +23,7 @@ import UpdateProfile from "./pages/UpdateProfile";
 import RentsPage from "./pages/RentsPage";
 import SendEmailPasswordRecovery from "./pages/SendEmailPasswordRecovery";
 import SendPasswordRecovery from "./pages/SendPasswordRecovery";
+import OwnRents from "./pages/OwnRents";
 
 const App = () => {
   const { token } = useAuth();
@@ -67,6 +68,7 @@ const App = () => {
         <Route path="/password" element={<UpdatePassword />} />
         <Route path="/rent/:rentId" element={<RentDetailPage />} />
         <Route path="/rent/:rentId/update" element={<UpdateRentForm />} />
+        <Route path="/rents/own" element={<OwnRents />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <FooterComponent />
