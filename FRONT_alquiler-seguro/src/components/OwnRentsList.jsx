@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import OwnRentCard from "./OwnRentCard.jsx";
 import { useFetchOwnRentals } from "../hooks/useOwnRentals.js";
+import "../styles/RentRequest.css";
 
 const OwnRentList = () => {
   const [rents, setRents] = useState([]);
@@ -21,17 +22,23 @@ const OwnRentList = () => {
   if (!rents.length) return <p>No tienes alquileres aprobados por el admin.</p>;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      {rents.map((rent) => (
-        <OwnRentCard
-          key={rent.id}
-          rental={rent}
-          onUpdate={() => {
-            setRents((prev) => prev.filter((r) => r.id !== rent.id));
-          }}
-        />
-      ))}
-    </div>
+    <main className="">
+      <h2>Lista de mis propiedades</h2>
+      <div className="rent-request-list-li">
+        <ul>
+          {rents.map((rent) => (
+            <li className="rent-request-list-li" key={rent.id}>
+              <OwnRentCard
+                rental={rent}
+                onUpdate={() => {
+                  setRents((prev) => prev.filter((r) => r.id !== rent.id));
+                }}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </main>
   );
 };
 

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ApiImage from "../components/ApiImage";
 import "../styles/RentalCard.css";
 import "../styles/Buttons.css";
+import "../styles/RentRequest.css";
 
 const OwnRentalCard = ({ rental }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -28,77 +29,79 @@ const OwnRentalCard = ({ rental }) => {
   };
 
   return (
-    <div className="rental-card">
-      {/* Carrusel de imágenes */}
-      <div className="relative">
-        {totalImages > 0 ? (
-          <ApiImage
-            name={`rent/${rental.property_owner_username}/${images[currentImageIndex]}`}
-            alt={`Imagen ${currentImageIndex + 1}`}
-            height={160}
-            className="w-full object-cover rounded"
-          />
-        ) : (
-          <img
-            src="/default-image.jpg"
-            alt="sin imagen"
-            className="w-full h-40 object-cover rounded"
-          />
-        )}
+    <article>
+      <div className="rental-card">
+        {/* Carrusel de imágenes */}
+        <div className="relative">
+          {totalImages > 0 ? (
+            <ApiImage
+              name={`rent/${rental.property_owner_username}/${images[currentImageIndex]}`}
+              alt={`Imagen ${currentImageIndex + 1}`}
+              height={160}
+              className="w-full object-cover rounded"
+            />
+          ) : (
+            <img
+              src="/default-image.jpg"
+              alt="sin imagen"
+              className="w-full h-40 object-cover rounded"
+            />
+          )}
+
+          {totalImages > 1 && (
+            <>
+              <button onClick={handlePrev} className="carousel-button left">
+                ‹
+              </button>
+              <button onClick={handleNext} className="carousel-button right">
+                ›
+              </button>
+            </>
+          )}
+        </div>
 
         {totalImages > 1 && (
-          <>
-            <button onClick={handlePrev} className="carousel-button left">
-              ‹
-            </button>
-            <button onClick={handleNext} className="carousel-button right">
-              ›
-            </button>
-          </>
+          <div className="flex justify-center mt-2">
+            {images.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToImage(index)}
+                className={`h-2 w-2 mx-1 rounded-full ${
+                  index === currentImageIndex ? "bg-blue-600" : "bg-gray-400"
+                }`}
+              />
+            ))}
+          </div>
         )}
-      </div>
 
-      {totalImages > 1 && (
-        <div className="flex justify-center mt-2">
-          {images.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToImage(index)}
-              className={`h-2 w-2 mx-1 rounded-full ${
-                index === currentImageIndex ? "bg-blue-600" : "bg-gray-400"
-              }`}
-            />
-          ))}
-        </div>
-      )}
-
-      {/* Información del alquiler */}
-      <p className="rent-card-city">{rental.city}</p>
-      <p className="rent-card-price">{rental.price} €/mes</p>
-      <p className="rent-card-rooms">
-        {rental.num_rooms}{" "}
-        {rental.num_rooms > 1 ? "Habitaciones" : "Habitación"}
-      </p>
-      <p className="rental-owner">
-        Publicado por{" "}
-        <span>
-          <Link
-            to={`/profile/${rental.property_owner_id}`}
-            className="owner-link"
-          >
-            @{rental.property_owner_username}
+        {/* Información del alquiler */}
+        <p className="rent-card-city">{rental.city}</p>
+        <p className="rent-card-price">{rental.price} €/mes</p>
+        <p className="rent-card-rooms">
+          {rental.num_rooms}{" "}
+          {rental.num_rooms > 1 ? "Habitaciones" : "Habitación"}
+        </p>
+        <p className="rental-owner">
+          Publicado por{" "}
+          <span>
+            <Link
+              to={`/profile/${rental.property_owner_id}`}
+              className="owner-link"
+            >
+              @{rental.property_owner_username}
+            </Link>
+          </span>
+        </p>
+        <div className="rental-card-buttons">
+          <Link to={`/rent/${rental.id}`}>
+            <button className="view-more-btn">Ver más</button>
           </Link>
-        </span>
-      </p>
-      <div className="rental-card-buttons">
-        <Link to={`/rent/${rental.id}`}>
-          <button className="view-more-btn">Ver más</button>
-        </Link>
-        <Link to={`/rent/${rental.id}/update`}>
-          <button className="view-more-btn">Editar</button>
-        </Link>
+          <Link to={`/rent/${rental.id}/update`}>
+            <button className="view-more-btn">Editar</button>
+          </Link>
+        </div>
       </div>
-    </div>
+    </article>
   );
 };
 
