@@ -10,15 +10,8 @@ import "../styles/RentRequestDetail.css";
 
 export default function RentRequestDetail() {
   const { token } = useAuth();
-  const {
-    address,
-    status,
-    owner_username,
-    photos,
-    price,
-    num_rooms,
-    renter_username,
-  } = useRentRequest();
+  const { address, status, owner_username, photos, price, num_rooms, renter_username } =
+    useRentRequest();
   const navigate = useNavigate();
   const [rate, setRating] = useState(0);
   const { handleChange, formState, handleSubmit } = useRating();
@@ -41,17 +34,12 @@ export default function RentRequestDetail() {
         {myUsername != renter_username && (
           <>{renter_username && <p>Solicitante: {renter_username}</p>}</>
         )}
-        {myUsername != owner_username && (
-          <> {owner_username && <p>Casero: {owner_username}</p>}</>
-        )}
+        {myUsername != owner_username && <> {owner_username && <p>Casero: {owner_username}</p>}</>}
         {status && <p>Estado: {status}</p>}
         <ul>
           {photos?.map((photo) => (
             <li key={photo.id}>
-              <ApiImage
-                name={"rent/" + owner_username + "/" + photo.name}
-                alt={photo.name}
-              />
+              <ApiImage name={"rent/" + owner_username + "/" + photo.name} alt={photo.name} />
             </li>
           ))}
         </ul>
@@ -61,14 +49,14 @@ export default function RentRequestDetail() {
               initialValue={1}
               allowFraction={true}
               onClick={handleRating}
-              fillColor={"yellow"}
+              fillColor={"#01B0F1"}
             />
-            <br />
-            <label htmlFor="comment">Comentario</label>
-            <input
+            <label htmlFor="comment"></label>
+            <textarea
               id="comment"
               name="comment"
               required
+              placeholder="Aquí puede describir su experiencia"
               value={formState.comment}
               onChange={handleChange}
             />
