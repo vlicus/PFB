@@ -8,13 +8,12 @@ import useRent from "../hooks/useRent";
 export default function RentDetailPage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const {
-    id,
     property_owner_id,
     address,
+    city,
     price,
     num_rooms,
     description,
-    is_available,
     photos,
     username,
   } = useRent();
@@ -27,7 +26,9 @@ export default function RentDetailPage() {
   };
 
   const handlePrev = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + totalImages) % totalImages);
+    setCurrentImageIndex(
+      (prevIndex) => (prevIndex - 1 + totalImages) % totalImages
+    );
   };
 
   const goToImage = (index) => {
@@ -37,12 +38,9 @@ export default function RentDetailPage() {
     <div style={{ display: "flex", justifyContent: "center", padding: "2rem" }}>
       <div className="rental-card">
         <h1 className="rent-card-city">{address}</h1>
-
-        <p className="rent-card-price">Precio: {price} €/mes</p>
-        <p className="rent-card-rooms">Habitaciones: {num_rooms}</p>
-
-        <h2>Descripción</h2>
-        <p>{description}</p>
+        <p className="rent-card-rooms">{city}</p>
+        <p className="rent-card-price">{price} €/mes</p>
+        <p className="rent-card-rooms">{num_rooms} habitaciones</p>
 
         {/* Carrusel de imágenes */}
         <div className="relative mb-4">
@@ -71,10 +69,14 @@ export default function RentDetailPage() {
               </button>
             </>
           )}
+          <p>{description}</p>
         </div>
 
         {totalImages > 1 && (
-          <div style={{ listStyle: "none" }} className="flex justify-center mb-6">
+          <div
+            style={{ listStyle: "none" }}
+            className="flex justify-center mb-6"
+          >
             {images.map((_, index) => (
               <button
                 key={index}
@@ -89,7 +91,7 @@ export default function RentDetailPage() {
 
         <h3 className="rental-owner">
           Publicado por{" "}
-          <Link to={`/users/${property_owner_id}/history`} className="owner-link">
+          <Link to={`/profile/${property_owner_id}`} className="owner-link">
             @{username}
           </Link>
         </h3>
