@@ -23,7 +23,7 @@ export default function useUser() {
     }
 
     let { data } = await res.json();
-    console.log(data);
+
     setUser(data.user);
   }
 
