@@ -1,13 +1,25 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import "../styles/Buttons.css";
 import SplitBasicExample from "../components/SplitBasicExample";
+import useUser from "../hooks/useUser";
+import Avatar from "./Avatar";
 
 export default function Nav() {
   const { token } = useAuth();
+  const user = useUser();
   return (
     <nav className="nav-buttons">
-      <menu>{token ? <UserNav /> : <AnonNav />}</menu>
+      <ul className="lista">
+        <li>
+          <Link to="/profile">
+            <Avatar user={user} />
+          </Link>
+        </li>
+        <li>
+          <menu>{token ? <UserNav /> : <AnonNav />}</menu>
+        </li>
+      </ul>
     </nav>
   );
 }

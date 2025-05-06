@@ -24,6 +24,13 @@
   align-items: center;
   justify-content: flex-start;
 }
+.lista li {
+  height: 7rem;
+  list-style: none;
+}
+.lista li:first-child {
+  padding-left: 1.5rem;
+}
 @media (max-width: 768px) {
   .main-header {
     grid-template-columns: 1fr;
@@ -33,5 +40,9 @@
 
   .nav-buttons {
     margin-top: 0.5rem;
+    padding-right: 1rem;
+  }
+  .lista li:first-child {
+    padding-right: 2.5rem;
   }
 }
