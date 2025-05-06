@@ -13,7 +13,9 @@ createRoot(document.getElementById("root")).render(
     <ErrorBoundary>
       <BrowserRouter>
         <AuthProvider>
-          <App />
+          <div className="app-container">
+            <App />
+          </div>
         </AuthProvider>
       </BrowserRouter>
       <ToastContainer position="bottom-right" />
