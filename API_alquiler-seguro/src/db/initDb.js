@@ -10,7 +10,7 @@ const main = async () => {
   // Variable que almacenará una conexión con la base de datos.
   let pool;
 
-  const hashedPass = await bcrypt.hash("abc123", 10);
+  const hashedPass = await bcrypt.hash("Abc123!", 10);
   const uploads = path.resolve(UPLOADS_DIR);
 
   try {

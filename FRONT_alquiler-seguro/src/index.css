@@ -121,7 +121,7 @@ p {
   margin-right: auto;
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 768px) {
   nav {
     position: absolute;
     top: 10px;
