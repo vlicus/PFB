@@ -13,7 +13,7 @@ export default function Login() {
   return (
     <main>
       <div className="form-card">
-        <h2>Login</h2>
+        <h2>Bienvenido!</h2>
         <form onSubmit={handleSubmit}>
           <ul>
             <li>
@@ -38,9 +38,9 @@ export default function Login() {
               />
             </li>
           </ul>
-          <button>Log in</button>
+          <button>Iniciar sesión</button>
         </form>
-        <form onSubmit={handleRecoverySubmit}>
+        <form className="recuperar_contraseña" onSubmit={handleRecoverySubmit}>
           <button>Recuperar Contraseña</button>
         </form>
       </div>

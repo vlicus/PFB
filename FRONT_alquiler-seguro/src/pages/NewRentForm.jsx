@@ -2,17 +2,16 @@ import useNewRent from "../hooks/useNewRent";
 import "../styles/FormStyle.css";
 
 export default function NewPostForm() {
-  const { formState, handleSubmit, handleTextChange, handleFileChange } =
-    useNewRent();
+  const { formState, handleSubmit, handleTextChange, handleFileChange } = useNewRent();
 
   return (
     <main>
-      <h2>Nuevo alquiler!</h2>
-      <div className="newrentcontainer">
+      <div className="form-card">
+        <h2>Datos del alquiler</h2>
         <form action={handleSubmit}>
           <ul className="lista-form">
             <li>
-              <label htmlFor="address">Dirección: </label>
+              <label htmlFor="address">Dirección</label>
               <input
                 type="text"
                 name="address"
@@ -24,7 +23,7 @@ export default function NewPostForm() {
               />
             </li>
             <li>
-              <label htmlFor="city">Ciudad: </label>
+              <label htmlFor="city">Ciudad</label>
               <input
                 type="text"
                 name="city"
@@ -36,7 +35,7 @@ export default function NewPostForm() {
               />
             </li>
             <li>
-              <label htmlFor="price">Precio: </label>
+              <label htmlFor="price">Precio</label>
               <input
                 type="text"
                 name="price"
@@ -47,7 +46,7 @@ export default function NewPostForm() {
               />
             </li>
             <li>
-              <label htmlFor="num_rooms">Número de habitaciones: </label>
+              <label htmlFor="num_rooms">Número de habitaciones</label>
               <input
                 type="text"
                 name="num_rooms"
@@ -58,7 +57,7 @@ export default function NewPostForm() {
               />
             </li>
             <li>
-              <label htmlFor="description">Descripción: </label>
+              <label htmlFor="description">Descripción</label>
               <textarea
                 name="description"
                 id="description"
@@ -70,7 +69,7 @@ export default function NewPostForm() {
               ></textarea>
             </li>
             <li>
-              <label htmlFor="photos">Photos:</label>
+              <label htmlFor="photos">Fotos</label>
               <input
                 className="file"
                 type="file"
@@ -82,7 +81,7 @@ export default function NewPostForm() {
               />
             </li>
           </ul>
-          <button>Enviar</button>
+          <button>Crear</button>
         </form>
       </div>
     </main>

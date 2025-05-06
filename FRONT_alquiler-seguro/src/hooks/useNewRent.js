@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { Bounce, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 const { VITE_API_URL } = import.meta.env;
 
 export default function useNewRent() {
@@ -11,6 +12,8 @@ export default function useNewRent() {
     num_rooms: "",
     description: "",
   };
+
+  const navigate = useNavigate();
 
   const { token, logout } = useAuth();
 
@@ -64,9 +67,9 @@ export default function useNewRent() {
         throw new Error(json.message);
       }
 
-      toast.success("Alquiler creado!", {
+      toast.success("Alquiler creado, espere a que el administrador valide los datos!", {
         position: "bottom-right",
-        autoClose: 2000,
+        autoClose: 8000,
         hideProgressBar: false,
         closeOnClick: false,
         pauseOnHover: true,
@@ -74,6 +77,8 @@ export default function useNewRent() {
         progress: undefined,
         transition: Bounce,
       });
+
+      navigate("/profile");
       setFormState(initialState);
     } catch (e) {
       toast.error(e.message);
