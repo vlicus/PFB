@@ -1,80 +1,47 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import ApiImage from "../components/ApiImage";
-import "../styles/RentalCard.css";
-import "../styles/Buttons.css";
-import "../styles/RentRequest.css";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "../styles/RentalCard.css"; // ya tienes este
 
 const OwnRentalCard = ({ rental }) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const images = rental.images?.filter((img) => img !== null) || [];
 
-  const images = rental.images
-    ? rental.images.filter((img) => img !== null)
-    : [];
-
-  const totalImages = images.length;
-
-  const handleNext = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % totalImages);
-  };
-
-  const handlePrev = () => {
-    setCurrentImageIndex(
-      (prevIndex) => (prevIndex - 1 + totalImages) % totalImages
-    );
-  };
-
-  const goToImage = (index) => {
-    setCurrentImageIndex(index);
+  const sliderSettings = {
+    dots: true,
+    arrows: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
   };
 
   return (
     <article>
       <div className="rental-card">
-        {/* Carrusel de imágenes */}
-        <div className="relative">
-          {totalImages > 0 ? (
-            <ApiImage
-              name={`rent/${rental.property_owner_username}/${images[currentImageIndex]}`}
-              alt={`Imagen ${currentImageIndex + 1}`}
-              height={160}
-              className="w-full object-cover rounded"
-            />
+        <div className="rental-slider-container">
+          {images.length > 0 ? (
+            <Slider {...sliderSettings}>
+              {images.map((img, idx) => (
+                <div key={idx}>
+                  <ApiImage
+                    name={`rent/${rental.property_owner_username}/${img}`}
+                    alt={`Imagen ${idx + 1}`}
+                    className="rental-image"
+                  />
+                </div>
+              ))}
+            </Slider>
           ) : (
             <img
               src="/default-image.jpg"
               alt="sin imagen"
-              className="w-full h-40 object-cover rounded"
+              className="rental-image"
             />
-          )}
-
-          {totalImages > 1 && (
-            <>
-              <button onClick={handlePrev} className="carousel-button left">
-                ‹
-              </button>
-              <button onClick={handleNext} className="carousel-button right">
-                ›
-              </button>
-            </>
           )}
         </div>
 
-        {totalImages > 1 && (
-          <div className="flex justify-center mt-2">
-            {images.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToImage(index)}
-                className={`h-2 w-2 mx-1 rounded-full ${
-                  index === currentImageIndex ? "bg-blue-600" : "bg-gray-400"
-                }`}
-              />
-            ))}
-          </div>
-        )}
-
-        {/* Información del alquiler */}
         <p className="rent-card-city">{rental.city}</p>
         <p className="rent-card-price">{rental.price} €/mes</p>
         <p className="rent-card-rooms">

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import AdminRentalCard from "./AdminRentCard.jsx";
 import { fetchNotApprovedRentals } from "../services/fetchNotApprovedRentals.js";
+import "../styles/RentalCard.css";
 
 const NotApprovedRentList = () => {
   const [rents, setRents] = useState([]);
@@ -20,14 +21,18 @@ const NotApprovedRentList = () => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <h2 className="approve-title">Lista de alquiles para aprobar</h2>
       {rents.map((rent) => (
-        <AdminRentalCard
-          key={rent.id}
-          rental={rent}
-          onUpdate={() => {
-            setRents((prev) => prev.filter((r) => r.id !== rent.id));
-          }}
-        />
+        <div className="card-container">
+          {" "}
+          <AdminRentalCard
+            key={rent.id}
+            rental={rent}
+            onUpdate={() => {
+              setRents((prev) => prev.filter((r) => r.id !== rent.id));
+            }}
+          />
+        </div>
       ))}
     </div>
   );
