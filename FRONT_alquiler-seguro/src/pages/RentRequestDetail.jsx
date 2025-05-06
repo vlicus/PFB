@@ -63,10 +63,7 @@ export default function RentRequestDetail() {
         <ul>
           {photos?.map((photo) => (
             <li key={photo.id}>
-              <ApiImage
-                name={"rent/" + owner_username + "/" + photo.name}
-                alt={photo.name}
-              />
+              <ApiImage name={"rent/" + owner_username + "/" + photo.name} alt={photo.name} />
             </li>
           ))}
         </ul>
@@ -76,14 +73,14 @@ export default function RentRequestDetail() {
               initialValue={1}
               allowFraction={true}
               onClick={handleRating}
-              fillColor={"yellow"}
+              fillColor={"#01B0F1"}
             />
-            <br />
-            <label htmlFor="comment">Comentario</label>
-            <input
+            <label htmlFor="comment"></label>
+            <textarea
               id="comment"
               name="comment"
               required
+              placeholder="Aquí puede describir su experiencia"
               value={formState.comment}
               onChange={handleChange}
             />
