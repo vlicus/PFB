@@ -7,9 +7,17 @@ import Avatar from "./Avatar";
 
 export default function Nav() {
   const { token } = useAuth();
-  const user = useUser();
   return (
     <nav className="nav-buttons">
+      <menu>{token ? <UserNav /> : <AnonNav />}</menu>
+    </nav>
+  );
+}
+
+function UserNav() {
+  const user = useUser();
+  return (
+    <>
       <ul className="lista">
         <li>
           <Link to="/profile">
@@ -17,19 +25,11 @@ export default function Nav() {
           </Link>
         </li>
         <li>
-          <menu>{token ? <UserNav /> : <AnonNav />}</menu>
+          <div className="nav-buttons">
+            <SplitBasicExample></SplitBasicExample>
+          </div>
         </li>
       </ul>
-    </nav>
-  );
-}
-
-function UserNav() {
-  return (
-    <>
-      <div className="nav-buttons">
-        <SplitBasicExample></SplitBasicExample>
-      </div>
     </>
   );
 }
