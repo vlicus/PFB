@@ -27,9 +27,7 @@ export default function RentDetailPage() {
   };
 
   const handlePrev = () => {
-    setCurrentImageIndex(
-      (prevIndex) => (prevIndex - 1 + totalImages) % totalImages
-    );
+    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + totalImages) % totalImages);
   };
 
   const goToImage = (index) => {
@@ -76,7 +74,7 @@ export default function RentDetailPage() {
         </div>
 
         {totalImages > 1 && (
-          <div className="flex justify-center mb-6">
+          <div style={{ listStyle: "none" }} className="flex justify-center mb-6">
             {images.map((_, index) => (
               <button
                 key={index}
@@ -91,10 +89,7 @@ export default function RentDetailPage() {
 
         <h3 className="rental-owner">
           Publicado por{" "}
-          <Link
-            to={`/users/${property_owner_id}/history`}
-            className="owner-link"
-          >
+          <Link to={`/users/${property_owner_id}/history`} className="owner-link">
             @{username}
           </Link>
         </h3>

@@ -12,18 +12,19 @@ const Footer = () => {
       <h1 className="landing-title">Alquiler Seguro</h1>
       <FooterContainer className="landing-subtitle">
         <Row>
+          {/* Dejamos comentadas las posibles secciones para añadir a la página más adelante */}
           {/* <Column>
-            <Heading>About Us</Heading>
-            <FooterLink href="#">Aim</FooterLink>
-            <FooterLink href="#">Vision</FooterLink>
-            <FooterLink href="#">Testimonials</FooterLink>
+            <Heading>Sobre nosotros</Heading>
+            <FooterLink href="#">Porpósito</FooterLink>
+            <FooterLink href="#">Meta</FooterLink>
+            <FooterLink href="#">Testimonios</FooterLink>
           </Column> */}
           {/* <Column>
             <Heading>Services</Heading>
-            <FooterLink href="#">Writing</FooterLink>
-            <FooterLink href="#">Internships</FooterLink>
-            <FooterLink href="#">Coding</FooterLink>
-            <FooterLink href="#">Teaching</FooterLink>
+            <FooterLink href="#"></FooterLink>
+            <FooterLink href="#"></FooterLink>
+            <FooterLink href="#"></FooterLink>
+            <FooterLink href="#"></FooterLink>
           </Column> */}
           <Column>
             <Heading>Contáctanos</Heading>
@@ -33,6 +34,7 @@ const Footer = () => {
             <FooterLink href="https://github.com/nicofernandezdl7">Nicolás Fernández</FooterLink>
           </Column>
           {/* <Column>
+          Columna para las redes sociales de la aplicación
             <Heading>Social Media</Heading>
             <FooterLink href="#">
               <i className="fab fa-facebook-f">

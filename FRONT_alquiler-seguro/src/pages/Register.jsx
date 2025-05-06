@@ -8,11 +8,11 @@ export default function Register() {
   return (
     <main>
       <div className="form-card">
-        <h2>Registro</h2>
+        <h2>Crea tu cuenta!</h2>
         <form onSubmit={handleSubmit}>
           <ul>
             <li>
-              <label htmlFor="username">Nombre de usuario:</label>
+              <label htmlFor="username">Nombre de usuario</label>
               <input
                 type="text"
                 id="username"
@@ -23,7 +23,7 @@ export default function Register() {
               />
             </li>
             <li>
-              <label htmlFor="email">Email:</label>
+              <label htmlFor="email">Email</label>
               <input
                 type="email"
                 required
@@ -69,7 +69,7 @@ export default function Register() {
             </li>
             <li>
               <label htmlFor="bio">Bio</label>
-              <input
+              <textarea
                 type="text"
                 required
                 id="bio"

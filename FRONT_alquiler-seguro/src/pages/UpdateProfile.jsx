@@ -1,17 +1,16 @@
 import useUserUpdate from "../hooks/useUserUpdate";
 import "../styles/FormStyle.css";
 export default function UpdateProfile() {
-  const { handleChange, formState, handleSubmit, handleFileChange } =
-    useUserUpdate();
+  const { handleChange, formState, handleSubmit, handleFileChange } = useUserUpdate();
 
   return (
     <main>
-      <h2>Editar usuario</h2>
-      <div className="updateUserContainer">
+      <div className="form-card">
+        <h2>Editar usuario</h2>
         <form action={handleSubmit}>
           <ul className="lista-form">
             <li>
-              <label htmlFor="first_name">Nombre:</label>
+              <label htmlFor="first_name">Nombre</label>
               <input
                 type="text"
                 id="first_name"
@@ -22,7 +21,7 @@ export default function UpdateProfile() {
               />
             </li>
             <li>
-              <label htmlFor="last_name">Apellido:</label>
+              <label htmlFor="last_name">Apellido</label>
               <input
                 type="text"
                 id="last_name"
@@ -45,7 +44,7 @@ export default function UpdateProfile() {
             </li>
             <li>
               <label htmlFor="bio">Bio</label>
-              <input
+              <textarea
                 type="text"
                 required
                 id="bio"

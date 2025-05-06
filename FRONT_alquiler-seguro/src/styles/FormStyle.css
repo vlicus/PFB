@@ -23,6 +23,14 @@
   color: black;
 }
 
+.newrentcontainer textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
 .newrentcontainer input,
 .updateUserContainer input {
   display: block;
@@ -55,7 +63,7 @@
   border: none;
   color: white;
   cursor: pointer;
-  background-color: #4caf50;
+  background-color: black;
   width: 40%;
   font-size: 16px;
 }
