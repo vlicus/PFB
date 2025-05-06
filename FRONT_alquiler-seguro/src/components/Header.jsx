@@ -6,7 +6,11 @@ export default function Header() {
   return (
     <header className="main-header">
       <Link to="/" className="logo-link">
-        <img src="/clickAlquilerLogo.png" alt="Alquiler Seguro" className="logo" />
+        <img
+          src="/clickAlquilerLogo.png"
+          alt="Alquiler Seguro"
+          className="logo"
+        />
       </Link>
 
       <h2 className="header-slogan">

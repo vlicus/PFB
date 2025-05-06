@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Rating from "./UserRatings";
 import { Link } from "react-router-dom";
-
+import "../../styles/UserProfile.css";
 export default function UserRenterRatings({ userId }) {
   const [ratings, setRatings] = useState([]);
   const [loading, setLoading] = useState(true);

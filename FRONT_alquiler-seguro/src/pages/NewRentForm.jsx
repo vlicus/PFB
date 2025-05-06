@@ -1,8 +1,8 @@
 import useNewRent from "../hooks/useNewRent";
-import "../styles/FormStyle.css";
 
 export default function NewPostForm() {
-  const { formState, handleSubmit, handleTextChange, handleFileChange } = useNewRent();
+  const { formState, handleSubmit, handleTextChange, handleFileChange } =
+    useNewRent();
 
   return (
     <main>

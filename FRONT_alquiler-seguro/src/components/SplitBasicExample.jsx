@@ -28,6 +28,7 @@ function User() {
         <Dropdown.Item href="/password">Cambiar contraseña</Dropdown.Item>
         <Dropdown.Divider />
         <Dropdown.Item href="/rent/new">Nueva Propiedad</Dropdown.Item>
+        <Dropdown.Item href="/rents/own">Mis Propiedades</Dropdown.Item>
         <Dropdown.Divider />
         <Dropdown.Item href="/rent/requests">
           Solicitudes de visita/alquiler

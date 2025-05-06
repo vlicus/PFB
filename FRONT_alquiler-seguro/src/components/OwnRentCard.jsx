@@ -3,22 +3,15 @@ import { Link } from "react-router-dom";
 import ApiImage from "../components/ApiImage";
 import "../styles/RentalCard.css";
 import "../styles/Buttons.css";
-import useRent from "../hooks/useRent";
+import "../styles/RentRequest.css";
 
-export default function RentDetailPage() {
+const OwnRentalCard = ({ rental }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const {
-    property_owner_id,
-    address,
-    city,
-    price,
-    num_rooms,
-    description,
-    photos,
-    username,
-  } = useRent();
 
-  const images = photos?.filter((img) => img !== null) || [];
+  const images = rental.images
+    ? rental.images.filter((img) => img !== null)
+    : [];
+
   const totalImages = images.length;
 
   const handleNext = () => {
@@ -34,28 +27,24 @@ export default function RentDetailPage() {
   const goToImage = (index) => {
     setCurrentImageIndex(index);
   };
-  return (
-    <div style={{ display: "flex", justifyContent: "center", padding: "2rem" }}>
-      <div className="rental-card">
-        <h1 className="rent-card-city">{address}</h1>
-        <p className="rent-card-rooms">{city}</p>
-        <p className="rent-card-price">{price} €/mes</p>
-        <p className="rent-card-rooms">{num_rooms} habitaciones</p>
 
+  return (
+    <article>
+      <div className="rental-card">
         {/* Carrusel de imágenes */}
-        <div className="relative mb-4">
+        <div className="relative">
           {totalImages > 0 ? (
             <ApiImage
-              name={`rent/${username}/${images[currentImageIndex].name}`}
+              name={`rent/${rental.property_owner_username}/${images[currentImageIndex]}`}
               alt={`Imagen ${currentImageIndex + 1}`}
-              height={300}
+              height={160}
               className="w-full object-cover rounded"
             />
           ) : (
             <img
               src="/default-image.jpg"
               alt="sin imagen"
-              className="w-full h-60 object-cover rounded"
+              className="w-full h-40 object-cover rounded"
             />
           )}
 
@@ -69,14 +58,10 @@ export default function RentDetailPage() {
               </button>
             </>
           )}
-          <p>{description}</p>
         </div>
 
         {totalImages > 1 && (
-          <div
-            style={{ listStyle: "none" }}
-            className="flex justify-center mb-6"
-          >
+          <div className="flex justify-center mt-2">
             {images.map((_, index) => (
               <button
                 key={index}
@@ -89,13 +74,35 @@ export default function RentDetailPage() {
           </div>
         )}
 
-        <h3 className="rental-owner">
+        {/* Información del alquiler */}
+        <p className="rent-card-city">{rental.city}</p>
+        <p className="rent-card-price">{rental.price} €/mes</p>
+        <p className="rent-card-rooms">
+          {rental.num_rooms}{" "}
+          {rental.num_rooms > 1 ? "Habitaciones" : "Habitación"}
+        </p>
+        <p className="rental-owner">
           Publicado por{" "}
-          <Link to={`/profile/${property_owner_id}`} className="owner-link">
-            @{username}
+          <span>
+            <Link
+              to={`/profile/${rental.property_owner_id}`}
+              className="owner-link"
+            >
+              @{rental.property_owner_username}
+            </Link>
+          </span>
+        </p>
+        <div className="rental-card-buttons">
+          <Link to={`/rent/${rental.id}`}>
+            <button className="view-more-btn">Ver más</button>
           </Link>
-        </h3>
+          <Link to={`/rent/${rental.id}/update`}>
+            <button className="view-more-btn">Editar</button>
+          </Link>
+        </div>
       </div>
-    </div>
+    </article>
   );
-}
+};
+
+export default OwnRentalCard;

@@ -1,5 +1,5 @@
 import { Rating } from "react-simple-star-rating";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useRentRequest from "../hooks/useRentRequest";
 import useRating from "../hooks/useRating";
 import { useState } from "react";
@@ -17,15 +17,26 @@ export default function RentRequestDetail() {
     address,
     status,
     owner_username,
+    property_owner_id,
     photos,
     price,
     num_rooms,
     renter_username,
+    renter_id,
   } = useRentRequest();
   const navigate = useNavigate();
   const [rate, setRating] = useState(0);
   const { handleChange, formState, handleSubmit } = useRating();
   const { myUsername } = useAuth();
+
+  const statusLabels = {
+    PENDING: "Pendiente",
+    APPROVED: "Aprobado",
+    ACTIVE: "Activo",
+    COMPLETED: "Completado",
+    CANCELLED: "Cancelado",
+    REJECTED: "Rechazado",
+  };
   formState.rating = rate;
   if (!token) {
     navigate("/login");
@@ -44,20 +55,26 @@ export default function RentRequestDetail() {
           <p className="rent-card-rooms">Nº habitaciones: {num_rooms}</p>
         )}
         {myUsername !== renter_username && (
-          <>
+          <Link to={"/profile/" + renter_id}>
+            <>
             {renter_username && (
               <p className="rental-owner">Solicitante: {renter_username}</p>
             )}
           </>
+          </Link>
         )}
         {myUsername !== owner_username && (
+          <Link to={"/profile/" + property_owner_id}>
+            (
           <>
             {owner_username && (
               <p className="rental-owner">Casero: {owner_username}</p>
             )}
           </>
+          </Link>
+        )
         )}
-        {status && <p>Estado: {status}</p>}
+        <p>Estado: {statusLabels[status] || status}</p>
         {photos?.length > 0 && (
           <div className="rent-request-slider">
             <Slider
