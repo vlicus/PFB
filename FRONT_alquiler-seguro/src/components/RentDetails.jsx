@@ -98,7 +98,7 @@ const RentDetailPage = () => {
       <h3 className="text-lg mt-4">
         Publicado por{" "}
         <Link
-          to={`/users/${property_owner_id}/history`}
+          to={`/profile/${property_owner_id}`}
           className="text-blue-600 font-semibold hover:underline"
         >
           @{username}

@@ -1,10 +1,10 @@
 import useUpdateRent from "../hooks/useUpdateRent";
-import "../styles/FormStyle.css";
 import { useParams } from "react-router-dom";
 
 export default function UpdateRentForm() {
   const { rentId } = useParams();
-  const { formState, handleSubmit, handleTextChange, handleFileChange } = useUpdateRent();
+  const { formState, handleSubmit, handleTextChange, handleFileChange } =
+    useUpdateRent();
   return (
     <main>
       <h2>Actualiza tu alquiler!</h2>

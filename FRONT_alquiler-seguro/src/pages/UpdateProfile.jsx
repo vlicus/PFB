@@ -1,7 +1,7 @@
 import useUserUpdate from "../hooks/useUserUpdate";
-import "../styles/FormStyle.css";
 export default function UpdateProfile() {
-  const { handleChange, formState, handleSubmit, handleFileChange } = useUserUpdate();
+  const { handleChange, formState, handleSubmit, handleFileChange } =
+    useUserUpdate();
 
   return (
     <main>

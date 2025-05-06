@@ -1,5 +1,5 @@
 import { Rating } from "react-simple-star-rating";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useRentRequest from "../hooks/useRentRequest";
 import useRating from "../hooks/useRating";
 import { useState } from "react";
@@ -10,12 +10,30 @@ import "../styles/RentRequestDetail.css";
 
 export default function RentRequestDetail() {
   const { token } = useAuth();
-  const { address, status, owner_username, photos, price, num_rooms, renter_username } =
-    useRentRequest();
+  const {
+    address,
+    status,
+    owner_username,
+    property_owner_id,
+    photos,
+    price,
+    num_rooms,
+    renter_username,
+    renter_id,
+  } = useRentRequest();
   const navigate = useNavigate();
   const [rate, setRating] = useState(0);
   const { handleChange, formState, handleSubmit } = useRating();
   const { myUsername } = useAuth();
+
+  const statusLabels = {
+    PENDING: "Pendiente",
+    APPROVED: "Aprobado",
+    ACTIVE: "Activo",
+    COMPLETED: "Completado",
+    CANCELLED: "Cancelado",
+    REJECTED: "Rechazado",
+  };
   formState.rating = rate;
   if (!token) {
     navigate("/login");
@@ -32,10 +50,16 @@ export default function RentRequestDetail() {
         {price && <p>Precio: {price}</p>}
         {num_rooms && <p>Nº habitaciones: {num_rooms}</p>}
         {myUsername != renter_username && (
-          <>{renter_username && <p>Solicitante: {renter_username}</p>}</>
+          <Link to={"/profile/" + renter_id}>
+            <>{renter_username && <p>Solicitante: {renter_username}</p>}</>
+          </Link>
         )}
-        {myUsername != owner_username && <> {owner_username && <p>Casero: {owner_username}</p>}</>}
-        {status && <p>Estado: {status}</p>}
+        {myUsername != owner_username && (
+          <Link to={"/profile/" + property_owner_id}>
+            <> {owner_username && <p>Casero: {owner_username}</p>}</>
+          </Link>
+        )}
+        <p>Estado: {statusLabels[status] || status}</p>
         <ul>
           {photos?.map((photo) => (
             <li key={photo.id}>

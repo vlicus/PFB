@@ -9,6 +9,6 @@ export default function Avatar({ user }) {
       alt={user.username}
     />
   ) : (
-    <img className="avatar" src={avatarDefecto} />
+    <img className="profile-avatar" src={avatarDefecto} />
   );
 }
