@@ -4,14 +4,24 @@ import useRentRequest from "../hooks/useRentRequest";
 import useRating from "../hooks/useRating";
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import ApiImage from "../components/ApiImage";
 
 import "../styles/RentRequestDetail.css";
 
 export default function RentRequestDetail() {
   const { token } = useAuth();
-  const { address, status, owner_username, photos, price, num_rooms, renter_username } =
-    useRentRequest();
+  const {
+    address,
+    status,
+    owner_username,
+    photos,
+    price,
+    num_rooms,
+    renter_username,
+  } = useRentRequest();
   const navigate = useNavigate();
   const [rate, setRating] = useState(0);
   const { handleChange, formState, handleSubmit } = useRating();
@@ -28,21 +38,48 @@ export default function RentRequestDetail() {
   return (
     <main className="rent-request-detail-main">
       <div className="rent-request-detail">
-        {address && <p>Dirección: {address}</p>}
-        {price && <p>Precio: {price}</p>}
-        {num_rooms && <p>Nº habitaciones: {num_rooms}</p>}
-        {myUsername != renter_username && (
-          <>{renter_username && <p>Solicitante: {renter_username}</p>}</>
+        {address && <p className="rent-card-city">Dirección: {address}</p>}
+        {price && <p className="rent-card-price">Precio: {price}</p>}
+        {num_rooms && (
+          <p className="rent-card-rooms">Nº habitaciones: {num_rooms}</p>
         )}
-        {myUsername != owner_username && <> {owner_username && <p>Casero: {owner_username}</p>}</>}
+        {myUsername !== renter_username && (
+          <>
+            {renter_username && (
+              <p className="rental-owner">Solicitante: {renter_username}</p>
+            )}
+          </>
+        )}
+        {myUsername !== owner_username && (
+          <>
+            {owner_username && (
+              <p className="rental-owner">Casero: {owner_username}</p>
+            )}
+          </>
+        )}
         {status && <p>Estado: {status}</p>}
-        <ul>
-          {photos?.map((photo) => (
-            <li key={photo.id}>
-              <ApiImage name={"rent/" + owner_username + "/" + photo.name} alt={photo.name} />
-            </li>
-          ))}
-        </ul>
+        {photos?.length > 0 && (
+          <div className="rent-request-slider">
+            <Slider
+              dots={true}
+              arrows={true}
+              infinite={false}
+              speed={500}
+              slidesToShow={1}
+              slidesToScroll={1}
+            >
+              {photos.map((photo) => (
+                <div key={photo.id}>
+                  <ApiImage
+                    name={`rent/${owner_username}/${photo.name}`}
+                    alt={photo.name}
+                    className="slider-request-image"
+                  />
+                </div>
+              ))}
+            </Slider>
+          </div>
+        )}
         {status != "PENDING" && (
           <form onSubmit={handleSubmit}>
             <Rating

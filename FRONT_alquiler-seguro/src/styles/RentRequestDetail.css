@@ -58,3 +58,98 @@
   min-height: 100px;
   max-height: 150px;
 }
+
+.rent-request-slider {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 1.5rem auto;
+  position: relative;
+  background: #f0f0f0;
+}
+
+.slider-request-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.slick-prev,
+.slick-next {
+  z-index: 10;
+  width: 30px;
+  height: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.slick-prev {
+  left: 10px;
+}
+
+.slick-next {
+  right: 10px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: black;
+  font-size: 30px;
+}
+
+.slick-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.slick-dots li button:before {
+  color: black;
+  opacity: 0.6;
+}
+
+.slick-dots li.slick-active button:before {
+  color: black;
+  opacity: 1;
+}
+
+.rent-card-city {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 10px 0 5px;
+  color: #333;
+}
+
+.rent-card-price {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #000000;
+}
+
+.rent-card-rooms {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #000;
+}
+
+.rental-owner {
+  font-size: 1.1rem;
+  color: #000;
+  margin-bottom: 12px;
+}
+
+.owner-link {
+  color: #2563eb;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.owner-link:hover {
+  text-decoration: underline;
+}

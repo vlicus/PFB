@@ -1,6 +1,9 @@
 import Date from "./Date";
 import { useRentRequestActions } from "../../hooks/useRentRequestActions";
 import { useAuth } from "../../contexts/AuthContext";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import ApiImage from "../ApiImage.jsx";
 import { Link } from "react-router-dom";
 import "../../styles/RentRequest.css";
@@ -33,17 +36,28 @@ export default function RentRequest({ rentRequest }) {
   return (
     <article className="rent-request-list">
       <Link to={"/rent/request/" + id}>
-        <ApiImage
-          name={"rent/" + owner_username + "/" + photo}
-          alt={photo}
-          height={200}
-        />
-        {address && <p>Dirección: {address}</p>}
+        <div>
+          <ApiImage
+            name={`rent/${owner_username}/${photo}`}
+            alt="Imagen de la solicitud"
+            className="single-request-image"
+          />
+        </div>
+
+        {address && <p className="rent-card-city">Dirección: {address}</p>}
         {myUsername != renter_username && (
-          <>{renter_username && <p>Solicitante: {renter_username}</p>}</>
+          <>
+            {renter_username && (
+              <p className="rental-owner">Solicitante: {renter_username}</p>
+            )}
+          </>
         )}
         {myUsername != owner_username && (
-          <> {owner_username && <p>Casero: {owner_username}</p>}</>
+          <>
+            {owner_username && (
+              <p className="rental-owner">Casero: {owner_username}</p>
+            )}
+          </>
         )}
         <p>Estado: {statusLabels[status] || status}</p>
       </Link>

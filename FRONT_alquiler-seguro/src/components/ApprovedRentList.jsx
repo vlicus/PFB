@@ -15,7 +15,6 @@ const ApprovedRentList = ({ filters }) => {
   };
 
   useEffect(() => {
-    console.log("Filtros enviados al fetch:", filters);
     setLoading(true);
     fetchApprovedRentals(filters)
       .then((data) => {
