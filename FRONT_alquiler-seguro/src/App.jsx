@@ -30,47 +30,49 @@ const App = () => {
   return (
     <>
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/register"
-          element={!token ? <Register /> : <Navigate to="/" />}
-        />
-        <Route path="/validation/:regcode" element={<Validation />} />
-        <Route
-          path="login"
-          element={!token ? <Login /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/enterEmailRecovery"
-          element={<SendEmailPasswordRecovery />}
-        />
-        <Route path="/passwordRecovery" element={<SendPasswordRecovery />} />
-        <Route
-          path="/profile"
-          element={token ? <Profile /> : <Navigate to="/login" />}
-        />
-        <Route path="/profile/update" element={<UpdateProfile />} />
-        <Route path="/profile/:userId" element={<PublicProfile />} />
-        <Route path="/rent/approve" element={<ApproveRents />} />
-        <Route path="/rents" element={<RentsPage />} />
-        <Route
-          path="/rent/new"
-          element={token ? <NewRentForm /> : <Navigate to="login" />}
-        />
-        <Route
-          path="/rent/request/:requestId"
-          element={<RentRequestDetail />}
-        />
-        {/*  <Route path="/profile/rent/update" element={<ApproveRents />} /> */}
-        <Route path="/rent/requests" element={<RentsRequested />} />
-        <Route path="/renter/requests" element={<MyRentsRequested />} />
-        <Route path="/password" element={<UpdatePassword />} />
-        <Route path="/rent/:rentId" element={<RentDetailPage />} />
-        <Route path="/rent/:rentId/update" element={<UpdateRentForm />} />
-        <Route path="/rents/own" element={<OwnRents />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/register"
+            element={!token ? <Register /> : <Navigate to="/" />}
+          />
+          <Route path="/validation/:regcode" element={<Validation />} />
+          <Route
+            path="login"
+            element={!token ? <Login /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/enterEmailRecovery"
+            element={<SendEmailPasswordRecovery />}
+          />
+          <Route path="/passwordRecovery" element={<SendPasswordRecovery />} />
+          <Route
+            path="/profile"
+            element={token ? <Profile /> : <Navigate to="/login" />}
+          />
+          <Route path="/profile/update" element={<UpdateProfile />} />
+          <Route path="/profile/:userId" element={<PublicProfile />} />
+          <Route path="/rent/approve" element={<ApproveRents />} />
+          <Route path="/rents" element={<RentsPage />} />
+          <Route
+            path="/rent/new"
+            element={token ? <NewRentForm /> : <Navigate to="login" />}
+          />
+          <Route
+            path="/rent/request/:requestId"
+            element={<RentRequestDetail />}
+          />
+          {/*  <Route path="/profile/rent/update" element={<ApproveRents />} /> */}
+          <Route path="/rent/requests" element={<RentsRequested />} />
+          <Route path="/renter/requests" element={<MyRentsRequested />} />
+          <Route path="/password" element={<UpdatePassword />} />
+          <Route path="/rent/:rentId" element={<RentDetailPage />} />
+          <Route path="/rent/:rentId/update" element={<UpdateRentForm />} />
+          <Route path="/rents/own" element={<OwnRents />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
       <FooterComponent />
     </>
   );
