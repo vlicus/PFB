@@ -7,7 +7,14 @@ const Footer = () => {
   return (
     <Box
       className="rents-background landing-header"
-      style={{ maxHeight: "370px", paddingTop: "30px" }}
+      style={{
+        maxHeight: "370px",
+        paddingTop: "30px",
+        position: "relative",
+        left: "0",
+        bottom: "0",
+        right: "0",
+      }}
     >
       <h1 className="landing-title">Alquiler Seguro</h1>
       <FooterContainer className="landing-subtitle">

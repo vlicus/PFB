@@ -6,6 +6,7 @@ import { AuthProvider } from "./contexts/AuthContext.jsx";
 import { ToastContainer } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ErrorBoundary from "./components/ErrorBoundary.jsx";
+import "./App.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
