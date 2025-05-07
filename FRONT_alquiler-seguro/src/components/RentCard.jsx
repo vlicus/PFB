@@ -1,80 +1,68 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useRentRequestActions } from "../hooks/useRentRequestActions";
 import ApiImage from "../components/ApiImage";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "../styles/RentalCard.css";
 import "../styles/Buttons.css";
 
-const RentalCard = ({ rental }) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+const CustomPrevArrow = (props) => {
+  const { className, style, onClick } = props;
+  return (
+    <button
+      className={`${className} custom-prev`}
+      style={{ ...style }}
+      onClick={onClick}
+    >
+      ‹
+    </button>
+  );
+};
+
+const CustomNextArrow = (props) => {
+  const { className, style, onClick } = props;
+  return (
+    <button
+      className={`${className} custom-next`}
+      style={{ ...style }}
+      onClick={onClick}
+    >
+      ›
+    </button>
+  );
+};
+
+const RentCard = ({ rental }) => {
   const { sendRentRequest } = useRentRequestActions();
+  const totalImages = rental.images.length;
 
-  const images = rental.images
-    ? rental.images.filter((img) => img !== null)
-    : [];
-
-  const totalImages = images.length;
-
-  const handleNext = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % totalImages);
-  };
-
-  const handlePrev = () => {
-    setCurrentImageIndex(
-      (prevIndex) => (prevIndex - 1 + totalImages) % totalImages
-    );
-  };
-
-  const goToImage = (index) => {
-    setCurrentImageIndex(index);
+  const sliderSettings = {
+    dots: true,
+    arrows: true,
+    infinite: totalImages > 1,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    prevArrow: <CustomPrevArrow />,
+    nextArrow: <CustomNextArrow />,
   };
 
   return (
     <div className="rental-card">
-      {/* Carrusel de imágenes */}
-      <div className="relative">
-        {totalImages > 0 ? (
-          <ApiImage
-            name={`rent/${rental.property_owner_username}/${images[currentImageIndex]}`}
-            alt={`Imagen ${currentImageIndex + 1}`}
-            height={160}
-            className="w-full object-cover rounded"
-          />
-        ) : (
-          <img
-            src="/default-image.jpg"
-            alt="sin imagen"
-            className="w-full h-40 object-cover rounded"
-          />
-        )}
-
-        {totalImages > 1 && (
-          <>
-            <button onClick={handlePrev} className="carousel-button left">
-              ‹
-            </button>
-            <button onClick={handleNext} className="carousel-button right">
-              ›
-            </button>
-          </>
-        )}
-      </div>
-
-      {totalImages > 1 && (
-        <div className="flex justify-center mt-2">
-          {images.map((_, index) => (
-            <button
+      <div className="rental-slider-container">
+        <Slider {...sliderSettings} className="rental-slider">
+          {rental.images.map((image, index) => (
+            <ApiImage
               key={index}
-              onClick={() => goToImage(index)}
-              className={`h-2 w-2 mx-1 rounded-full ${
-                index === currentImageIndex ? "bg-blue-600" : "bg-gray-400"
-              }`}
+              name={`rent/${rental.property_owner_username}/${image}`}
+              alt={`Imagen ${index + 1}`}
+              className="rental-image rental-card-image"
             />
           ))}
-        </div>
-      )}
+        </Slider>
+      </div>
 
-      {/* Información del alquiler */}
       <p className="rent-card-city">{rental.city}</p>
       <p className="rent-card-price">{rental.price} €/mes</p>
       <p className="rent-card-rooms">
@@ -83,15 +71,11 @@ const RentalCard = ({ rental }) => {
       </p>
       <p className="rental-owner">
         Publicado por{" "}
-        <span>
-          <Link
-            to={`/profile/${rental.property_owner_id}`}
-            className="owner-link"
-          >
-            @{rental.property_owner_username}
-          </Link>
-        </span>
+        <Link to={`/profile/${rental.property_owner_id}`}>
+          @{rental.property_owner_username}
+        </Link>
       </p>
+
       <div className="rental-card-buttons">
         <Link to={`/rent/${rental.id}`}>
           <button className="view-more-btn">Ver más</button>
@@ -107,4 +91,4 @@ const RentalCard = ({ rental }) => {
   );
 };
 
-export default RentalCard;
+export default RentCard;
