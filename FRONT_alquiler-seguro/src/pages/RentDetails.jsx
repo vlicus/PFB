@@ -7,32 +7,6 @@ import "../styles/RentalCardDetails.css";
 import "../styles/Buttons.css";
 import useRent from "../hooks/useRent";
 
-const CustomPrevArrow = (props) => {
-  const { className, style, onClick } = props;
-  return (
-    <button
-      className={`${className} custom-prev`}
-      style={{ ...style }}
-      onClick={onClick}
-    >
-      ‹
-    </button>
-  );
-};
-
-const CustomNextArrow = (props) => {
-  const { className, style, onClick } = props;
-  return (
-    <button
-      className={`${className} custom-next`}
-      style={{ ...style }}
-      onClick={onClick}
-    >
-      ›
-    </button>
-  );
-};
-
 export default function RentDetailPage() {
   const {
     property_owner_id,
@@ -54,9 +28,6 @@ export default function RentDetailPage() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    prevArrow: <CustomPrevArrow />,
-    nextArrow: <CustomNextArrow />,
-    appendDots: (dots) => <ul>{dots}</ul>,
   };
 
   return (

@@ -3,7 +3,7 @@ import ApiImage from "../components/ApiImage";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "../styles/RentalCard.css"; // ya tienes este
+import "../styles/RentalCard.css";
 
 const OwnRentalCard = ({ rental }) => {
   const images = rental.images?.filter((img) => img !== null) || [];
