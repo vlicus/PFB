@@ -14,6 +14,7 @@ const selectFilteredRentsModel = async ({ city, maxPrice, minRooms }) => {
     r.is_available,
     r.is_approved,
     r.property_owner_id,
+    r.created_at,
     u.username AS property_owner_username,
     JSON_ARRAYAGG(ri.name) AS images
   FROM rents r
@@ -39,11 +40,10 @@ const selectFilteredRentsModel = async ({ city, maxPrice, minRooms }) => {
     values.push(Number(minRooms));
   }
 
-  query += " GROUP BY r.id ORDER BY r.price DESC";
+  query += " GROUP BY r.id ORDER BY r.created_at DESC";
 
   console.log("QUERY:", query);
   console.log("VALUES:", values);
-
   const [rents] = await pool.query(query, values);
   return rents;
 };
