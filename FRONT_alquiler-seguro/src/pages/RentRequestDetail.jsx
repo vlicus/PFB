@@ -23,12 +23,24 @@ export default function RentRequestDetail() {
     num_rooms,
     renter_username,
     renter_id,
+    city,
+    start_date,
+    end_date,
   } = useRentRequest();
   const navigate = useNavigate();
   const [rate, setRating] = useState(0);
   const { handleChange, formState, handleSubmit } = useRating();
   const { myUsername } = useAuth();
 
+  const fechaEntradaFormateada = new Date(start_date).toLocaleString("es-ES", {
+    dateStyle: "short",
+    timeStyle: "short",
+  });
+
+  const fechaSalidaFormateada = new Date(end_date).toLocaleString("es-ES", {
+    dateStyle: "short",
+    timeStyle: "short",
+  });
   const statusLabels = {
     PENDING: "Pendiente",
     APPROVED: "Aprobado",
@@ -49,11 +61,12 @@ export default function RentRequestDetail() {
   return (
     <main className="rent-request-detail-main">
       <div className="rent-request-detail">
-        {address && <p className="rent-card-city">Dirección: {address}</p>}
-        {price && <p className="rent-card-price">Precio: {price}</p>}
-        {num_rooms && (
-          <p className="rent-card-rooms">Nº habitaciones: {num_rooms}</p>
-        )}
+        {address && <p className="rent-card-city">{address}</p>}
+        {city && <p className="rent-card-city">{city}</p>}
+        {price && <p className="rent-card-price">{price} €/mes</p>}
+        <p className="rent-card-rooms">
+          {num_rooms} {num_rooms > 1 ? "Habitaciones" : "Habitación"}
+        </p>
         {myUsername !== renter_username && (
           <Link to={"/profile/" + renter_id}>
             <>
@@ -73,6 +86,13 @@ export default function RentRequestDetail() {
           </Link>
         )}
         <p>Estado: {statusLabels[status] || status}</p>
+        {status === "ACTIVE" && <p>Fecha de entrada: {fechaFormateada}</p>}
+        {status === "COMPLETED" && (
+          <>
+            <p>Fecha de entrada: {fechaEntradaFormateada}</p>
+            <p>Fecha de salida: {fechaSalidaFormateada}</p>
+          </>
+        )}
         {photos?.length > 0 && (
           <div className="rent-request-slider">
             <Slider

@@ -22,6 +22,7 @@ const selectRentRequestByIdModel = async (requestId) => {
     r.price,
     r.num_rooms,
     r.is_available,
+    r.city,
     rh.start_date,
     rh.end_date,
     rh.status,
