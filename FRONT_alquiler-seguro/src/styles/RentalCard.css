@@ -41,6 +41,13 @@
   object-fit: cover;
 }
 
+.slick-slide img {
+  display: block;
+  height: 300px;
+  width: 100% !important;
+  object-fit: cover;
+}
+
 .slick-prev,
 .slick-next {
   z-index: 30;
@@ -91,6 +98,7 @@
 .rental-card h3,
 .rental-card p {
   text-align: center;
+  min-width: 100%;
 }
 .card-container {
   display: flex;

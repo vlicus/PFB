@@ -16,14 +16,6 @@
   justify-content: space-between;
   overflow-y: auto;
 }
-.rental-slider .slick-dots {
-  display: block !important;
-}
-.rental-card:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  transform: translateY(-4px);
-}
-
 .rental-slider-container {
   position: relative;
   width: 100%;
@@ -32,6 +24,14 @@
   overflow: hidden;
   background: #f0f0f0;
 }
+.rental-slider .slick-dots {
+  display: block !important;
+}
+.rental-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+}
+
 .rental-card-description {
   padding: 1rem;
   text-align: justify;
@@ -84,11 +84,11 @@
   opacity: 1;
 }
 
-.rental-image {
-  width: 100%;
-  height: 100%;
+.slick-slide img {
+  display: block;
+  height: 300px;
+  width: 100% !important;
   object-fit: cover;
-  border-radius: 12px;
 }
 
 .rental-card h1,
