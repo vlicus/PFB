@@ -8,12 +8,13 @@ export default function SendEmailPasswordRecovery() {
   return (
     <main>
       <div className="form-card">
-        <h2>Introduzca el email para recuperar su contraseña</h2>
+        <h2>Introduzca los datos</h2>
         <form onSubmit={newPassSubmit}>
           <ul>
             <li>
-              <label htmlFor="email">Email: </label>
+              <label htmlFor="email">Email</label>
               <input
+                style={{ width: "100%" }}
                 name="email"
                 id="email"
                 value={newPassState.email}
@@ -22,8 +23,9 @@ export default function SendEmailPasswordRecovery() {
               />
             </li>
             <li>
-              <label htmlFor="recoverPassCode">Código de recuperación: </label>
+              <label htmlFor="recoverPassCode">Código de recuperación</label>
               <input
+                style={{ width: "100%" }}
                 name="recoverPassCode"
                 id="recoverPassCode"
                 value={newPassSubmit.recoverPassCode}
@@ -32,7 +34,7 @@ export default function SendEmailPasswordRecovery() {
               />
             </li>
             <li>
-              <label htmlFor="newPass">Contraseña nueva: </label>
+              <label htmlFor="newPass">Contraseña nueva</label>
               <PasswordInput
                 name="newPass"
                 id="newPass"

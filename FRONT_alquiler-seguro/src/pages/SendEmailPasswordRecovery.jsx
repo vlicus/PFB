@@ -7,10 +7,10 @@ export default function SendEmailPasswordRecovery() {
   return (
     <main>
       <div className="form-card">
-        <h2>Introduzca el email para recuperar su contraseña</h2>
+        <h2>Introduzca su email</h2>
 
         <form onSubmit={handleRecoveryEmailSubmit}>
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email">Email</label>
           <input
             name="email"
             id="email"
@@ -18,7 +18,7 @@ export default function SendEmailPasswordRecovery() {
             onChange={handleRecoveryChange}
             placeholder="Introduce tu email"
           />
-          <button>Enviar</button>
+          <button style={{ marginTop: "1rem" }}>Enviar</button>
         </form>
       </div>
     </main>

@@ -1,5 +1,4 @@
 import useNewRent from "../hooks/useNewRent";
-import "../styles/FormStyle.css";
 
 export default function NewPostForm() {
   const { formState, handleSubmit, handleTextChange, handleFileChange } = useNewRent();
@@ -37,7 +36,7 @@ export default function NewPostForm() {
             <li>
               <label htmlFor="price">Precio</label>
               <input
-                type="text"
+                type="number"
                 name="price"
                 id="price"
                 required

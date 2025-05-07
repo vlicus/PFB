@@ -3,6 +3,7 @@
   max-width: 800px;
   max-height: 700px;
   border: 1px solid #e2e8f0;
+
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
@@ -15,7 +16,11 @@
   flex-direction: column;
   justify-content: space-between;
 }
-
+.approve-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
 .rental-card:hover {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   transform: translateY(-4px);
@@ -87,7 +92,14 @@
 .rental-card p {
   text-align: center;
 }
-
+.card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
 .rent-card-city {
   font-size: 1.4rem;
   font-weight: 600;

@@ -35,13 +35,12 @@ const CustomNextArrow = (props) => {
 
 export default function RentDetailPage() {
   const {
-    id,
     property_owner_id,
     address,
+    city,
     price,
     num_rooms,
     description,
-    is_available,
     photos,
     username,
   } = useRent();
@@ -64,8 +63,9 @@ export default function RentDetailPage() {
     <div style={{ display: "flex", justifyContent: "center", padding: "2rem" }}>
       <div className="rental-card">
         <h1 className="rent-card-city">{address}</h1>
-
-        <div className="rental-slider-container">
+        <p className="rent-card-rooms">{city}</p>
+        {/* Carrusel de imágenes */}
+        <div className="relative mb-4">
           {totalImages > 0 ? (
             <Slider {...sliderSettings} className="rental-slider">
               {photos.map((image, index) => {
@@ -93,15 +93,11 @@ export default function RentDetailPage() {
           {num_rooms} {num_rooms > 1 ? "Habitaciones" : "Habitación"}
         </p>
 
-        <h2>Descripción</h2>
-        <p className="rental-card-description">{description}</p>
+        <p>{description}</p>
 
         <h3 className="rental-owner">
           Publicado por{" "}
-          <Link
-            to={`/users/${property_owner_id}/history`}
-            className="owner-link"
-          >
+          <Link to={`/profile/${property_owner_id}`} className="owner-link">
             @{username}
           </Link>
         </h3>

@@ -10,7 +10,7 @@ const main = async () => {
   // Variable que almacenará una conexión con la base de datos.
   let pool;
 
-  const hashedPass = await bcrypt.hash("abc123", 10);
+  const hashedPass = await bcrypt.hash("Abc123!", 10);
   const uploads = path.resolve(UPLOADS_DIR);
 
   try {
@@ -242,6 +242,72 @@ VALUES
 ('d3c1-c3c1-c3c1-c3c1-d3c1c1c1c1c1', 'verano_12_2.jpg'),
 ('d3c2-c3c2-c3c2-c3c2-d3c2c2c2c2c2', 'andalucia_20_1.jpg'),
 ('d3c2-c3c2-c3c2-c3c2-d3c2c2c2c2c2', 'andalucia_20_2.jpg');
+`
+    );
+
+    await pool.query(
+      `
+INSERT INTO rental_history (rent_id, renter_id, status) VALUES
+('d2b1-b2b1-b2b1-b2b1-d2b1b1b1b1b1', 'aaaa1111-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'APPROVED'), 
+('d3c2-c3c2-c3c2-c3c2-d3c2c2c2c2c2', 'aaaa1111-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'APPROVED'); 
+`
+    );
+    await pool.query(
+      `
+INSERT INTO rental_history (rent_id, renter_id, status) VALUES
+('d1a1-a1a1-a1a1-a1a1-d1a1a1a1a1a1', 'bbbb2222-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 'APPROVED'), 
+('d3c2-c3c2-c3c2-c3c2-d3c2c2c2c2c2', 'bbbb2222-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 'APPROVED'); 
+`
+    );
+    await pool.query(
+      `
+INSERT INTO rental_history (rent_id, renter_id, status) VALUES
+('d1a1-a1a1-a1a1-a1a1-d1a1a1a1a1a1', 'cccc3333-cccc-cccc-cccc-cccccccccccc', 'APPROVED'), 
+('d2b1-b2b1-b2b1-b2b1-d2b1b1b1b1b1', 'cccc3333-cccc-cccc-cccc-cccccccccccc', 'APPROVED'); 
+`
+    );
+
+    await pool.query(
+      `
+
+INSERT INTO ratings (author_id, recipient_id, rental_history_id, is_owner, rating, comment) VALUES
+('aaaa1111-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'bbbb2222-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 1, false, 5, 'Muy buen piso, cómodo y bien ubicado.'),
+('bbbb2222-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 'aaaa1111-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 1, true, 5, 'Alicia fue una inquilina responsable.'); 
+`
+    );
+    await pool.query(
+      `
+INSERT INTO ratings (author_id, recipient_id, rental_history_id, is_owner, rating, comment) VALUES
+('aaaa1111-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'cccc3333-cccc-cccc-cccc-cccccccccccc', 2, false, 4, 'Apartamento bonito, aunque algo ruidoso.'),
+('cccc3333-cccc-cccc-cccc-cccccccccccc', 'aaaa1111-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 2, true, 5, 'Alicia fue muy amable y puntual.');
+`
+    );
+    await pool.query(
+      `
+INSERT INTO ratings (author_id, recipient_id, rental_history_id, is_owner, rating, comment) VALUES
+('bbbb2222-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 'aaaa1111-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 3, false, 5, 'Todo perfecto, muy limpio.'),
+('aaaa1111-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'bbbb2222-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 3, true, 5, 'Bob fue muy educado y cuidadoso.');
+`
+    );
+    await pool.query(
+      `
+INSERT INTO ratings (author_id, recipient_id, rental_history_id, is_owner, rating, comment) VALUES
+('bbbb2222-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 'cccc3333-cccc-cccc-cccc-cccccccccccc', 4, false, 4, 'Buena estancia, aunque el wifi fallaba.'),
+('cccc3333-cccc-cccc-cccc-cccccccccccc', 'bbbb2222-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 4, true, 4, 'Bob dejó el apartamento en buen estado.');
+`
+    );
+    await pool.query(
+      `
+INSERT INTO ratings (author_id, recipient_id, rental_history_id, is_owner, rating, comment) VALUES
+('cccc3333-cccc-cccc-cccc-cccccccccccc', 'aaaa1111-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 5, false, 5, 'Muy buena experiencia, repetiría.'),
+('aaaa1111-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'cccc3333-cccc-cccc-cccc-cccccccccccc', 5, true, 5, 'Carla fue encantadora.');
+`
+    );
+    await pool.query(
+      `
+INSERT INTO ratings (author_id, recipient_id, rental_history_id, is_owner, rating, comment) VALUES
+('cccc3333-cccc-cccc-cccc-cccccccccccc', 'bbbb2222-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 6, false, 4, 'Buen lugar aunque algo caro.'),
+('bbbb2222-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 'cccc3333-cccc-cccc-cccc-cccccccccccc', 6, true, 4, 'Carla cumplió con todas las normas.');
 `
     );
 
