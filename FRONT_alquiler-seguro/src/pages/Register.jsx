@@ -6,7 +6,7 @@ export default function Register() {
   const { handleChange, formState, handleSubmit } = useRegister();
 
   return (
-    <main>
+    <main id="register">
       <div className="form-card">
         <h2>Crea tu cuenta!</h2>
         <form onSubmit={handleSubmit}>
