@@ -9,6 +9,7 @@ export default function UpdateRentForm() {
     <main>
       <div className="form-card">
         <h2 id="updateRent">Actualiza tu alquiler!</h2>
+
         <form
           onSubmit={(e) => {
             e.preventDefault();
