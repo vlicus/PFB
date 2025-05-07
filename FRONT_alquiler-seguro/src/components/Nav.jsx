@@ -4,6 +4,7 @@ import "../styles/Buttons.css";
 import SplitBasicExample from "../components/SplitBasicExample";
 import useUser from "../hooks/useUser";
 import Avatar from "./Avatar";
+import { HashLink } from "react-router-hash-link";
 
 export default function Nav() {
   const { token } = useAuth();
@@ -38,12 +39,12 @@ function AnonNav() {
   return (
     <>
       <div className="nav-buttons">
-        <NavLink to="/register" className="nav-button">
+        <HashLink to="/register/#register" className="nav-button">
           Registro
-        </NavLink>
-        <NavLink to="/login" className="nav-button">
+        </HashLink>
+        <HashLink to="/login" className="nav-button">
           Login
-        </NavLink>
+        </HashLink>
       </div>
     </>
   );

@@ -1,14 +1,15 @@
 import useUpdateRent from "../hooks/useUpdateRent";
 import { useParams } from "react-router-dom";
 import "../styles/Login-Register.css";
+
 export default function UpdateRentForm() {
   const { rentId } = useParams();
-  const { formState, handleSubmit, handleTextChange, handleFileChange } =
-    useUpdateRent();
+  const { formState, handleSubmit, handleTextChange, handleFileChange } = useUpdateRent();
   return (
     <main>
-      <h2>Actualiza tu alquiler!</h2>
-      <div className="form-card ">
+      <div className="form-card">
+        <h2 id="updateRent">Actualiza tu alquiler!</h2>
+
         <form
           onSubmit={(e) => {
             e.preventDefault();

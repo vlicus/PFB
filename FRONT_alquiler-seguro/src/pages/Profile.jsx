@@ -10,18 +10,14 @@ import UserRenterRatings from "../components/User/UserRenterRatings";
 export default function Profile() {
   const user = useUser();
 
-  return (
-    <main className="profile-container">
-      {user.is_admin ? <Admin /> : <User />}
-    </main>
-  );
+  return <main className="profile-container">{user.is_admin ? <Admin /> : <User />}</main>;
 }
 
 function User() {
   const user = useUser();
   return (
     <>
-      <div className="profile-card">
+      <div id="profile" className="profile-card">
         <section className="profile-header">
           <h2>{user.username}</h2>
           <Avatar user={user} />
