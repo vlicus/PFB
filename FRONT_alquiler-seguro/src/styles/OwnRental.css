@@ -1,0 +1,70 @@
+.rental-slider-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background: #f0f0f0;
+  margin-bottom: 1rem;
+}
+
+.rental-slider-container .slick-list,
+.rental-slider-container .slick-track,
+.rental-slider-container .slick-slide,
+.rental-slider-container .slick-slide > div {
+  height: 100% !important;
+}
+
+.rental-slider-container .slick-slide img,
+.rental-slider-container .rental-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+
+.rent-card-city {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0.25rem 0;
+  color: #333;
+}
+.rent-card-price {
+  font-size: 1rem;
+  color: #2b8a3e;
+  margin: 0.25rem 0;
+}
+.rent-card-rooms {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0.25rem 0;
+}
+.rental-owner .owner-link {
+  color: #264653;
+  text-decoration: none;
+  font-weight: 500;
+}
+.rental-owner .owner-link:hover {
+  text-decoration: underline;
+}
+
+.rental-card-buttons {
+  margin-top: auto;
+  padding: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+p a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+@media (max-width: 640px) {
+  .view-more-btn,
+  .book-visit-btn {
+    padding: 0.4rem 0.6rem;
+    font-size: 1rem;
+  }
+}

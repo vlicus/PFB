@@ -1,67 +1,102 @@
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import ApiImage from "../components/ApiImage";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "../styles/RentalCard.css";
+
+import "../styles/OwnRental.css";
 
 const OwnRentalCard = ({ rental }) => {
+  const sliderRef = useRef(null);
   const images = rental.images?.filter((img) => img !== null) || [];
+  const totalImages = images.length;
 
   const sliderSettings = {
     dots: true,
-    arrows: true,
-    infinite: false,
+    arrows: false,
+    infinite: totalImages > 1,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
   };
 
+  const handlePrev = () => {
+    if (!sliderRef.current) return;
+    totalImages > 1
+      ? sliderRef.current.slickPrev()
+      : sliderRef.current.slickGoTo(0);
+  };
+
+  const handleNext = () => {
+    if (!sliderRef.current) return;
+    totalImages > 1
+      ? sliderRef.current.slickNext()
+      : sliderRef.current.slickGoTo(0);
+  };
+
   return (
-    <article>
-      <div className="rental-card">
+    <div className="rental-card">
+      <div className="rental-slider-wrapper">
+        <button
+          className="custom-prev"
+          onClick={handlePrev}
+          aria-label="Anterior imagen"
+        >
+          ‹
+        </button>
+
         <div className="rental-slider-container">
-          {images.length > 0 ? (
-            <Slider {...sliderSettings}>
-              {images.map((img, idx) => (
-                <div key={idx}>
-                  <ApiImage
-                    name={`rent/${rental.property_owner_username}/${img}`}
-                    alt={`Imagen ${idx + 1}`}
-                    className="rental-image"
-                  />
-                </div>
-              ))}
-            </Slider>
-          ) : (
-            <img src="/default-image.jpg" alt="sin imagen" className="rental-image" />
-          )}
+          <Slider
+            ref={sliderRef}
+            key={totalImages}
+            {...sliderSettings}
+            className="rental-slider"
+          >
+            {images.map((image, index) => (
+              <ApiImage
+                key={index}
+                name={`rent/${rental.property_owner_username}/${image}`}
+                alt={`Imagen ${index + 1}`}
+                className="rental-image rental-card-image"
+              />
+            ))}
+          </Slider>
         </div>
 
-        <p className="rent-card-city">{rental.city}</p>
-        <p className="rent-card-price">{rental.price} €/mes</p>
-        <p className="rent-card-rooms">
-          {rental.num_rooms} {rental.num_rooms > 1 ? "Habitaciones" : "Habitación"}
-        </p>
-        <p className="rental-owner">
-          Publicado por{" "}
-          <span>
-            <Link to={`/profile/${rental.property_owner_id}`} className="owner-link">
-              @{rental.property_owner_username}
-            </Link>
-          </span>
-        </p>
-        <div className="rental-card-buttons">
-          <Link to={`/rent/${rental.id}`}>
-            <button className="view-more-btn">Ver más</button>
-          </Link>
-          <HashLink to={`/rent/${rental.id}/update/#updateRent`}>
-            <button className="view-more-btn">Editar</button>
-          </HashLink>
-        </div>
+        <button
+          className="custom-next"
+          onClick={handleNext}
+          aria-label="Siguiente imagen"
+        >
+          ›
+        </button>
       </div>
-    </article>
+
+      <h1 className="rent-card-city">{rental.city}</h1>
+      <h2 className="rent-card-price">{rental.price} €/mes</h2>
+      <p className="rent-card-rooms">
+        {rental.num_rooms}{" "}
+        {rental.num_rooms > 1 ? "Habitaciones" : "Habitación"}
+      </p>
+      <p className="rental-owner">
+        Publicado por{" "}
+        <Link
+          to={`/profile/${rental.property_owner_id}`}
+          className="owner-link"
+        >
+          @{rental.property_owner_username}
+        </Link>
+      </p>
+
+      <div className="rental-card-buttons">
+        <Link to={`/rent/${rental.id}`}>
+          <button className="view-more-btn">Ver más</button>
+        </Link>
+        <HashLink to={`/rent/${rental.id}/update/#updateRent`}>
+          <button className="view-more-btn">Editar</button>
+        </HashLink>
+      </div>
+    </div>
   );
 };
 

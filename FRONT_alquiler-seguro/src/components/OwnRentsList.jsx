@@ -24,19 +24,18 @@ const OwnRentList = () => {
   return (
     <main className="">
       <h2>Lista de mis propiedades</h2>
-      <div className="rent-request-list-li">
-        <ul>
-          {rents.map((rent) => (
-            <li className="rent-request-list-li" key={rent.id}>
-              <OwnRentCard
-                rental={rent}
-                onUpdate={() => {
-                  setRents((prev) => prev.filter((r) => r.id !== rent.id));
-                }}
-              />
-            </li>
-          ))}
-        </ul>
+
+      <div className="rents-container">
+        {rents.map((rent) => (
+          <div className="rent-request-list-li" key={rent.id}>
+            <OwnRentCard
+              rental={rent}
+              onUpdate={() => {
+                setRents((prev) => prev.filter((r) => r.id !== rent.id));
+              }}
+            />
+          </div>
+        ))}
       </div>
     </main>
   );

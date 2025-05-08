@@ -11,6 +11,8 @@ import Validation from "./pages/Validation";
 import PublicProfile from "./pages/PublicProfile";
 
 import "./index.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import ApproveRents from "./pages/ApproveRents";
 import UpdatePassword from "./pages/UpdatePassword";
 import RentsRequested from "./pages/RentsRequested";
