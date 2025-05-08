@@ -18,8 +18,8 @@ const RentDetailPage = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    prevArrow: <CustomPrevArrow />,
-    nextArrow: <CustomNextArrow />,
+    // prevArrow: <CustomPrevArrow />,
+    // nextArrow: <CustomNextArrow />,
   };
   const {
     id,

@@ -1,9 +1,9 @@
 .rental-card {
-  flex: 1 1 300px;
-  max-width: 800px;
-  max-height: 700px;
+  flex: 0 1 220px;
+  max-width: 500px;
+  margin: 1rem;
+  max-height: 500px;
   border: 1px solid #e2e8f0;
-
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
@@ -86,13 +86,6 @@
   opacity: 1;
 }
 
-.rental-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 12px;
-}
-
 .rental-card h1,
 .rental-card h2,
 .rental-card h3,
@@ -137,9 +130,18 @@
 }
 
 .owner-link {
-  color: #2563eb;
+  color: #fb8a00;
   font-weight: 500;
   text-decoration: none;
+}
+.p .rental-owner {
+  color: #fb8a00 !important;
+  font-weight: 500;
+  text-decoration: none;
+}
+html body div.rental-card p.rental-owner > a[href^="/profile"] {
+  color: #ff6600 !important;
+  text-decoration: none !important;
 }
 
 .owner-link:hover {
@@ -165,10 +167,78 @@
   transition: transform 0.4s ease;
 }
 
+.rental-slider-container .slick-prev,
+.rental-slider-container .slick-next {
+  display: block !important;
+  opacity: 0.2;
+}
+.rental-slider-container .slick-prev.slick-disabled:before,
+.rental-slider-container .slick-next.slick-disabled:before {
+  opacity: 0.3 !important;
+}
+
+.custom-prev,
+.custom-next {
+  display: block !important;
+}
+
+.rental-slider-container .custom-prev,
+.rental-slider-container .slick-prev {
+  left: 5px !important;
+}
+
+.rental-slider-container .custom-next,
+.rental-slider-container .slick-next {
+  right: 5px !important;
+}
+
+.rental-slider-container .custom-prev,
+.rental-slider-container .custom-next {
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+.rental-slider-wrapper {
+  position: relative;
+}
+
+.custom-prev,
+.custom-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  line-height: 32px;
+  text-align: center;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.custom-prev {
+  left: 8px;
+}
+.custom-next {
+  right: 8px;
+}
+
+.custom-prev.disabled,
+.custom-next.disabled {
+  opacity: 0.4;
+  cursor: default;
+}
 @media (max-width: 640px) {
   .view-more-btn,
   .book-visit-btn {
     padding: 0.4rem 0.6rem;
     font-size: 1rem;
   }
+}
+.rental-slider-container .rental-card:hover .rental-image,
+.rental-slider-container .slick-slide img:hover {
+  border-radius: 12px !important;
 }
