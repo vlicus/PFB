@@ -7,11 +7,15 @@ export default function UserRenterRatings({ userId }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!userId) return;
+
+    setLoading(true);
+
     fetch(`${import.meta.env.VITE_API_URL}/users/${userId}/ratings`)
       .then((res) => res.json())
       .then((data) => {
         const soloInquilino = data.data.filter((r) => r.is_owner === 0);
-        console.log("ratings como inquilino", soloInquilino);
+
         setRatings(soloInquilino);
       })
       .catch(() => setRatings([]))

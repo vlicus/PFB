@@ -7,6 +7,10 @@ export default function UserOwnerRatings({ userId }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!userId) return;
+
+    setLoading(true);
+
     fetch(`${import.meta.env.VITE_API_URL}/users/${userId}/ratings`)
       .then((res) => res.json())
       .then((data) => {
