@@ -49,7 +49,7 @@ export default function NewPostForm() {
               <label htmlFor="num_rooms">Número de habitaciones</label>
               <input
                 type="number"
-                min={1}
+                min={0}
                 name="num_rooms"
                 id="num_rooms"
                 required

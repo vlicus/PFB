@@ -26,6 +26,10 @@ export function useRentRequestActions() {
         },
       });
 
+      if (!token) {
+        throw new Error("Necesitas estar logueado para solicitar una visita");
+      }
+
       if (!res.ok) {
         throw new Error("Error al crear la solicitud");
       }
