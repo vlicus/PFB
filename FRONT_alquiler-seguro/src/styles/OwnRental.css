@@ -1,8 +1,7 @@
 .rental-card {
-  flex: 0 1 220px;
-  max-width: 500px;
-  margin: 1rem;
-  max-height: 500px;
+  flex: 1 1 300px;
+  max-width: 800px;
+  max-height: 700px;
   border: 1px solid #e2e8f0;
   border-radius: 0.5rem;
   overflow: hidden;
@@ -41,12 +40,12 @@
   object-fit: cover;
 }
 
-.slick-slide img {
+/* .slick-slide img {
   display: block;
   height: 300px;
   width: 100% !important;
   object-fit: cover;
-}
+} */
 
 .slick-prev,
 .slick-next {
@@ -116,7 +115,7 @@
 }
 
 .rent-card-price {
-  color: #2b8a3e;
+  color: #235e2f;
 }
 
 .rent-card-rooms {
@@ -133,15 +132,6 @@
   color: #fb8a00;
   font-weight: 500;
   text-decoration: none;
-}
-.p .rental-owner {
-  color: #fb8a00 !important;
-  font-weight: 500;
-  text-decoration: none;
-}
-html body div.rental-card p.rental-owner > a[href^="/profile"] {
-  color: #ff6600 !important;
-  text-decoration: none !important;
 }
 
 .owner-link:hover {
@@ -174,17 +164,24 @@ html body div.rental-card p.rental-owner > a[href^="/profile"] {
     font-size: 1rem;
   }
 }
+.rental-slider-container .slick-slide,
+.rental-slider-container .slick-slide > div {
+  height: 100% !important;
+}
+
+.rental-slider-container .slick-slide img,
+.rental-slider-container .rental-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+}
 .rental-slider-container .slick-prev,
 .rental-slider-container .slick-next {
   display: block !important;
-  opacity: 0.2;
+  opacity: 0.6;
 }
 .rental-slider-container .slick-prev.slick-disabled:before,
 .rental-slider-container .slick-next.slick-disabled:before {
   opacity: 0.3 !important;
-}
-
-.custom-prev,
-.custom-next {
-  display: block !important;
 }

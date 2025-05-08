@@ -2,8 +2,7 @@ import { Link } from "react-router-dom";
 import { useRentRequestActions } from "../hooks/useRentRequestActions";
 import ApiImage from "../components/ApiImage";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
 import "../styles/RentalCard.css";
 import "../styles/Buttons.css";
 
@@ -12,7 +11,7 @@ const CustomPrevArrow = (props) => {
   return (
     <button
       className={`${className} custom-prev`}
-      style={{ ...style }}
+      style={{ ...style, display: "block" }}
       onClick={onClick}
     >
       ‹
@@ -25,7 +24,7 @@ const CustomNextArrow = (props) => {
   return (
     <button
       className={`${className} custom-next`}
-      style={{ ...style }}
+      style={{ ...style, display: "block" }}
       onClick={onClick}
     >
       ›
@@ -40,8 +39,8 @@ const RentCard = ({ rental }) => {
   const sliderSettings = {
     dots: true,
     arrows: true,
-    infinite: totalImages > 1,
-    speed: 500,
+    infinite: totalImages > 0,
+    speed: 400,
     slidesToShow: 1,
     slidesToScroll: 1,
     prevArrow: <CustomPrevArrow />,
@@ -51,7 +50,7 @@ const RentCard = ({ rental }) => {
   return (
     <div className="rental-card">
       <div className="rental-slider-container">
-        <Slider {...sliderSettings} className="rental-slider">
+        <Slider key={totalImages} {...sliderSettings} className="rental-slider">
           {rental.images.map((image, index) => (
             <ApiImage
               key={index}
