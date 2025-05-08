@@ -13,6 +13,7 @@ const getUserRatingsModel = async (userId) => {
       r.is_owner,
       rh.id AS rental_history_id,
       u.username AS renter_username,
+      u.avatar AS renter_avatar,
       u.id AS renter_id
     FROM ratings r
     JOIN rental_history rh ON r.rental_history_id = rh.id
