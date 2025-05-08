@@ -69,24 +69,16 @@ export default function RentRequestDetail() {
         </p>
         {myUsername !== renter_username && (
           <Link to={"/profile/" + renter_id}>
-            <>
-              {renter_username && (
-                <p className="rental-owner">Solicitante: {renter_username}</p>
-              )}
-            </>
+            <>{renter_username && <p className="rental-owner">Solicitante: {renter_username}</p>}</>
           </Link>
         )}
         {myUsername !== owner_username && (
           <Link to={"/profile/" + property_owner_id}>
-            <>
-              {owner_username && (
-                <p className="rental-owner">Casero: {owner_username}</p>
-              )}
-            </>
+            <>{owner_username && <p className="rental-owner">Casero: {owner_username}</p>}</>
           </Link>
         )}
         <p>Estado: {statusLabels[status] || status}</p>
-        {status === "ACTIVE" && <p>Fecha de entrada: {fechaFormateada}</p>}
+        {status === "ACTIVE" && <p>Fecha de entrada: {fechaEntradaFormateada}</p>}
         {status === "COMPLETED" && (
           <>
             <p>Fecha de entrada: {fechaEntradaFormateada}</p>

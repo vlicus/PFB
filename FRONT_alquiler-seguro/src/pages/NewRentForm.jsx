@@ -38,6 +38,7 @@ export default function NewPostForm() {
               <input
                 type="number"
                 name="price"
+                min={0}
                 id="price"
                 required
                 onChange={handleTextChange}
@@ -47,7 +48,8 @@ export default function NewPostForm() {
             <li>
               <label htmlFor="num_rooms">Número de habitaciones</label>
               <input
-                type="text"
+                type="number"
+                min={1}
                 name="num_rooms"
                 id="num_rooms"
                 required
