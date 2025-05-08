@@ -10,10 +10,12 @@ export default function UserRenterRatings({ userId }) {
     if (!userId) return;
 
     setLoading(true);
+
     fetch(`${import.meta.env.VITE_API_URL}/users/${userId}/ratings`)
       .then((res) => res.json())
       .then((data) => {
         const soloInquilino = data.data.filter((r) => r.is_owner === 0);
+
         setRatings(soloInquilino);
       })
       .catch(() => setRatings([]))

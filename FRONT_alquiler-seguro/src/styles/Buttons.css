@@ -80,3 +80,19 @@
   transform: scale(1.05);
   background-color: #111;
 }
+
+.dropdown-menu .dropdown-item:active {
+  background-color: #fb8a00;
+  color: white;
+}
+
+#dropdown-basic-button {
+  background-color: white;
+  color: black;
+}
+
+#dropdown-basic-button:active,
+#dropdown-basic-button:hover {
+  background-color: #fb8a00;
+  color: white;
+}

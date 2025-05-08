@@ -1,18 +1,23 @@
 import Dropdown from "react-bootstrap/Dropdown";
 import { useAuth } from "../contexts/AuthContext";
 import useUser from "../hooks/useUser";
+import "../styles/Buttons.css";
 
 function SplitBasicExample() {
   const user = useUser();
 
-  return <main className="profile-container">{user.is_admin ? <Admin /> : <User />}</main>;
+  return (
+    <main className="profile-container">
+      {user.is_admin ? <Admin /> : <User />}
+    </main>
+  );
 }
 
 function User() {
   const { logout } = useAuth();
   return (
-    <Dropdown data-bs-theme="dark">
-      <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
+    <Dropdown>
+      <Dropdown.Toggle id="dropdown-basic-button" variant="secondary">
         Administración
       </Dropdown.Toggle>
 
@@ -24,9 +29,13 @@ function User() {
         <Dropdown.Item href="/rent/new">Nueva Propiedad</Dropdown.Item>
         <Dropdown.Item href="/rents/own">Mis Propiedades</Dropdown.Item>
         <Dropdown.Divider />
-        <Dropdown.Item href="/rent/requests">Solicitudes de visita/alquiler</Dropdown.Item>
+        <Dropdown.Item href="/rent/requests">
+          Solicitudes de visita/alquiler
+        </Dropdown.Item>
         <Dropdown.Divider />
-        <Dropdown.Item href="/renter/requests">Mis solicitudes de visita/alquiler</Dropdown.Item>
+        <Dropdown.Item href="/renter/requests">
+          Mis solicitudes de visita/alquiler
+        </Dropdown.Item>
         <Dropdown.Divider />
         <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
       </Dropdown.Menu>
@@ -37,8 +46,8 @@ function User() {
 function Admin() {
   const { logout } = useAuth();
   return (
-    <Dropdown data-bs-theme="dark">
-      <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
+    <Dropdown>
+      <Dropdown.Toggle id="dropdown-basic-button" variant="secondary">
         Administración
       </Dropdown.Toggle>
 

@@ -1,14 +1,14 @@
 import avatarDefecto from "../assets/avatarHuevo.jpg";
 import ApiImage from "./ApiImage";
 import "../styles/UserPrivateProfile.css";
-export default function Avatar({ user }) {
+export default function AvatarNav({ user }) {
   return user.avatar ? (
     <ApiImage
-      className="profile-avatar"
+      className="profile-avatar-nav"
       name={"avatar/" + user.avatar}
       alt={user.username}
     />
   ) : (
-    <img className="profile-avatar" src={avatarDefecto} />
+    <img className="profile-avatar-nav" src={avatarDefecto} />
   );
 }

@@ -9,6 +9,7 @@ export default function UserOwnerRatings({ userId }) {
     if (!userId) return;
 
     setLoading(true);
+    
     fetch(`${import.meta.env.VITE_API_URL}/users/${userId}/ratings`)
       .then((res) => res.json())
       .then((data) => {

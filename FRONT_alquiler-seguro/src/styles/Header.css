@@ -1,13 +1,18 @@
 .main-header {
-  display: grid;
-  align-items: center;
-  padding: 1rem 2rem;
-  gap: 1rem;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  z-index: 1000;
+  background: #d7c8c1;
 }
 
 .logo {
-  height: 170px;
+  height: 200px;
   object-fit: contain;
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
 }
 
 .header-slogan {
