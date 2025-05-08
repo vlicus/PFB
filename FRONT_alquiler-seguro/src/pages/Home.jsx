@@ -11,7 +11,7 @@ const Home = () => {
   const { token } = useAuth();
   const [filters, setFilters] = useState({});
   return (
-    <div className="p-6">
+    <div id="home" className="p-6">
       <LandingHeader />
       {!token && <UserTypeGrid />}
       <h1 className="section-title">Alquileres disponibles</h1>
