@@ -1,3 +1,4 @@
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { useRentRequestActions } from "../hooks/useRentRequestActions";
 import ApiImage from "../components/ApiImage";
@@ -6,60 +7,75 @@ import Slider from "react-slick";
 import "../styles/RentalCard.css";
 import "../styles/Buttons.css";
 
-const CustomPrevArrow = (props) => {
-  const { className, style, onClick } = props;
-  return (
-    <button
-      className={`${className} custom-prev`}
-      style={{ ...style, display: "block" }}
-      onClick={onClick}
-    >
-      ‹
-    </button>
-  );
-};
-
-const CustomNextArrow = (props) => {
-  const { className, style, onClick } = props;
-  return (
-    <button
-      className={`${className} custom-next`}
-      style={{ ...style, display: "block" }}
-      onClick={onClick}
-    >
-      ›
-    </button>
-  );
-};
-
 const RentCard = ({ rental }) => {
   const { sendRentRequest } = useRentRequestActions();
-  const totalImages = rental.images.length;
+  const sliderRef = useRef(null);
+  const images = rental.images || [];
+  const totalImages = images.length;
 
   const sliderSettings = {
     dots: true,
-    arrows: true,
-    infinite: totalImages > 0,
-    speed: 400,
+    arrows: false,
+    infinite: totalImages > 1,
+    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    prevArrow: <CustomPrevArrow />,
-    nextArrow: <CustomNextArrow />,
+  };
+
+  const handlePrev = () => {
+    if (!sliderRef.current) return;
+    if (totalImages > 1) {
+      sliderRef.current.slickPrev();
+    } else {
+      sliderRef.current.slickGoTo(0);
+    }
+  };
+
+  const handleNext = () => {
+    if (!sliderRef.current) return;
+    if (totalImages > 1) {
+      sliderRef.current.slickNext();
+    } else {
+      sliderRef.current.slickGoTo(0);
+    }
   };
 
   return (
     <div className="rental-card">
-      <div className="rental-slider-container">
-        <Slider key={totalImages} {...sliderSettings} className="rental-slider">
-          {rental.images.map((image, index) => (
-            <ApiImage
-              key={index}
-              name={`rent/${rental.property_owner_username}/${image}`}
-              alt={`Imagen ${index + 1}`}
-              className="rental-image rental-card-image"
-            />
-          ))}
-        </Slider>
+      <div className="rental-slider-wrapper">
+        <button
+          className="custom-prev"
+          onClick={handlePrev}
+          aria-label="Anterior imagen"
+        >
+          ‹
+        </button>
+
+        <div className="rental-slider-container">
+          <Slider
+            ref={sliderRef}
+            key={totalImages}
+            {...sliderSettings}
+            className="rental-slider"
+          >
+            {images.map((image, index) => (
+              <ApiImage
+                key={index}
+                name={`rent/${rental.property_owner_username}/${image}`}
+                alt={`Imagen ${index + 1}`}
+                className="rental-image rental-card-image"
+              />
+            ))}
+          </Slider>
+        </div>
+
+        <button
+          className="custom-next"
+          onClick={handleNext}
+          aria-label="Siguiente imagen"
+        >
+          ›
+        </button>
       </div>
 
       <p className="rent-card-city">{rental.city}</p>

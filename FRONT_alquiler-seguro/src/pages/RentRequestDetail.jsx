@@ -5,11 +5,8 @@ import useRating from "../hooks/useRating";
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import ApiImage from "../components/ApiImage";
-
 import "../styles/RentRequestDetail.css";
+import ApiImage from "../components/ApiImage";
 
 export default function RentRequestDetail() {
   const { token } = useAuth();
@@ -71,7 +68,9 @@ export default function RentRequestDetail() {
           <Link to={"/profile/" + renter_id}>
             <>
               {renter_username && (
-                <p className="rental-owner">Solicitante: {renter_username}</p>
+                <div className="rental-owner">
+                  Solicitante: <p className="owner-link">{renter_username}</p>
+                </div>
               )}
             </>
           </Link>

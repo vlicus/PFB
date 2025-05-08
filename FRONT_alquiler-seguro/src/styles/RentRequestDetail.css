@@ -22,7 +22,16 @@
   border-radius: 0.5rem;
   transition: transform 0.4s ease;
 }
-
+.rental-owner {
+  font-size: 1.1rem;
+  color: #0a0602 !important;
+  margin-bottom: 12px;
+}
+.owner-link {
+  color: #fb8a00 !important;
+  font-weight: 500;
+  text-decoration: underline;
+}
 .rent-request-detail li {
   list-style: none;
 }
@@ -138,18 +147,11 @@
   color: #000;
 }
 
-.rental-owner {
-  font-size: 1.1rem;
-  color: #000;
-  margin-bottom: 12px;
-}
-
-.owner-link {
-  color: #2563eb;
+/* .a link {
+  color: #fb8a00 !important;
   font-weight: 500;
   text-decoration: none;
-}
-
+} */
 .owner-link:hover {
   text-decoration: underline;
 }

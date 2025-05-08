@@ -167,13 +167,6 @@ html body div.rental-card p.rental-owner > a[href^="/profile"] {
   transition: transform 0.4s ease;
 }
 
-@media (max-width: 640px) {
-  .view-more-btn,
-  .book-visit-btn {
-    padding: 0.4rem 0.6rem;
-    font-size: 1rem;
-  }
-}
 .rental-slider-container .slick-prev,
 .rental-slider-container .slick-next {
   display: block !important;
@@ -187,4 +180,65 @@ html body div.rental-card p.rental-owner > a[href^="/profile"] {
 .custom-prev,
 .custom-next {
   display: block !important;
+}
+
+.rental-slider-container .custom-prev,
+.rental-slider-container .slick-prev {
+  left: 5px !important;
+}
+
+.rental-slider-container .custom-next,
+.rental-slider-container .slick-next {
+  right: 5px !important;
+}
+
+.rental-slider-container .custom-prev,
+.rental-slider-container .custom-next {
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+.rental-slider-wrapper {
+  position: relative;
+}
+
+.custom-prev,
+.custom-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  line-height: 32px;
+  text-align: center;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.custom-prev {
+  left: 8px;
+}
+.custom-next {
+  right: 8px;
+}
+
+.custom-prev.disabled,
+.custom-next.disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+@media (max-width: 640px) {
+  .view-more-btn,
+  .book-visit-btn {
+    padding: 0.4rem 0.6rem;
+    font-size: 1rem;
+  }
+}
+.rental-slider-container .rental-card:hover .rental-image,
+.rental-slider-container .slick-slide img:hover {
+  border-radius: 12px !important;
 }
