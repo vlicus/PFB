@@ -7,6 +7,7 @@ import { useAuth } from "../contexts/AuthContext";
 import Slider from "react-slick";
 import "../styles/RentRequestDetail.css";
 import ApiImage from "../components/ApiImage";
+import defaultImage from "../../public/defaultImage.png";
 
 export default function RentRequestDetail() {
   const { token } = useAuth();
@@ -38,6 +39,7 @@ export default function RentRequestDetail() {
     dateStyle: "short",
     timeStyle: "short",
   });
+
   const statusLabels = {
     PENDING: "Pendiente",
     APPROVED: "Aprobado",
@@ -100,11 +102,14 @@ export default function RentRequestDetail() {
             >
               {photos.map((photo) => (
                 <div key={photo.id}>
+                  photos ? (
                   <ApiImage
                     name={`rent/${owner_username}/${photo.name}`}
                     alt={photo.name}
                     className="slider-request-image"
                   />
+                  ) :
+                  <img className="slider-request-image" src={defaultImage} />
                 </div>
               ))}
             </Slider>

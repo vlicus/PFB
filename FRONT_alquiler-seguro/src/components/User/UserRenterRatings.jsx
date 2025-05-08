@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import Rating from "./UserRatings";
-import { Link } from "react-router-dom";
 import "../../styles/UserProfile.css";
+import Review from "../../components/User/ReviewCard";
+
 export default function UserRenterRatings({ userId }) {
   const [ratings, setRatings] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -32,21 +32,7 @@ export default function UserRenterRatings({ userId }) {
         <p>Este usuario aún no ha recibido valoraciones de inquilinos.</p>
       )}
 
-      {!loading && ratings.length > 0 && (
-        <div className="card-list">
-          {ratings.map((r) => (
-            <div key={r.id} className="card">
-              <p>{r.comment || "Sin comentario"}</p>
-              <p>
-                <Rating rating={r.rating} />
-              </p>
-              <p>
-                <Link to={`/profile/${r.renter_id}`}>@{r.renter_username}</Link>
-              </p>
-            </div>
-          ))}
-        </div>
-      )}
+      {!loading && ratings.length > 0 && <Review ratings={ratings} />}
     </section>
   );
 }
