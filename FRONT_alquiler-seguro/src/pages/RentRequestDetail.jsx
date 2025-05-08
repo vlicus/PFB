@@ -5,9 +5,13 @@ import useRating from "../hooks/useRating";
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import Slider from "react-slick";
-import "../styles/RentRequestDetail.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import ApiImage from "../components/ApiImage";
+
 import defaultImage from "../../public/defaultImage.png";
+
+import "../styles/RentRequestDetail.css";
 
 export default function RentRequestDetail() {
   const { token } = useAuth();
@@ -39,7 +43,6 @@ export default function RentRequestDetail() {
     dateStyle: "short",
     timeStyle: "short",
   });
-
   const statusLabels = {
     PENDING: "Pendiente",
     APPROVED: "Aprobado",
@@ -68,13 +71,7 @@ export default function RentRequestDetail() {
         </p>
         {myUsername !== renter_username && (
           <Link to={"/profile/" + renter_id}>
-            <>
-              {renter_username && (
-                <div className="rental-owner">
-                  Solicitante: <p className="owner-link">{renter_username}</p>
-                </div>
-              )}
-            </>
+            <>{renter_username && <p className="rental-owner">Solicitante: {renter_username}</p>}</>
           </Link>
         )}
         {myUsername !== owner_username && (
@@ -90,7 +87,7 @@ export default function RentRequestDetail() {
             <p>Fecha de salida: {fechaSalidaFormateada}</p>
           </>
         )}
-        {photos?.length > 0 && (
+        {photos?.length > 0 ? (
           <div className="rent-request-slider">
             <Slider
               dots={true}
@@ -102,18 +99,17 @@ export default function RentRequestDetail() {
             >
               {photos.map((photo) => (
                 <div key={photo.id}>
-                  photos ? (
                   <ApiImage
                     name={`rent/${owner_username}/${photo.name}`}
                     alt={photo.name}
                     className="slider-request-image"
                   />
-                  ) :
-                  <img className="slider-request-image" src={defaultImage} />
                 </div>
               ))}
             </Slider>
           </div>
+        ) : (
+          <img className="rental-image rental-card-image" src={defaultImage} />
         )}
         {status != "PENDING" && (
           <form onSubmit={handleSubmit}>
