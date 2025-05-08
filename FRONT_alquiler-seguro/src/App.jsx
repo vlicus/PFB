@@ -19,6 +19,7 @@ import RentsRequested from "./pages/RentsRequested";
 import MyRentsRequested from "./pages/MyRentsRequested";
 import RentRequestDetail from "./pages/RentRequestDetail";
 import FooterComponent from "./pages/Footer";
+import RentDetailPage from "./pages/RentDetails";
 import UpdateRentForm from "./pages/UpdateRentForm";
 import UpdateProfile from "./pages/UpdateProfile";
 import RentsPage from "./pages/RentsPage";
