@@ -3,8 +3,8 @@ import { useAuth } from "../contexts/AuthContext";
 import "../styles/Buttons.css";
 import SplitBasicExample from "../components/SplitBasicExample";
 import useUser from "../hooks/useUser";
-import Avatar from "./Avatar";
 import { HashLink } from "react-router-hash-link";
+import AvatarNav from "./AvatarNav";
 
 export default function Nav() {
   const { token } = useAuth();
@@ -22,7 +22,7 @@ function UserNav() {
       <ul className="lista">
         <li>
           <Link to="/profile">
-            <Avatar user={user} />
+            <AvatarNav user={user} />
           </Link>
         </li>
         <li>

@@ -85,3 +85,12 @@
   gap: 1rem;
   margin-top: 2rem;
 }
+
+.profile-avatar-nav {
+  margin: 1rem auto;
+  border-radius: 9999px;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 3px solid #000000;
+}
