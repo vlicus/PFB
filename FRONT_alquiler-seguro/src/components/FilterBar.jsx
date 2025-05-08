@@ -21,7 +21,7 @@ export default function FilterBar({ setFilters }) {
     const { name, value } = e.target;
 
     if ((name === "minRooms" || name === "maxPrice") && value < 0) {
-      newValue = 0; //revisar
+      newValue = 0;
     }
     setTempFilters({ ...tempFilters, [name]: value });
   };
