@@ -22,7 +22,9 @@
   color: #4a4a4a;
   display: block;
   margin-top: 0.5rem;
+  padding-left: 6rem;
 }
+
 .card {
   width: 100%;
   max-width: 400px;

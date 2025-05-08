@@ -1,8 +1,10 @@
 import { Bounce, toast } from "react-toastify";
 import { useAuth } from "../contexts/AuthContext";
 const { VITE_API_URL } = import.meta.env;
+import { useNavigate } from "react-router-dom";
 
 export function useRentRequestActions() {
+  const navigate = useNavigate();
   const { token } = useAuth();
 
   const statusLabels = {
@@ -38,29 +40,27 @@ export function useRentRequestActions() {
         transition: Bounce,
       });
 
-      setTimeout(() => {
+      /* setTimeout(() => {
         window.location.reload();
-      }, 1000);
+      }, 1000); */
       return true;
     } catch (error) {
       toast.error(error.message);
+      navigate("/login");
       return false;
     }
   };
 
   const changeStatus = async (rentId, requestId, status) => {
     try {
-      const res = await fetch(
-        VITE_API_URL + "/rent/" + rentId + "/response/" + requestId,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: token ? "Bearer " + token : "",
-          },
-          body: JSON.stringify({ status: status }),
-        }
-      );
+      const res = await fetch(VITE_API_URL + "/rent/" + rentId + "/response/" + requestId, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: token ? "Bearer " + token : "",
+        },
+        body: JSON.stringify({ status: status }),
+      });
 
       if (!res.ok) {
         throw new Error("Error al actualizar la solicitud");
