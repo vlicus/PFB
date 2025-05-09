@@ -28,12 +28,12 @@ function User() {
         </section>
 
         <section id="profile" className="profile-details">
-          {user.first_name && <p>Nombre: {user.first_name}</p>}
-          {user.last_name && <p>Apellidos: {user.last_name}</p>}
-          {user.email && <p>Email: {user.email}</p>}
-          {user.phone_number && <p>Número de teléfono: {user.phone_number}</p>}
+          {user.first_name && <p>{user.first_name}</p>}
+          {user.last_name && <p>{user.last_name}</p>}
+          {user.email && <p>{user.email}</p>}
+          {user.phone_number && <p>{user.phone_number}</p>}
 
-          {user.bio && <p>Biografía: {user.bio}</p>}
+          {user.bio && <p>{user.bio}</p>}
         </section>
       </div>
       <div className="profile-actions">
