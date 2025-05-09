@@ -147,11 +147,32 @@
   color: #000;
 }
 
-/* .a link {
-  color: #fb8a00 !important;
-  font-weight: 500;
-  text-decoration: none;
-} */
 .owner-link:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .view-more-btn,
+  .book-visit-btn {
+    padding: 0.4rem 0.6rem;
+    font-size: 1rem;
+  }
+}
+.rental-slider-container .slick-prev,
+.rental-slider-container .slick-next {
+  display: block !important;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+.rental-slider-container .slick-slide img,
+.rental-slider-container .rental-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: 12px !important;
+}
+.rental-slider-container .rental-card:hover .rental-image,
+.rental-slider-container .slick-slide img:hover {
+  border-radius: 12px !important;
 }

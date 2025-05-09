@@ -17,8 +17,6 @@ const Home = () => {
       <h1 className="section-title">Alquileres disponibles</h1>
       <FilterBar setFilters={setFilters} />
       <ApprovedRentList filters={filters} />
-      <RentPageDiv />
-      <CaserosRedirect />
     </div>
   );
 };
