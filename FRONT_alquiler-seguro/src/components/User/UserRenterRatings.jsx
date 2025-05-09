@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import Review from "./ReviewCard";
 import "../../styles/UserProfile.css";
-import Review from "../../components/User/ReviewCard";
 
 export default function UserRenterRatings({ userId }) {
   const [ratings, setRatings] = useState([]);

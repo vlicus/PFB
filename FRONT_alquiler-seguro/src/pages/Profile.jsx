@@ -23,7 +23,7 @@ function User() {
           <Avatar user={user} />
         </section>
 
-        <section className="profile-details">
+        <section id="profile" className="profile-details">
           {user.first_name && <p>Nombre: {user.first_name}</p>}
           {user.last_name && <p>Apellidos: {user.last_name}</p>}
           {user.email && <p>Email: {user.email}</p>}
@@ -40,6 +40,7 @@ function User() {
           Editar usuario
         </NavLink>
       </div>
+
       <UserOwnerRatings userId={user.id} />
       <UserRenterRatings userId={user.id} />
     </>

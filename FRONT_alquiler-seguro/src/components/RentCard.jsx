@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useRentRequestActions } from "../hooks/useRentRequestActions";
 import ApiImage from "../components/ApiImage";
 import Slider from "react-slick";
-import defaultImage from "../../public/defaultImage.png";
 
 import "../styles/RentalCard.css";
 import "../styles/Buttons.css";
@@ -50,18 +49,14 @@ const RentCard = ({ rental }) => {
 
         <div className="rental-slider-container">
           <Slider ref={sliderRef} key={totalImages} {...sliderSettings} className="rental-slider">
-            {images.map((image, index) =>
-              image ? (
-                <ApiImage
-                  key={index}
-                  name={`rent/${rental.property_owner_username}/${image}`}
-                  alt={`Imagen ${index + 1}`}
-                  className="rental-image rental-card-image"
-                />
-              ) : (
-                <img className="rental-image rental-card-image" src={defaultImage} />
-              )
-            )}
+            {images.map((image, index) => (
+              <ApiImage
+                key={index}
+                name={`rent/${rental.property_owner_username}/${image}`}
+                alt={`Imagen ${index + 1}`}
+                className="rental-image rental-card-image"
+              />
+            ))}
           </Slider>
         </div>
 

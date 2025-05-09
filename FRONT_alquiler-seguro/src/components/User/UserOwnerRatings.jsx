@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Review from "./ReviewCard";
+import "../../styles/UserProfile.css";
 
 export default function UserOwnerRatings({ userId }) {
   const [ratings, setRatings] = useState([]);
@@ -9,7 +10,7 @@ export default function UserOwnerRatings({ userId }) {
     if (!userId) return;
 
     setLoading(true);
-    
+
     fetch(`${import.meta.env.VITE_API_URL}/users/${userId}/ratings`)
       .then((res) => res.json())
       .then((data) => {
@@ -22,12 +23,12 @@ export default function UserOwnerRatings({ userId }) {
 
   return (
     <section className="profile-section">
-      <h2 className="section-title">Valoraciones recibidas de inquilinos</h2>
+      <h2 className="section-title">Valoraciones recibidas de los caseros</h2>
 
       {loading && <p>Cargando valoraciones...</p>}
 
       {!loading && ratings.length === 0 && (
-        <p>Este usuario aún no ha recibido valoraciones de inquilinos.</p>
+        <p>Este usuario aún no ha recibido valoraciones de los caseros.</p>
       )}
 
       {!loading && ratings.length > 0 && <Review ratings={ratings} />}
