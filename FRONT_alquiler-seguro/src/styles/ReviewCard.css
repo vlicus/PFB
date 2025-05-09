@@ -145,7 +145,18 @@ Reviews
 }
 
 .info {
+  text-align: center;
   margin-bottom: 0.75rem !important;
+  padding-top: 20px;
+  border: transparent;
+  border-radius: 8px;
+  box-sizing: border-box;
+  resize: none;
+  width: 98%;
+  min-height: auto;
+  max-height: auto;
+  outline: none;
+  border: none;
 }
 
 .prev-btn,

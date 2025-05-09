@@ -8,7 +8,7 @@ export default function UserRentalHistory({ userId }) {
     fetch(`${import.meta.env.VITE_API_URL}/users/${userId}/history`)
       .then((res) => res.json())
       .then((data) => {
-        const history = data.data?.rental_history || [];
+        const history = data.data.user?.rental_history || [];
         setRentals(history);
       })
       .catch(() => setRentals([]))

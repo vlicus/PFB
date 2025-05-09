@@ -41,6 +41,7 @@ export default function RentRequestDetail() {
     dateStyle: "short",
     timeStyle: "short",
   });
+
   const statusLabels = {
     PENDING: "Pendiente",
     APPROVED: "Aprobado",

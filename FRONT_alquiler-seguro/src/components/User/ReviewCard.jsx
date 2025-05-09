@@ -61,7 +61,9 @@ export default function Review({ ratings }) {
       </h4>
       <Rating rating={rating} />
       <p className="job">{reviewDate}</p>
-      <p className="info">{comment}</p>
+      <textarea readOnly className="info">
+        {comment}
+      </textarea>
       <div className="button-container">
         <button className="prev-btn" onClick={prevPerson}>
           <FaChevronLeft />

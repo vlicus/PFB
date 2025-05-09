@@ -31,10 +31,9 @@ export default function PublicProfile() {
           <h2>{user.username}</h2>
           <Avatar user={user} />
           {user.bio && <p className="profile-bio">{user.bio}</p>}
-          {user.email && <p className="profile-email">Email: {user.email}</p>}
+          {user.email && <p className="profile-email">{user.email}</p>}
         </section>
 
-        <h3 className="section-title">Historial de alquileres</h3>
         <div className="card-list">
           <UserRentalHistory userId={user.id} />
         </div>
