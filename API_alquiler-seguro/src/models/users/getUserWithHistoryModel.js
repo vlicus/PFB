@@ -34,7 +34,6 @@ const getUserWithHistoryModel = async (userId) => {
     )
     LEFT JOIN rents r ON rh.rent_id = r.id
     WHERE u.id = ?
-    AND rh.status IN ("ACTIVE",  "COMPLETED")
     ORDER BY rh.created_at DESC
     `,
     [userId, userId, userId]
