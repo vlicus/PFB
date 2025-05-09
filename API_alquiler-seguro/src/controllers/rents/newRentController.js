@@ -19,6 +19,10 @@ const newRentController = async (req, res, next) => {
         500
       );
     }
+
+    if (!req.files) {
+      generateErrorUtil("Falta añadir fotos al alquiler", 500);
+    }
     const rentId = await insertRentModel(
       property_owner_id,
       address,
