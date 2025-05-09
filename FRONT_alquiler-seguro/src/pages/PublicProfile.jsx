@@ -34,14 +34,14 @@ export default function PublicProfile() {
           {user.email && <p className="profile-email">Email: {user.email}</p>}
         </section>
 
-        <h3 className="section-title">Historial de alquileres</h3>
         <div className="card-list">
           <UserRentalHistory userId={user.id} />
         </div>
       </div>
-
-      <UserOwnerRatings userId={user.id} />
-      <UserRenterRatings userId={user.id} />
+      <div className="rating-container">
+        <UserOwnerRatings userId={user.id} />
+        <UserRenterRatings userId={user.id} />
+      </div>
     </main>
   );
 }

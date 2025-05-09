@@ -16,7 +16,6 @@
 
 .profile-header {
   text-align: center;
-  margin-bottom: 2rem;
 }
 
 .profile-header h2 {
@@ -93,4 +92,15 @@
   height: 100px;
   object-fit: cover;
   border: 3px solid #000000;
+}
+
+@media (min-width: 785px) {
+  .rating-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-width: 1000px;
+    justify-self: center;
+    gap: 4rem;
+    margin-top: 2rem;
+  }
 }
