@@ -67,7 +67,22 @@
   font-size: 30px;
   line-height: 1;
 }
+.slick-prev,
+.slick-next {
+  background: transparent !important;
+  border: none;
+}
 
+.slick-prev:hover,
+.slick-next:hover {
+  background: transparent !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: black;
+  font-size: 25px;
+}
 .slick-dots {
   position: absolute;
   bottom: 10px;
