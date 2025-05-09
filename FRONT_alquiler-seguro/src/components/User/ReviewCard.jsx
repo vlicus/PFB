@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Rating from "./UserRatings";
 import { FaChevronLeft, FaChevronRight, FaQuoteRight } from "react-icons/fa";
-import avatarDefecto from "../../assets/user.png";
+import avatarDefecto from "../../assets/noProfilePic.png";
 import { Link } from "react-router-dom";
 import "../../styles/ReviewCard.css";
 import ApiImage from "../ApiImage";

@@ -64,6 +64,7 @@
   background-color: #1a1a1a;
   transform: scale(1.05);
 }
+
 .card-list {
   display: flex;
   flex-direction: column;

@@ -9,8 +9,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ApiImage from "../components/ApiImage";
 
-import defaultImage from "../../public/defaultImage.png";
-
 import "../styles/RentRequestDetail.css";
 
 export default function RentRequestDetail() {
@@ -87,7 +85,7 @@ export default function RentRequestDetail() {
             <p>Fecha de salida: {fechaSalidaFormateada}</p>
           </>
         )}
-        {photos?.length > 0 ? (
+        {photos?.length > 0 && (
           <div className="rent-request-slider">
             <Slider
               dots={true}
@@ -108,8 +106,6 @@ export default function RentRequestDetail() {
               ))}
             </Slider>
           </div>
-        ) : (
-          <img className="rental-image rental-card-image" src={defaultImage} />
         )}
         {status != "PENDING" && (
           <form onSubmit={handleSubmit}>
