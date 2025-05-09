@@ -23,6 +23,8 @@ const voteUserController = async (req, res, next) => {
       generateErrorUtil("No te puedes votar a ti mismo", 500);
     }
 
+    console.log(req.body.comment.length);
+
     // Validamos el body con Joi.
     await validateSchemaUtil(voteUserSchema, req.body);
 

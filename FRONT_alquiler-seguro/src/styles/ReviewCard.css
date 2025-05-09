@@ -82,6 +82,7 @@ Reviews
   box-shadow: var(--light-shadow) !important;
   transition: var(--transition) !important;
   text-align: center !important;
+  height: 503px;
 }
 
 .review:hover {
@@ -146,6 +147,7 @@ Reviews
 
 .info {
   margin-bottom: 0.75rem !important;
+  height: 100px;
 }
 
 .prev-btn,

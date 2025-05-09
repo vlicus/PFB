@@ -19,6 +19,7 @@ const getUserWithHistoryModel = async (userId) => {
       rh.id AS rental_id,
       r.id AS rent_id,
       r.address,
+      rh.status,
       rh.start_date,
       rh.end_date,
       r.property_owner_id,
@@ -33,6 +34,7 @@ const getUserWithHistoryModel = async (userId) => {
     )
     LEFT JOIN rents r ON rh.rent_id = r.id
     WHERE u.id = ?
+    AND rh.status IN ("ACTIVE",  "COMPLETED")
     ORDER BY rh.created_at DESC
     `,
     [userId, userId, userId]
@@ -63,6 +65,7 @@ const getUserWithHistoryModel = async (userId) => {
       start_date: row.start_date,
       end_date: row.end_date,
       is_owner: row.is_owner,
+      status: row.status,
     }));
 
   return {

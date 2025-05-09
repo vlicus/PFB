@@ -10,7 +10,11 @@ import UserRenterRatings from "../components/User/UserRenterRatings";
 export default function Profile() {
   const user = useUser();
 
-  return <main className="profile-container">{user.is_admin ? <Admin /> : <User />}</main>;
+  return (
+    <main className="profile-container">
+      {user.is_admin ? <Admin /> : <User />}
+    </main>
+  );
 }
 
 function User() {
@@ -41,8 +45,10 @@ function User() {
         </NavLink>
       </div>
 
-      <UserOwnerRatings userId={user.id} />
-      <UserRenterRatings userId={user.id} />
+      <div className="rating-container">
+        <UserOwnerRatings userId={user.id} />
+        <UserRenterRatings userId={user.id} />
+      </div>
     </>
   );
 }

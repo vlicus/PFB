@@ -8,12 +8,21 @@ export default function UserRentalHistory({ userId }) {
     fetch(`${import.meta.env.VITE_API_URL}/users/${userId}/history`)
       .then((res) => res.json())
       .then((data) => {
-        const history = data.data?.rental_history || [];
+        const history = data.data.user?.rental_history || [];
         setRentals(history);
       })
       .catch(() => setRentals([]))
       .finally(() => setLoading(false));
   }, [userId]);
+
+  const statusLabels = {
+    PENDING: "Pendiente",
+    APPROVED: "Aprobado",
+    ACTIVE: "Activo",
+    COMPLETED: "Completado",
+    CANCELLED: "Cancelado",
+    REJECTED: "Rechazado",
+  };
 
   if (loading) return <p>Cargando historial...</p>;
 
@@ -23,21 +32,34 @@ export default function UserRentalHistory({ userId }) {
 
   return (
     <section className="profile-section">
-      <h2 className="section-title">Historial de alquileres</h2>
+      <h2 className="section-title" style={{ marginTop: "0rem" }}>
+        Historial de alquileres
+      </h2>
       <div className="card-list">
         {rentals.map((r, index) => (
           <div key={index} className="card">
             <p>
               <strong>Dirección:</strong> {r.address}
             </p>
+
+            <p>Estado: {statusLabels[r.status] || r.status}</p>
+
             {r.start_date && (
               <p>
-                <strong>Inicio:</strong> {r.start_date}
+                <strong>Inicio:</strong>{" "}
+                {new Date(r.start_date).toLocaleString("es-ES", {
+                  dateStyle: "short",
+                  timeStyle: "short",
+                })}
               </p>
             )}
             {r.end_date && (
               <p>
-                <strong>Fin:</strong> {r.end_date}
+                <strong>Fin:</strong>{" "}
+                {new Date(r.end_date).toLocaleString("es-ES", {
+                  dateStyle: "short",
+                  timeStyle: "short",
+                })}
               </p>
             )}
             {!r.start_date && (
