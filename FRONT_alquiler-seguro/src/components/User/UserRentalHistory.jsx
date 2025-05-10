@@ -30,13 +30,21 @@ export default function UserRentalHistory({ userId }) {
     return <p>Este usuario aún no ha participado en alquileres.</p>;
   }
 
+  const states = ["ACTIVE", "COMPLETED"];
+  const filteredRentals = rentals.filter((rental) =>
+    states.includes(rental.status)
+  );
+
   return (
     <section className="profile-section">
       <h2 className="section-title" style={{ marginTop: "0rem" }}>
         Historial de alquileres
       </h2>
+      {filteredRentals.length === 0 && (
+        <p>Este usuario no tiene historial de alquiler</p>
+      )}
       <div className="card-list">
-        {rentals.map((r, index) => (
+        {filteredRentals.map((r, index) => (
           <div key={index} className="card">
             <p>
               <strong>Dirección:</strong> {r.address}
