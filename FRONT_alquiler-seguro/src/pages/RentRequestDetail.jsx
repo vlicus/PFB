@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 import ApiImage from "../components/ApiImage";
 
 import "../styles/RentRequestDetail.css";
+import "../styles/Buttons.css";
 
 export default function RentRequestDetail() {
   const { token } = useAuth();
@@ -61,6 +62,9 @@ export default function RentRequestDetail() {
   return (
     <main className="rent-request-detail-main">
       <div className="rent-request-detail">
+        <span className="back-btn" onClick={() => navigate(-1)}>
+          ←
+        </span>
         {address && <p className="rent-card-city">{address}</p>}
         {city && <p className="rent-card-city">{city}</p>}
         {price && <p className="rent-card-price">{price} €/mes</p>}
