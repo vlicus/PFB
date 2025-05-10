@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -18,7 +19,7 @@ export default function RentDetailPage() {
     photos,
     username,
   } = useRent();
-
+  const navigate = useNavigate();
   const totalImages = photos?.length || 0;
 
   const sliderSettings = {
@@ -33,6 +34,9 @@ export default function RentDetailPage() {
   return (
     <div style={{ display: "flex", justifyContent: "center", padding: "2rem" }}>
       <div className="rental-card">
+        <span className="back-btn" onClick={() => navigate(-1)}>
+          ←
+        </span>
         <h1 className="rent-card-city">{address}</h1>
         <p className="rent-card-rooms">{city}</p>
         {/* Carrusel de imágenes */}
