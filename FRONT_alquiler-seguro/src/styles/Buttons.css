@@ -57,11 +57,12 @@
   transform: scale(1.05);
   background-color: #111;
 }
+
 .back-btn {
   position: absolute;
   top: 0.75rem;
   left: 0.75rem;
-  font-size: 2rem; /* más pequeño */
+  font-size: 2rem;
   color: black;
   cursor: pointer;
   background: transparent;
@@ -73,6 +74,7 @@
 .back-btn:hover {
   color: #444;
 }
+
 .rents-btn-container {
   display: flex;
   justify-content: center;
