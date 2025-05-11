@@ -2,7 +2,7 @@
 
 ## ⚙️ Instrucciones para iniciar el backend
 
-> ⚠️ **IMPORTANTE:** Asegúrate de configurar el archivo `.env` (usa `.env.example` como referencia) con los valores necesarios para la conexión a la base de datos y el protocolo de envío de emails.
+> ⚠️ **IMPORTANTE:** Asegúrate de configurar el archivo `.env` (usa `.env.example` como referencia) con los valores necesarios para la conexión a la base de datos y el protocolo de envío de emails. Al iniciar la base de datos con el comando ` npm run initDb` se crearán unos perfiles predeterminados para tener más información en la landing page. Como esto es así, hemos proporcionado un fichero llamado uploads_example copy que debemos renombrar, en exactamente la misma ruta que se encuentra, a uploads
 
 ### 1. Clonar el repositorio
 
