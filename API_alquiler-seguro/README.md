@@ -64,7 +64,7 @@ npm run dev
 
 ### 2. Validación de usuario
 
-`POST /users/validation`
+`POST /validation/:regcode`
 
 ```json
 {
@@ -85,7 +85,7 @@ npm run dev
 
 ### 4. Listar todos los usuarios
 
-`GET /users`
+`GET /users/list`
 
 ### 5. Obtener detalles de un usuario
 
@@ -119,7 +119,7 @@ npm run dev
 
 ### 9. Actualizar perfil de usuario
 
-`PUT /users/password/update`
+`PUT /users/update`
 
 **Formato `form-data`:**
 
