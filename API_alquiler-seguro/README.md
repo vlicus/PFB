@@ -1,280 +1,220 @@
-# BACKEND Alquiler Seguro
+# 🏠 Backend - Alquiler Seguro
 
-## Instrucciones para levantar el back de la aplicación Alquiler Seguro.
+## ⚙️ Instrucciones para iniciar el backend
 
-> [!CAUTION]
-> Es importante configurar el .env (.env.example) con los campos correspondientes de la base de datos y del protocolo para el envío de emails.
+> ⚠️ **IMPORTANTE:** Asegúrate de configurar el archivo `.env` (usa `.env.example` como referencia) con los valores necesarios para la conexión a la base de datos y el protocolo de envío de emails.
 
-## Clonar repositorio en local
-
-Acceder al directorio del back:
+### 1. Clonar el repositorio
 
 ```bash
-  cd PFB/API_alquiler-seguro
+git clone <URL_DEL_REPOSITORIO>
+cd PFB/API_alquiler-seguro
 ```
 
-Instalar las dependencias:
+### 2. Instalar dependencias
 
 ```bash
-  npm i
+npm install
 ```
 
-Crear la base de datos (aunque exista previamente, la elimina y la crea de nuevo) y las tablas correspondientes con el siguiente script:
+### 3. Inicializar la base de datos
+
+Esto eliminará la base de datos anterior (si existe) y creará una nueva con sus tablas correspondientes:
 
 ```bash
-  npm run initDb
+npm run initDb
 ```
 
-Con este script conseguiremos poner a escuchar a nuestra aplicación en el puerto PORT, configurado previamente en .env:
+### 4. Iniciar la aplicación
+
+Este comando inicia el servidor en el puerto especificado en el archivo `.env`:
 
 ```bash
-  npm run dev
+npm run dev
 ```
 
-## Endpoints (peticiones Postman)
+---
 
-### User Endpoints:
+## 📮 Endpoints (Postman)
 
-#### Path variables:
+### 📌 Notas sobre variables de ruta
 
-> [!IMPORTANT]
-> Si en el endpoint extá explícito (rentId o userId) significa que tenemos que configurar las variables de entorno en POSTMAN, dependiendo del caso en concreto y lo que querramos conseguir con la petición:
+> ⚠️ Si el endpoint incluye `:userId` o `:rentId`, debes definir estas variables en Postman:
 >
-> - Key: userId O rentId
-> - Value: id del usuario O del alquiler en concreto en la base de datos
+> - **Key:** `userId` o `rentId`
+> - **Value:** ID correspondiente en la base de datos
 
-1. Endpoint de usuario pendiente de activar (POST)
+---
 
-```bash
-/users/register
-```
+## 👤 Endpoints de Usuario
 
-Body (JSON)
+### 1. Registro de usuario
+
+`POST /users/register`
 
 ```json
 {
   "username": "Nombre del usuario",
-  "email": "Email del usuario",
-  "password": "Contraseña del Usuario que cumpla patrón requerido",
-  "bio": "Bio del usuario",
-  "phone_number": "número de teléfono del usuario"
+  "email": "correo@ejemplo.com",
+  "password": "ContraseñaSegura123!",
+  "bio": "Descripción breve",
+  "phone_number": "123456789"
 }
 ```
 
-2. Endpoint para validacion de usuario (POST)
+### 2. Validación de usuario
 
-```bash
-/users/validation
-```
-
-- Body (JSON)
+`POST /users/validation`
 
 ```json
 {
-  "email": "Email del usuario"
+  "email": "correo@ejemplo.com"
 }
 ```
 
-3. Endpoint para login de un usuario registrado (POST)
+### 3. Login
 
-```bash
-/users/login
-```
-
-- Body (JSON)
+`POST /users/login`
 
 ```json
 {
-  "email": "Email del usuario",
-  "password": "Contraseña correspondiente al usuario"
+  "email": "correo@ejemplo.com",
+  "password": "ContraseñaSegura123!"
 }
 ```
 
-4. Endpoint para obtener el listado de usuarios (GET)
+### 4. Listar todos los usuarios
 
-```bash
-/users
-```
+`GET /users`
 
-5. Endpoint para los detalles de un usuario (GET)
+### 5. Obtener detalles de un usuario
 
-```bash
-/users/:userId
-```
+`GET /users/:userId`
 
-6. Endpoint para detalles de usuario con el histórico de alquileres hechos (GET)
+### 6. Obtener historial de alquileres de un usuario
 
-```bash
-/users/:userId/history
-```
+`GET /users/:userId/history`
 
-7. Endpoint para enviar un correo de recuperación de contraseña (PUT)
+### 7. Enviar correo para recuperación de contraseña
 
-```bash
-/users/password/recover
-```
-
-- Body (JSON)
+`PUT /users/password/recover`
 
 ```json
 {
-  "email": "Email del usuario",
-  "password": "Contraseña correspondiente al usuario"
+  "email": "correo@ejemplo.com"
 }
 ```
 
-8. Endpoint que permite cambiar la contraseña al usuario (POST)
+### 8. Cambiar contraseña
 
-```bash
-/users/password/change
-```
-
-- Body (JSON)
+`POST /users/password/change`
 
 ```json
 {
-  "email": "Email del usuario",
-  "pass": "Antigua Contraseña",
-  "newPass": "Nueva Contraseña"
+  "email": "correo@ejemplo.com",
+  "pass": "ContraseñaAnterior123!",
+  "newPass": "NuevaContraseña456!"
 }
 ```
 
-9. Endpoint que permite actualizar el perfil del usuario, puede ser modificado los atributos que desee, los que no sean insertados en el form-data, mantendrán su estado previo (PUT)
+### 9. Actualizar perfil de usuario
 
-```bash
-/users/password/update
-```
+`PUT /users/password/update`
 
-- Form-data
+**Formato `form-data`:**
 
-```json
-{
-   Key: username (text) -> Value: Nombre que queramos asignar
-   Key: bio (text) -> Value: Biografía
-   Key: phone_number (text) -> Value: Número de teléfono
-   Key: first_name (text) -> Value: Nombres
-   Key: last_name (text) -> Value: Apellidos
-   Key: avatar (file) -> Value: Añadir archivo de imagen
-}
-```
+- `username` (text)
+- `bio` (text)
+- `phone_number` (text)
+- `first_name` (text)
+- `last_name` (text)
+- `avatar` (file)
 
-10. Endpoint votar entre usuarios
+### 10. Valorar a otro usuario
 
-```bash
-/user/:userId/votes
-```
-
-- Body (JSON)
+`POST /user/:userId/votes`
 
 ```json
 {
   "rating": 5,
-  "comment": "Este tío es un crack que flipas"
+  "comment": "Gran experiencia de alquiler"
 }
 ```
 
-### Rent Endpoints
+---
 
-1. Añadir un nuevo alquiler (POST)
+## 🏘️ Endpoints de Alquiler (Rent)
 
-```bash
-/rent/register
-```
+### 1. Registrar nuevo alquiler
 
-- Body (JSON)
-
-```json
-   {
-    "address": "Dirección",
-    "price": precio(número),
-    "num_rooms": habitaciones(número),
-    "description": "Descripción de la vivienda"
-    }
-```
-
-2. Añadir fotos a un alquiler (POST)
-
-```bash
-/rent/:rentId/photos
-```
-
-- Form-data
-
-```json
-   Key: photo (file) -> Value: Añadir archivo de imagen o imágenes (hasta 20)
-```
-
-3. Eliminar una foto de un alquiler (DELETE)
-
-```bash
-/rent/:rentId/photos/:photoId
-```
-
-4. Obtener info de un alquiler concreto (GET)
-
-```bash
-/rent/:rentId
-```
-
-5. Solicitar visita/alquiler (POST)
-
-```bash
-/rent/:rentId/request
-```
-
-6. Obtener el listado de las solicitudes de visita/alquiler (GET)
-
-```bash
-/rents/requests
-```
-
-7. Obtener el listado de alquileres (GET)
-
-```bash
-/rents
-```
-
-8. Aprobar un alquiler (POST)
-
-```bash
-/rent/:rentId/approve
-```
-
-9. Cambiar el estado de un alquiler (PUT)
-
-```bash
-/rent/:rentId
-```
-
-- Body (JSON)
+`POST /rent/register`
 
 ```json
 {
-  "status": 0
-  // 0 = No disponible
-  // 1 = Disponible
+  "address": "Dirección del inmueble",
+  "price": 800,
+  "num_rooms": 3,
+  "description": "Piso céntrico y luminoso"
 }
 ```
 
-10. Modificar estado de visita o disponibilidad
+### 2. Subir fotos a un alquiler
 
-```bash
-/rent/:rentId/response/:requestId
+`POST /rent/:rentId/photos`
+
+**form-data:**
+
+- `photo` (file) → Hasta 20 imágenes
+
+### 3. Eliminar una foto de un alquiler
+
+`DELETE /rent/:rentId/photos/:photoId`
+
+### 4. Obtener detalles de un alquiler
+
+`GET /rent/:rentId`
+
+### 5. Solicitar visita/alquiler
+
+`POST /rent/:rentId/request`
+
+### 6. Obtener solicitudes de alquiler
+
+`GET /rents/requests`
+
+### 7. Listar todos los alquileres
+
+`GET /rents`
+
+### 8. Aprobar alquiler
+
+`POST /rent/:rentId/approve`
+
+### 9. Cambiar estado de disponibilidad del alquiler
+
+`PUT /rent/:rentId`
+
+```json
+{
+  "status": 1
+}
 ```
 
-- Body (JSON)
+### 10. Cambiar estado de solicitud de alquiler
+
+`PUT /rent/:rentId/response/:requestId`
 
 ```json
 {
   "status": "APPROVED"
-  // Para la visita "APPROVED" OR "REJECTED"
-  // Para el alquiler "ACTIVE" OR "CANCELLED"
 }
 ```
 
-## Autores
+---
+
+## 👨‍💻 Autores
 
 - [@Juanjo Riera](https://github.com/JuanjoRiera)
 - [@Samuel Cobas](https://github.com/vlicus)
-- [@Carlos "Tuto" Curiel ](https://github.com/AuthorGG)
+- [@Carlos "Tuto" Curiel](https://github.com/AuthorGG)
 - [@Nicolas Fernandez](https://github.com/nicofernandezdl7)
