@@ -11,6 +11,7 @@ import Validation from "./pages/Validation";
 import PublicProfile from "./pages/PublicProfile";
 
 import "./index.css";
+import "../src/styles/ToastStyle.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ApproveRents from "./pages/ApproveRents";
@@ -36,18 +37,39 @@ const App = () => {
         <main className="main-Content">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/register" element={!token ? <Register /> : <Navigate to="/" />} />
+            <Route
+              path="/register"
+              element={!token ? <Register /> : <Navigate to="/" />}
+            />
             <Route path="/validation/:regcode" element={<Validation />} />
-            <Route path="login" element={!token ? <Login /> : <Navigate to="/" />} />
-            <Route path="/enterEmailRecovery" element={<SendEmailPasswordRecovery />} />
-            <Route path="/passwordRecovery" element={<SendPasswordRecovery />} />
-            <Route path="/profile" element={token ? <Profile /> : <Navigate to="/login" />} />
+            <Route
+              path="login"
+              element={!token ? <Login /> : <Navigate to="/" />}
+            />
+            <Route
+              path="/enterEmailRecovery"
+              element={<SendEmailPasswordRecovery />}
+            />
+            <Route
+              path="/passwordRecovery"
+              element={<SendPasswordRecovery />}
+            />
+            <Route
+              path="/profile"
+              element={token ? <Profile /> : <Navigate to="/login" />}
+            />
             <Route path="/profile/update" element={<UpdateProfile />} />
             <Route path="/profile/:userId" element={<PublicProfile />} />
             <Route path="/rent/approve" element={<ApproveRents />} />
             <Route path="/rents" element={<RentsPage />} />
-            <Route path="/rent/new" element={token ? <NewRentForm /> : <Navigate to="login" />} />
-            <Route path="/rent/request/:requestId" element={<RentRequestDetail />} />
+            <Route
+              path="/rent/new"
+              element={token ? <NewRentForm /> : <Navigate to="login" />}
+            />
+            <Route
+              path="/rent/request/:requestId"
+              element={<RentRequestDetail />}
+            />
             {/*  <Route path="/profile/rent/update" element={<ApproveRents />} /> */}
             <Route path="/rent/requests" element={<RentsRequested />} />
             <Route path="/renter/requests" element={<MyRentsRequested />} />

@@ -1,0 +1,13 @@
+.Toastify__toast--success .Toastify__toast-icon svg {
+  fill: #0f6f02;
+}
+.Toastify__toast--success .Toastify__progress-bar {
+  background: #0f6f02;
+}
+
+.Toastify__toast--error .Toastify__toast-icon svg {
+  fill: #6c0b15;
+}
+.Toastify__toast--error .Toastify__progress-bar {
+  background: #6c0b15;
+}

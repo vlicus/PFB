@@ -31,7 +31,7 @@ export function useRentRequestActions() {
       }
 
       if (!res.ok) {
-        throw new Error("Error al crear la solicitud");
+        throw new Error("No puedes solicitar tus propios alquileres");
       }
       toast.success("Visita solicitada!", {
         position: "bottom-right",
@@ -57,14 +57,17 @@ export function useRentRequestActions() {
 
   const changeStatus = async (rentId, requestId, status) => {
     try {
-      const res = await fetch(VITE_API_URL + "/rent/" + rentId + "/response/" + requestId, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: token ? "Bearer " + token : "",
-        },
-        body: JSON.stringify({ status: status }),
-      });
+      const res = await fetch(
+        VITE_API_URL + "/rent/" + rentId + "/response/" + requestId,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: token ? "Bearer " + token : "",
+          },
+          body: JSON.stringify({ status: status }),
+        }
+      );
 
       if (!res.ok) {
         throw new Error("Error al actualizar la solicitud");

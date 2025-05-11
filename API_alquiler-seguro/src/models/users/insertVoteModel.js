@@ -42,7 +42,7 @@ const insertVoteModel = async (
     [rental_history_id]
   );
 
-  const isOwner = property_owner_id === recipient_id ? 1 : 0; // Si el valorado es casero → 1, si es inquilino → 0
+  const isOwner = property_owner_id === author_id ? 1 : 0; // Si el valorado es casero → 1, si es inquilino → 0
 
   // Insertamos el voto.
   await pool.query(
