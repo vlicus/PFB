@@ -47,7 +47,7 @@ Backend (Express Server)
 PFB/
 ├── API_alquiler-seguro/     # Servidor API Backend
 ├── FRONT_alquiler-seguro/   # Aplicación Frontend React
-└── README.md                # Este archivo
+└── README.md                
 ```
 
 ---
@@ -153,6 +153,7 @@ Para más detalles, consultar el README específico del Backend.
 
 #### Gestión de Usuarios
 
+- Perfil público
 - Registro y validación
 - Autenticación
 - Gestión de perfil
