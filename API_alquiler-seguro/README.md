@@ -64,7 +64,7 @@ npm run dev
 
 ### 2. Validación de usuario
 
-`POST /validation/:regcode`
+`GET /validation/:regcode`
 
 ```json
 {
@@ -132,7 +132,7 @@ npm run dev
 
 ### 10. Valorar a otro usuario
 
-`POST /user/:userId/votes`
+`POST /user/:userId/:rentHistoryId/votes`
 
 ```json
 {
@@ -141,6 +141,32 @@ npm run dev
 }
 ```
 
+### 11. Obtener perfil del usuario autenticado
+
+`GET /users`
+
+Recupera el perfil privado del usuario autenticado.
+
+---
+
+### 12. Obtener valoraciones de un usuario
+
+`GET /users/:userId/ratings`
+
+Obtiene todas las valoraciones (ratings) de un usuario específico.
+
+---
+
+### 13. Cambiar contraseña con código de recuperación
+
+`PUT /users/password`
+
+````json
+{
+  "email": "correo@ejemplo.com",
+  "regcode": "código_de_recuperación",
+  "newPass": "NuevaContraseña456!"
+}
 ---
 
 ## 🏘️ Endpoints de Alquiler (Rent)
@@ -156,7 +182,7 @@ npm run dev
   "num_rooms": 3,
   "description": "Piso céntrico y luminoso"
 }
-```
+````
 
 ### 2. Subir fotos a un alquiler
 
