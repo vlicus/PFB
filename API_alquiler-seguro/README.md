@@ -167,6 +167,7 @@ Obtiene todas las valoraciones (ratings) de un usuario específico.
   "regcode": "código_de_recuperación",
   "newPass": "NuevaContraseña456!"
 }
+````
 ---
 
 ## 🏘️ Endpoints de Alquiler (Rent)
