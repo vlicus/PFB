@@ -4,13 +4,18 @@ import { randomUUID as uuid } from "crypto";
 import fs from "fs/promises";
 import path from "path";
 
-import { UPLOADS_DIR } from "../../env.js";
+import {
+  UPLOADS_DIR,
+  ADMIN_PASSWORD,
+  ADMIN_EMAIL,
+  ADMIN_USERNAME,
+} from "../../env.js";
 
 const main = async () => {
   // Variable que almacenará una conexión con la base de datos.
   let pool;
 
-  const hashedPass = await bcrypt.hash("Abcd1234!", 10);
+  const hashedPass = await bcrypt.hash(ADMIN_PASSWORD, 10);
   const uploads = path.resolve(UPLOADS_DIR);
 
   try {
@@ -118,8 +123,8 @@ CREATE TABLE IF NOT EXISTS ratings (
   ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         uuid(),
-        "admin@ejemplo.com",
-        "admin",
+        ADMIN_EMAIL,
+        ADMIN_USERNAME,
         "+34911111222",
         "Administrador del sistema.",
         hashedPass,

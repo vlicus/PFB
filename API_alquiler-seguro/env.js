@@ -18,4 +18,7 @@ export const {
   FRONT_URL,
   API_URL,
   FRONT_PORT,
+  ADMIN_PASSWORD,
+  ADMIN_USERNAME,
+  ADMIN_EMAIL,
 } = process.env;

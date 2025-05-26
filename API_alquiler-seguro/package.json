@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --watch ./app.js",
-    "initDb": "node ./src/db/initDb.js"
+    "initDb": "node ./src/db/initDb.js",
+    "rawinitDb": "node ./src/db/rawinitDb.js"
   },
   "keywords": [],
   "author": "",
