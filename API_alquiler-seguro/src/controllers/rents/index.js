@@ -16,6 +16,8 @@ import getRentRequestController from "./getRentRequestController.js";
 import listMyRentRequestController from "./listMyRentRequestController.js";
 import listCitiesController from "./ListCitiesController.js";
 import listOwnRentsController from "./listOwnRentsController.js";
+import rejectRentController from "./rejectRentController.js";
+
 export {
   getRentController,
   deleteRentPhotoController,
@@ -25,6 +27,7 @@ export {
   requestRentController,
   listRentRequestController,
   approveRentController,
+  rejectRentController,
   editStatusRentController,
   approveVisitController,
   listFilteredRentsController,

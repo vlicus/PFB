@@ -1,4 +1,4 @@
-import approveRentModel from "../../models/rents/approveRentModel.js";
+import rejectRentModel from "../../models/rents/rejectRentModel.js";
 import getPool from "../../db/getPool.js";
 import generateErrorUtil from "../../utils/generateErrorUtil.js";
 
@@ -6,10 +6,6 @@ const approveRentController = async (req, res, next) => {
   try {
     const { rentId } = req.params;
     const userId = req.user.id;
-
-    console.log("------------------------");
-    console.log(rentId);
-    console.log("------------------------");
 
     const pool = await getPool();
 
@@ -21,7 +17,7 @@ const approveRentController = async (req, res, next) => {
       generateErrorUtil("No tienes permisos para aprobar alquileres", 403);
     }
 
-    const result = await approveRentModel(rentId);
+    const result = await rejectRentModel(rentId);
 
     res.send({
       status: "ok",

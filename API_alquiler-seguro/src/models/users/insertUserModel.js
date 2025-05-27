@@ -58,7 +58,7 @@ const insertUserModel = async (
         `;
 
   // Enviamos el email de verificación al usuario.
-  await sendMailUtil(email, emailSubject, emailBody); //DE MOMENTO NO MANDAMOS EMAIL
+  await sendMailUtil(email, emailSubject, emailBody);
 
   // Enctriptamos la password
   const hashedPass = await bcrypt.hash(password, 10);
@@ -68,14 +68,6 @@ const insertUserModel = async (
     `INSERT INTO users(id, username, email, password,bio, phone_number, registration_code) VALUES(?, ?, ?, ?, ?,?,?)`,
     [uuid(), username, email, hashedPass, bio, phone_number, registration_code]
   );
-
-  // Lo creamos sin el registration_code por ahora
-  /* await pool.query(
-    `
-        INSERT INTO users(id, username, email, password, bio, phone_number) VALUES (?,?,?,?,?,?)
-        `,
-    [uuid(), username, email, hashedPass, bio, phone_number]
-  ); */
 };
 
 export default insertUserModel;
