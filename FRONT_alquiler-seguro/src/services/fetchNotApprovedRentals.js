@@ -1,5 +1,7 @@
+const { VITE_API_URL } = import.meta.env;
+
 export async function fetchNotApprovedRentals() {
-  const res = await fetch("http://localhost:3000/rents/notapproved");
+  const res = await fetch(VITE_API_URL + "/rents/notapproved");
   const json = await res.json();
   //console.log(json);
   return json.data.rents;
