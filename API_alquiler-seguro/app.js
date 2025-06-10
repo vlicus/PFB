@@ -46,6 +46,6 @@ app.use(notFoundController);
 //Middleware de errores
 app.use(errorController);
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT ?? 3000, () => {
   console.log(`Servidor escuchando en http://localhost:${PORT}`);
 });
